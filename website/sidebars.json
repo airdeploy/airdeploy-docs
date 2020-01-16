@@ -1,0 +1,17 @@
+{
+  "docs": {
+    "Documentation": [
+      "overview"
+    ],
+    "API Reference": [
+      "api-references",
+      "api-reference-ts"
+    ]
+  },
+  "docs-other": {
+    "First Category": [
+      "doc4",
+      "doc5"
+    ]
+  }
+}
