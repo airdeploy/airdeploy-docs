@@ -44,19 +44,17 @@ Flagger init function specs
 - if source/backup/SSE fail to get `FlaggerConfiguration` then Flagger is still working, but all flags are off.
 
 
-### Flagger.addFlaggerConfigUpdateListener(listener (config: FlaggerConfiguration) ⇒ void): void
+### Flagger.addFlaggerConfigUpdateListener(listener: (config: FlaggerConfiguration) ⇒ void): void
+
+Add a listener to subscribe to event when `Flagger` gets new `FlaggerConfiguration`
 ### Flagger.removeFlaggerConfigUdateListener(listener: (config: FlaggerConfiguration)⇒ void): void
 
-Both of this functions are utilizing observer pattern
-Use them in case you want to subscribe to event when `Flagger` gets new `FlaggerConfiguration`
-
-
+Removes a listener
 
 ### Flagger.publish(entity: Entity): void
 
-Sends Entity explicitly to Airship
+Sends an entity explicitly to Airship
 
-Example:
 ```javascript
 Flagger.publish({id:1})
 ```
@@ -67,7 +65,6 @@ Flagger.publish({id:1})
 Simple event tracking API.
 Entity is an optional parameter if it was set before.
 
-Examples:
 ```javascript
 Flagger.track('Purchase Completed', {
         "plan": "Gold",
@@ -85,17 +82,33 @@ Flagger.track('Purchase Completed', {
 
 ### Flagger.setEntity(entity: Entity): void
 
-`setEntity` stores an entity in Flagger, which allows omission of entity in other API methods. Can be called multiple times to replace default entity.
+`setEntity` stores an entity in Flagger, which allows omission of entity in other API methods. 
+Can be called to replace default entity.
 
 ```javascript
-Flagger.setEntity({
-        "id": 543,
-        "type": "User", // optional - type defaults to "User"
-        "name": "John Smithson"
-})
+const entity = {
+    "id": 543,
+    "type": "User", // optional - type defaults to "User"
+    "name": "John Smithson"
+}
+Flagger.setEntity(entity)
 
-Flagger.setEntity(null) // to remove default entity
+// here we are omitting, because Flagger has stored "entity"
+Flagger.flagIsEnabled("stripe-payment")  
+Flagger.track("some-event", {content: "some-text"})
+
+// Flagger will use "differentEntity", because it will override "entity"
+const differentEntity = {id:"94239643"}
+Flagger.flagIsEnabled("strip-payment", differentEntity) 
+
+Flagger.setEntity(null) // to remove global entity
 ```
+
+Note: If you don't provide an entity to Flagger:
+- flag functions always resolve with default variation
+- track doesn't record an event
+
+Rule of thumb: make sure you provided an entity to the Flagger
 
 ## Flag functions
 ### Flagger.flagIsEnabled(codename: String, entity: Entity): Boolean

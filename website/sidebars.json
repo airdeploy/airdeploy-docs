@@ -1,9 +1,12 @@
 {
   "docs": {
-    "Documentation": [
-      "overview"
+    "Flagger SDK": [
+      "overview",
+      "installation",
+      "tracking",
+      "filters"
     ],
-    "API Reference": [
+    "Flagger SDK API Reference": [
       "api-references",
       "api-reference-ts"
     ]
