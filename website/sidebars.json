@@ -3,18 +3,18 @@
     "Flagger SDK": [
       "overview",
       "installation",
+      "flag-functions",
       "tracking",
+      "default-variation",
       "filters"
     ],
-    "Flagger SDK API Reference": [
+    "SDK API Reference": [
       "api-references",
-      "api-reference-ts"
-    ]
-  },
-  "docs-other": {
-    "First Category": [
-      "doc4",
-      "doc5"
+      "api-reference-ts",
+      "api-reference-java",
+      "api-reference-ruby",
+      "api-reference-python",
+      "api-reference-go"
     ]
   }
 }

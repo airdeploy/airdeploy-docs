@@ -7,19 +7,19 @@ sidebar_label: Installation
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
-```shell script
-npm install --save flagger`
+```commandline
+npm install --save flagger
 ```
 <!--Ruby-->
-```shell script
+```commandline
 gem install flagger
 ```
 <!--Python-->
-```shell script
+```commandline
 pip install flagger
 ```
 <!--Go-->
-```shell script
+```commandline
 go get github.com/airshiphq/flagger-go
 ```
 <!--Java-->
@@ -32,7 +32,7 @@ Maven
 </dependency>
 ```
 Gradle
-```shell script
+```commandline
 compile "com.airshiphq:flagger:3.0.0"
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
