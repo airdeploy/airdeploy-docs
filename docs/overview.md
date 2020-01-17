@@ -5,10 +5,9 @@ sidebar_label: Overview
 ---
 
 Flagger is the open-source implementation of the feature flagging(feature gating, feature toggles) concept. 
-It works both in the browser and on the server. 
 
 ## Features
-- Blazing fast, requires only one backend call to decide what flag to show
+- Blazing fast, requires only one backend call
 - Highly customizable
 - Sampling(canary release) and multivariate A/B testing with custom filters
 - Auto-updatable configuration(via SSE)
@@ -22,8 +21,8 @@ Description: I'm trying to have each docs section have a "Design Principles" sec
 
 ## Flag Detection
 Flagger will automatically detect new flags in the code and sends them to Airship via ingestion mechanism. 
-You can see an example of that at [initialization section](installation.md#make-a-test-flag-request), when we create a flag that currently does not exist in 
-Airship, but due to the flag detection we can see it after running code example.
+You can see an example of that at [initialization section](installation.md#make-a-test-flag-request), when we create a 
+flag that currently does not exist in Airship, but due to the flag detection we can see it after running code example.
 
 ## Order of Precedence
 Order of Precedence
