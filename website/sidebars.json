@@ -6,7 +6,9 @@
       "flag-functions",
       "tracking",
       "default-variation",
-      "filters"
+      "ingestion",
+      "filters",
+      "faq"
     ],
     "SDK API Reference": [
       "api-references",

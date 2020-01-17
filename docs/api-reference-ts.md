@@ -9,7 +9,7 @@ sidebar_label: Typescript
 
 `init` gets `FlaggerConfiguration`, establish SSE connections and starts an ingester
 
-Note: `init` must be called only once, at the start of your application. Your program should wait for the promise to resolve so flag functions works properly
+> `init` must be called only once, at the start of your application. Your program should wait for the promise to resolve so flag functions works properly
 
 ```javascript
 import Flagger from 'flagger'
@@ -104,9 +104,9 @@ Flagger.flagIsEnabled("strip-payment", differentEntity)
 Flagger.setEntity(null) // to remove global entity
 ```
 
-Note: If you don't provide an entity to Flagger:
-- flag functions always resolve with default variation
-- track doesn't record an event
+>If you don't provide an entity to Flagger:
+>- flag functions always resolve with the default variation
+>- track doesn't record an event
 
 Rule of thumb: make sure you provided an entity to the Flagger
 

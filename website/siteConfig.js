@@ -29,6 +29,18 @@ const siteConfig = {
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
+  markdownOptions: {
+    html: true
+  },
+
+  markdownPlugins: [
+    function foo(md) {
+      md.inline.ruler.enable(['mark']);
+      md.block.ruler.enable([
+        'deflist'
+      ]);
+    },
+  ],
   // Used for publishing and more
   projectName: 'airship-docs',
   organizationName: 'jeronimo13',

@@ -40,6 +40,5 @@ Flagger.track('Purchase Completed', {
 
 
 
-## Warning
-You must provide to Flagger an entity, either via 3rd parameter in __Flagger.track__ method or via __Flagger.setEntity__, which will set 
-entity globally for all of the Flagger methods 
+>You must provide to Flagger an entity, either via 3rd parameter in __Flagger.track__ method or via __Flagger.setEntity__, which will set 
+>entity globally for all of the Flagger methods 

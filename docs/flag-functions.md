@@ -100,10 +100,7 @@ if (variation === 'halloween') {
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-Note
-```text
-    returns 'off' as the default variation
-```
+>    flagGetVariation returns 'off' as the default variation
 
 
 ## Helpful Flag Functions
