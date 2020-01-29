@@ -1,5 +1,5 @@
 ---
-id: api-reference-python
+id: python
 title: Python API Reference
 sidebar_label: Python
 ---

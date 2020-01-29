@@ -50,8 +50,8 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'overview', label: 'Docs'},
-    {doc: 'api-references', label: 'API'},
+    {doc: 'flagger-sdk/overview', label: 'Docs'},
+    {doc: 'api-reference/overview', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
   ],

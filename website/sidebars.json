@@ -1,22 +1,25 @@
 {
   "docs": {
+    "Flagger": [
+      "flagger/overview"
+    ],
     "Flagger SDK": [
-      "overview",
-      "installation",
-      "flag-functions",
-      "tracking",
-      "default-variation",
-      "ingestion",
-      "filters",
-      "faq"
+      "flagger-sdk/overview",
+      "flagger-sdk/installation",
+      "flagger-sdk/flag-functions",
+      "flagger-sdk/tracking",
+      "flagger-sdk/default-variation",
+      "flagger-sdk/ingestion",
+      "flagger-sdk/filters",
+      "flagger-sdk/faq"
     ],
     "SDK API Reference": [
-      "api-references",
-      "api-reference-ts",
-      "api-reference-java",
-      "api-reference-ruby",
-      "api-reference-python",
-      "api-reference-go"
+      "api-reference/overview",
+      "api-reference/ts",
+      "api-reference/java",
+      "api-reference/ruby",
+      "api-reference/python",
+      "api-reference/go"
     ]
   }
 }

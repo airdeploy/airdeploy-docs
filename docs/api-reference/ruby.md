@@ -1,5 +1,5 @@
 ---
-id: api-reference-ruby
+id: ruby
 title: Ruby API Reference
 sidebar_label: Ruby
 ---

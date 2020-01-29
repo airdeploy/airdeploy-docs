@@ -1,5 +1,5 @@
 ---
-id: api-reference-java
+id: java
 title: Java API Reference
 sidebar_label: Java
 ---

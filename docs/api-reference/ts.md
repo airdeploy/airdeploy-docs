@@ -1,5 +1,5 @@
 ---
-id: api-reference-ts
+id: ts
 title: TypeScript API Reference
 sidebar_label: Typescript
 ---
