@@ -12,7 +12,8 @@ Within minutes of your first deployment, you can:
 - Target certain features to specific types of users
 - Allow certain users to see specific features
 - Restrict certain users from specific features
-What else can I use Airship for?
+
+## What else can I use Airship for?
 
 These are just a few examples:
 

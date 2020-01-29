@@ -1,7 +1,23 @@
 {
   "docs": {
     "Flagger": [
-      "flagger/overview"
+      "flagger/overview",
+      "flagger/design-principles",
+      "flagger/work",
+      "flagger/first-flag",
+      "flagger/projects",
+      "flagger/flags",
+      "flagger/environments",
+      "flagger/entities",
+      "flagger/organizations",
+      "flagger/data",
+      "flagger/team",
+      "flagger/usage-billing",
+      "flagger/your-profile",
+      "flagger/data-retention",
+      "flagger/ace",
+      "flagger/glossary",
+      "flagger/how-to-use"
     ],
     "Flagger SDK": [
       "flagger-sdk/overview",
