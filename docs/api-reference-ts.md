@@ -38,10 +38,13 @@ Flagger init function specs
 - Optional values are propagated with defaults and print to Debug
 - if second(third …) call of `init` happens:
     - if the arguments are the same, `init` method does nothing
-    - if arguments differ, Flagger Warns about it and recreates(closes and creates new) resources(SSE connection, Ingester, gets new FlaggerConfiguration).
+    - if arguments differ, Flagger Warns about it and recreates(closes and creates new) resources(SSE connection, 
+    Ingester, gets new FlaggerConfiguration).
 - if initial `FlaggerConfiguration` is not fetched from source/backup than print error as Warning
 - if SSE connection fails than print error as Warning and retry until connection is established
-- if source/backup/SSE fail to get `FlaggerConfiguration` then Flagger is still working, but all flags are off.
+- if source/backup/SSE fail to get `FlaggerConfiguration` then Flagger is still working, but all flags functions return 
+default variation
+- any flag function that is called BEFORE the Init finishes returns default variation  
 
 
 ### Flagger.addFlaggerConfigUpdateListener(listener: (config: FlaggerConfiguration) ⇒ void): void
