@@ -98,9 +98,11 @@ const siteConfig = {
   // No .html extensions for paths.
   cleanUrl: true,
 
+  docsSideNavCollapsible: true,
+
   // Open Graph and Twitter card images.
-  ogImage: 'img/undraw_online.svg',
-  twitterImage: 'img/undraw_tweetstorm.svg',
+  // ogImage: 'img/undraw_online.svg',
+  // twitterImage: 'img/undraw_tweetstorm.svg',
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.

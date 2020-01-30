@@ -4,7 +4,7 @@ title: Overview
 sidebar_label: Overview
 ---
 
-Flagger is the open-source implementation of the feature flagging(feature gating, feature toggles) concept. 
+Flagger SDK is the open-source implementation of the feature flagging(feature gating, feature toggles) concept. 
 
 ## Features
 - Blazing fast, requires only one backend call
