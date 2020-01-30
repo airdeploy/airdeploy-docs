@@ -4,8 +4,8 @@ title: Entities
 sidebar_label: Entities
 ---
 
-- See What is an entity? for a definition and how they work.
-- See Environments to understand how entities are different in each environment.
+- See [What is an entity?](work.md#what-is-an-entity) for a definition and how they work.
+- See [Environments](environments.md) to understand how entities are different in each environment.
 
 ## Adding Entities
 
@@ -31,7 +31,7 @@ The left navigation panel has a few capabilities:
 
 - __Find Entities__ — a way to search for a specific entity in the list. You may search on any of the columns listed.
 - __Only Show in Groups__ — a way to cluster entities by their common attributes
-- __Type Filters__ — These are the types AirDeploy detected in your Entity list. There is a filter for each type. Clicking it restricts the list to that type.
+- __Type Filters__ — These are the types Airship detected in your Entity list. There is a filter for each type. Clicking it restricts the list to that type.
 
 The main view of the Entities screen is the list of entities (filtered or not) and an Entity detail. Clicking on any Entity will load its detail.
 
@@ -39,7 +39,8 @@ The main view of the Entities screen is the list of entities (filtered or not) a
 ![](assets/cory-larson.png)
 
 
-There are a few constant sections of the Entity detail and the rest is custom. You may add as many custom fields to your entities to suit your needs (see Adding Custom Entity Fields).
+There are a few constant sections of the Entity detail and the rest is custom. You may add as many custom fields to 
+your entities to suit your needs (see [Adding Custom Entity Fields](#adding-custom-entity-fields)).
 
 ## Entity Summary
 This includes the basic Entity information. Name, Type, ID, Last seen, and when the Entity was created.
@@ -48,7 +49,7 @@ This includes the basic Entity information. Name, Type, ID, Last seen, and when 
 Displays the parent entity (if exists), and lists the children (if exists). This area is expandable to show the entity details.
 
 ## Additional Attributes
-These are custom fields and their values (see Adding Custom Entity Fields).
+These are custom fields and their values (see [Adding Custom Entity Fields](#adding-custom-entity-fields)).
 
 ## Whitelisted Flags
 This lists the Flags and Feature variations where this Entity is whitelisted. 

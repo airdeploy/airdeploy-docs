@@ -108,7 +108,7 @@ You may add an unlimited number of filters. Of course, doing so might reduce you
 
 ## How do entity subset filters work?
 
-Filters are comprised of three parts: an attribute, an operator, and a value. The attributes and values are provided by your dataset \[<— making this up] and are contextual to the entity type.
+Filters are comprised of three parts: an attribute, an operator, and a value. The attributes and values are provided by your dataset \[<— making this up, Alvin to review] and are contextual to the entity type.
 
 For example, a user entity subset might be filtered where “operating system is not MacOS.” In this example, it may be that my original pool of user entities was 3,000. When this filter is applied it may reduce it to 1,200.
 

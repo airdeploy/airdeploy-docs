@@ -8,7 +8,7 @@ sidebar_label: Projects
 
 `Main Navigation > Projects & Environments`
 
-This screen enables you to add or remove projects, as well as environments (see section: Environments).
+This screen enables you to add or remove projects, as well as environments (see [Environments](environments.md)).
 
 ![](assets/managing-projects.jpeg)
 
@@ -83,7 +83,7 @@ Each square has five levels of activity. “Off” is default. The four other le
 
 ## Metrics
 
-Metrics are used for running experiments on project Flags (see Experiments). 
+Metrics are used for running experiments on project Flags (see [Experiments](flags.md#flag-experiments)). 
 
 Metrics are global to a Project. You can create them in two locations—at the Project level, or on a Flag Experiment. Removing a metric from a project
 
@@ -94,14 +94,14 @@ Metrics are global to a Project. You can create them in two locations—at the P
 - Click the "+”. A side panel appears.
 - In the side panel, complete the fields.
 - Click “Add Metric”
-    - Note: Creating a metric does not create an experiment. Metrics are available to all Flag Experiments within a Project.
+> Note: Creating a metric does not create an experiment. Metrics are available to all Flag Experiments within a Project.
 
 ### Deleting a Metric from the Project
 
 - Hover over the Metric you wish to delete.
 - Click the “X” which appears.
 - Confirm the dialog warning to continue, or cancel to stop.
-    - Note: Deleting a Metric from the Project removes all historical data collected on that metric for every Flag with an Experiment using it.
+    - >Note: Deleting a Metric from the Project removes all historical data collected on that metric for every Flag with an Experiment using it.
 
 ### Creating a Metric on a Flag Experiment
 
@@ -113,12 +113,13 @@ Metrics are global to a Project. You can create them in two locations—at the P
     - Create a New Metric
         - In the side panel, complete the fields.
         - Click “Add Metric”
-            - Note: This metric is now available to all Flag Experiments in this Project, but only active on the Flag Experiment you are in when you create it.
+            - >Note: This metric is now available to all Flag Experiments in this Project, but only active on the Flag Experiment you are in when you create it.
 
 ### Removing a Metric from a Flag Experiment
 
 - Hover over the metric you wish to remove. 
 - Click on the “X” tab that appears.
 - Confirm the dialog warning to continue, or cancel to stop.
-    - Note: Deleting a metric from a flag removes all historical data collected on that metric for this flag. If you add the same metric back, data will be collected starting from that date.
-    - Note: the metric is not deleted from the Project.
+    - > Note: Deleting a metric from a flag removes all historical data collected on that metric for this flag. If you add the same metric back, data will be collected starting from that date.
+    
+    - > Note: the metric is not deleted from the Project.

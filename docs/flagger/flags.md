@@ -6,7 +6,7 @@ sidebar_label: Flags
 
 ## Flag Control
 
-Just like in the Managing Flags, you can Enable and Disable a Flag to control whether entities receive their assigned variation or are all directed to Off. However, you must save and publish your choice for it to take effect.
+Just like in the __Managing Flags__, you can [Enable and Disable a Flag](projects.md#enable-and-disable-a-flag) to control whether entities receive their assigned variation or are all directed to Off. However, you must save and publish your choice for it to take effect.
 
 - Locate the toggle in the Flag Control panel.
 - Toggle the on or off.
@@ -28,7 +28,8 @@ All flags need an Entity Source in order to function. By default, Airship create
 - Confirm the dialog warning to continue, or cancel to stop.
 
 ### Adding an Entity Source
-You may have more than one Entity Source in a flag. This is helpful when you begin to create Subsets (see more about Entity subset filters).
+You may have more than one Entity Source in a flag. This is helpful when you begin to create Subsets 
+(see more about [Entity subset filters](work.md#how-do-entity-subset-filters-work)).
 
 ![](assets/add-es.jpeg)
 
@@ -71,26 +72,27 @@ You can add as many filters as you need to create the specific subset you need.
 
 With a default flag, you can control whether entities flow through your feature or not. This binary action allows you to effectively turn features on or off from a software perspective.
 
-The power of AirDeploy is magnified when you leverage feature variations. See How do flags and variations work? for more explanation on the function.
+The power of Airship is magnified when you leverage feature variations. See 
+[How do flags and variations work](work.md#how-do-flags-and-variations-work)? for more explanation on the function.
 
 ### Renaming a variation
 
 - Click the variation. A side panel appears.
-- In the side panel, make changes to the name, description, or whitelisted entities.
-    - Note: Changing the name will change the code-reference name. This will require a modification to the AirDeploy code snippet in your code and a redeployment.
+- In the side panel, make changes to the name, description, or [whitelisted entities](#whitelisting-an-entity).
+    - > Note: Changing the name will change the code-reference name. __This will require a modification to the Airship code snippet in your code and a redeployment__.
 
 ### Adding a variation
 
 - Click “Add a feature variation” at the bottom of the variations panel. A side panel appears.
 - In the side panel, make changes to the name, description, or whitelisted entities.
-    - Note: Adding a variation will change the code-reference name. This will require a modification to the AirDeploy code snippet in your code and a redeployment.
+    - > Note: Adding a variation will change the code-reference name. __This will require a modification to the Airship code snippet in your code and a redeployment__.
 
 ### Balancing variations
 
 ![](assets/balance-v.png)
 
 
-When you have two or more variations, AirDeploy automatically balances their probability evenly. This means that there is an equal probability that the combined Entity Sources will be served one variation over the other.
+When you have two or more variations, Airship automatically balances their probability evenly. This means that there is an equal probability that the combined Entity Sources will be served one variation over the other.
 
 You may rebalance the percentages to suit your situation as long as they total 100%. Realtime feedback will let you know if you are over-, under-, or exactly allocated.
 
@@ -106,8 +108,9 @@ You may rebalance the percentages to suit your situation as long as they total 1
 - Hover over the variation. 
 - Click the “X” tab that appears.
 - The variation will be removed.
-    - Note: If you still have more than one variation, you may need to rebalance your variations.
-    - Note: Removing a variation will change the code-reference name. This will require a modification to the AirDeploy code snippet in your code and a redeployment.
+    - > Note: If you still have more than one variation, you may need to [rebalance your variations](#balancing-variations).
+  
+    - > Note: Removing a variation will change the code-reference name. __This will require a modification to the Airship code snippet in your code and a redeployment__.
 
 
 ## Whitelisting Entities
@@ -174,7 +177,7 @@ Each published session is detailed by what was added, removed, or changed.
 - Click on the “Add Comment” button. A side panel will appear.
 - Add your comment.
 - Click “Save Comment”
-    - Note: Comments are not threaded.
+    - > Note: Comments are not threaded.
 
 ## Flag Experiments
 
@@ -192,7 +195,7 @@ Experiments are run using one or more metrics. Metrics are even hooks you have a
 
 To view the results for a given Metric, select it from this menu. You may always add another metric, but data is collected on the date you add it to the Experiment.
 
-For more about how Metrics relate to Projects, see Metrics.
+For more about how Metrics relate to Projects, see [Metrics](projects.md#metrics).
 
 ### Session Collection
 
@@ -229,8 +232,8 @@ Every entity that passed through the flag and was assigned a Feature Variation i
 
 - Navigate to a Flag
 - Choose “Experiments” from the left navigation.
-- Add one or more metrics (see Creating a Metric on a Flag Experiment).
+- Add one or more metrics (see [Creating a Metric on a Flag Experiment](projects.md#creating-a-metric-on-a-flag-experiment)).
 
 ### Deleting an Experiment
 
-- Remove all the metrics on the experiment (See Removing a Metric from a Flag Experiment).
+- Remove all the metrics on the experiment (See [Removing a Metric from a Flag Experiment](projects.md#removing-a-metric-from-a-flag-experiment)).

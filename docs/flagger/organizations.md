@@ -4,11 +4,11 @@ title: Organizations
 sidebar_label: Organizations
 ---
 
-When you sign up for AirDeploy, an organization is created for you. This organization has three properties.
+When you sign up for Airship, an organization is created for you. This organization has three properties.
 
 - __Name__ — What the organization is called
-- __AKA__ —The code version of the name. Editing the organization name requires a code change…
-- __Open invitations__ — this allows other AirDeploy users with the same domain to inherit this organization when they sign up or add this organization to their account.
+- __AKA__ —The code version of the name. __Editing the organization name requires a code change…__
+- __Open invitations__ — this allows other Airship users with the same domain to inherit this organization when they sign up or add this organization to their account.
 
 You cannot delete this organization.
 
@@ -36,9 +36,10 @@ Click an organization name to Switch or Join it.
 
 `Main Navigation > Choose Organization`
 
-If you are the organization owner, then deleting the organization will remove all Project, Environment, and Flag data.
+__If you are the organization owner, then deleting the organization will remove all Project, Environment, and Flag data.__
 
-If you simply joined an organization, the deleting an organiation only removes you from the organization. The Project data remains with the original Organization creator.
+__If you simply joined an organization, the deleting an organiation only removes you from the organization. 
+The Project data remains with the original Organization creator.__
 
 
 - Locate the section “Danger Zone”

@@ -4,7 +4,7 @@ title: Team
 sidebar_label: Team
 ---
 
-Each AirDeploy account comes with three team member seats. You may invite an unlimited number of team members, and your plan will scale (see more on pricing and plans on our website).
+Each Airship account comes with three team member seats. You may invite an unlimited number of team members, and your plan will scale (see more on pricing and plans on our website).
 
 ## Team Management
 
@@ -16,7 +16,7 @@ Each AirDeploy account comes with three team member seats. You may invite an unl
 - Add one or more email addresses.
 - Click “Send Invites”
 
-Team members will be invited via email to join your organization (and to create an AirDeploy account if they don’t have one).
+Team members will be invited via email to join your organization (and to create an Airship account if they don’t have one).
 
 Team members who are invited appear in the “invited” list, along with the date. You can cancel an invitation by:
 
@@ -26,9 +26,9 @@ Team members who are invited appear in the “invited” list, along with the da
 ### Changing Team Member permissions
 There are four levels of permissions:
 
-- __Viewer__ — read-only access to Projects & Flags (and other stuff?)
+- __Viewer__ — read-only access to Projects & Flags (and other stuff? Alvin)
 - __Editor__ — previous permissions, plus Adding, Editing and deleting permissions.
-- __Admin__ — previous permissions, plus Adding, Editing and deleting Team members, Billing, Etc.
+- __Admin__ — previous permissions, plus Adding, Editing and deleting Team members, Billing, Etc(Alvin).
 - __Owner__ — typically you, if you created the Organization.
 
 For every Team member:

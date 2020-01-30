@@ -107,7 +107,7 @@ if (variation === 'halloween') {
 These two functions are less often-used, but are helpful in some cases.
 
 ### flagIsSampled
-Returns whether or not an entity is within one of the targeted populations (see Airship Flags). 
+Returns whether or not an entity is within one of the targeted populations (see [Airship Flags](../flagger/flags.md)). 
 However, the entity may or may not be "sampled". A sampled entity may someday receive this feature, but this function only determines whether entity is sampled.
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->

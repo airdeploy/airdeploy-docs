@@ -10,8 +10,8 @@ sidebar_label: Your Profile
 
 This is the basic information about your account.
 
-- __Upload Photo__ — by default, initials are used to visually identify you throughout AirDeploy. Add a photo for greater recognizability in AirDeploy, especially when collaborating on a Flag.
-- __Full Name__ — by default, your email address is used for display. Add your Full Name for greater recognizability in AirDeploy, especially when collaborating on a Flag.
+- __Upload Photo__ — by default, initials are used to visually identify you throughout Airship. Add a photo for greater recognizability in Airship, especially when collaborating on a Flag.
+- __Full Name__ — by default, your email address is used for display. Add your Full Name for greater recognizability in Airship, especially when collaborating on a Flag.
 - __Email__ — this is your login and primary identifier.
 
 Make any changes and click “Save Information.”

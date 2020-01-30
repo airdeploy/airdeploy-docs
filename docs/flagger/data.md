@@ -40,8 +40,9 @@ You can capture this event stream and direct the data to almost any external URL
 
 - Click the “+”. A side panel will appear.
 - Complete the Destination information
-    - Note: You have the chance to test the URL
-    - Note: You have the choice to add a Destination in a deactivated state.
+    - > Note: You have the chance to test the URL
+    
+    - > Note: You have the choice to add a Destination in a deactivated state.
 - Click “Save Destination”
 
 ### Enabling/Disabling Destinations
