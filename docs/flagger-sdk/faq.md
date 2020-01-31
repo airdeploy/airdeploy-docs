@@ -4,7 +4,7 @@ title: FAQ
 sidebar_label: FAQ
 ---
 
-- Why do all flag functions return `false`/`off`/`{}`(empty payload)?
+## Why do all flag functions return `false`/`off`/`{}`(empty payload)?
 
 The common problem we see that `Flagger` is not be initialized properly. The correct way to do it:
 ```typescript
@@ -17,4 +17,6 @@ Flagger.flagIsEnabled("my-flag", {id:"2342"})
 ```
 
 
-  
+## Should I call Flagger.init method every time I want to use Flag Function?
+ 
+ No, you should call Flagger.init only once, at the start of your application.

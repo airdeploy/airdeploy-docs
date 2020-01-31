@@ -24,9 +24,23 @@ Flagger.getPayload(codename: String, entity?: Entity): Object
 ```
 <!--Ruby-->
 ```ruby
+Flagger.flag_is_enabled(codename, *entity)
+
+Flagger.is_sampled(codename, *entity)
+
+Flagger.get_variation(codename, *entity)
+
+Flagger.get_payload(codename, *entity)
 ```
 <!--Python-->
 ```python
+flagger.flag_is_enabled(codename, entity=None)
+
+flagger.is_sampled(codename, entity=None)
+
+flagger.get_variation(codename, entity=None)
+
+flagger.get_payload(codename, entity=None)
 ```
 <!--Go-->
 ```go
@@ -36,6 +50,8 @@ Flagger.getPayload(codename: String, entity?: Entity): Object
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+> `Flagger` has `setEntity` method which defines Entity for the whole SDK so Entity could be omitted in Flag Function. That's why entity 
+>attribute is optional here 
 
 ## Main Flag Functions
 These two functions are the ones you need to know.

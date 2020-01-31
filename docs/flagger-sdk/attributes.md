@@ -1,11 +1,14 @@
 ---
-id: filters
-title: Filters
-sidebar_label: Filters
+id: attributes
+title: Attributes
+sidebar_label: Attributes
 ---
 
+`Flagger` does some attributes manipulations before trying to match it against filters.
 
-1. Flagger  lower case all filter keys
+Here is the wrap-up of all the things `Flagger` does with attributes:
+
+1. `Flagger` lower case all the keys in the Entities attributes:
 
 
     {"IsAdMiN": true} 
@@ -14,7 +17,8 @@ becomes
     {"isadmin": true}
 
 ---
-2. Flagger populates Entity id and type to the filter attributes unless id or type is defined in attributes, examples:
+2. `Flagger` copies `id` and `type` to the filter attributes unless `id` or `type` is defined in attributes, 
+examples:
 
 
     {id:"1", type:"User"} 
@@ -25,12 +29,12 @@ becomes
 But does not override provided attribute
     
     {id:"1", type:"User", attributes:{id:"2"}}
-`id` stays untouched
+notice that `id` stays untouched
  
     {id:"1", type:"User", attributes:{id:"2", type:"User"}}
 
 ---
-3. `is_not` and `not_in` filter returns true if there is no attribute with that key, examples:
+3. Both `is_not` and `not_in` filter returns true if there is no attribute with that key, examples:
   
   
     //filter: age "is_not" 20

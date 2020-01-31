@@ -86,7 +86,6 @@ Flagger.track('Purchase Completed', {
 ### Flagger.setEntity(entity: Entity): void
 
 `setEntity` stores an entity in Flagger, which allows omission of entity in other API methods. 
-Can be called to replace default entity.
 
 ```javascript
 const entity = {
@@ -107,9 +106,9 @@ Flagger.flagIsEnabled("strip-payment", differentEntity)
 Flagger.setEntity(null) // to remove global entity
 ```
 
->If you don't provide an entity to Flagger:
+>If you don't provide __any__ entity to Flagger:
 >- flag functions always resolve with the default variation
->- track doesn't record an event
+>- `track` method doesn't record an event
 
 Rule of thumb: make sure you provided an entity to the Flagger
 

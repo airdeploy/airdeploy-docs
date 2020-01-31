@@ -4,7 +4,7 @@ title: Overview
 sidebar_label: Overview
 ---
 
-Flagger SDK is the open-source implementation of the feature flagging(feature gating, feature toggles) concept. 
+`Flagger SDK`(or `Flagger` for short) is the open-source implementation of the feature flagging(feature gating, feature toggles) concept. 
 
 ## Features
 - Blazing fast, requires only one backend call
@@ -13,27 +13,48 @@ Flagger SDK is the open-source implementation of the feature flagging(feature ga
 - Auto-updatable configuration(via SSE)
 - Records usage analytics as well as custom events
 - white- and blacklisting
-- 2 level entity support (Manager-Employee, Client-Company)
+- 2 level entity support (for example Manager-Employee, Client-Company)
 
 
 ## Design Principles
-Description: I'm trying to have each docs section have a "Design Principles" section. Let's see if it fits.
+### Stateful
+`Flagger` has a state, it fetches a configuration(we call it `FlaggerConfiguration`) from a server to work, accumulates 
+the usage data as well as the data provided by the developer.
 
-## Flag Detection
-Flagger will automatically detect new flags in the code and sends them to Airship via ingestion mechanism. 
-You can see an example of that at [initialization section](installation.md#make-a-test-flag-request), when we create a 
-flag that currently does not exist in Airship, but due to the flag detection we can see it after running code example.
+### Initialize before use 
+`Flagger` relies on `FlaggerConfiguration` to work properly. To get it `Flagger` makes an http call to Airship server. 
+This fact imposes the restrictions on your application, since now 
+your application has to rely on how fast `Flagger` makes this http call. No worries, Airship uses CDN to make 
+initialization as fast as possible.  
 
-## Order of Precedence
-Order of Precedence
+The trade off is that any other `Flagger` methods doesn't require any http call, making them extremely fast
 
-The final combined order of precedence for determining treatments is:
+ >Note: You must initialized `Flagger` __only once per runtime__. See [Test Flagger installation](quick-start.md#test-the-installation) 
 
-1. Kill Switch: Off if the flag is "killed" (kill switch engaged)
-2. Individual Blacklist: Off if individual entity is blacklisted.
-3. Individual Whitelist: On if individual entity is whitelisted. If the flag is multivariate, the specified treatment is served.
-4. Group Blacklist: Off if enclosing group entity is blacklisted.
-5. Group Whitelist: On if enclosing group entity is whitelisted. If the flag is multivariate, the specified treatment is served.
-6. Individual Population Sampled: On if individual entity is in a sampled population. If the flag is multivariate, a treatment is randomly assigned based on the allocation provided.
-7. Group Population Sampled: On if enclosing group entity is in a sampled population. If the flag is multivariate, a treatment is randomly assigned based on the allocation provided.
-8. Default Variation
+### Terminate at the end of the runtime
+`Flagger` accumulates some usage data, we call it _exposure_, for instance:
+```json
+{
+  "codename": "button",
+  "variation": "green",
+  "entity": {"id":  "1"},
+  "methodCalled": "isEnabled"
+}
+```
+
+This data allows Airship to show A/B results and lots of other important things. `Flagger` groups this data up before 
+sending to Airship to decrease network usage and Airship server load. If your application stops without properly 
+shutting down `Flagger` all the accumulated data will be lost. See [Shutdown Flagger](quick-start.md#shutdown-flagger)   
+
+ >Note: You must call `Flagger.shutdown` __once before the end of the runtime__ 
+
+
+### All methods are static
+It makes it really easy to use `Flagger` from any point of you application.
+
+### Auto updatable configuration
+`Flagger` uses Server Side Events to make sure `FlaggerConfiguration` stays up to date. During the `init` method `Flagger` 
+establishes and than maintains a connection with Airship enabling it to push new config to every `Flagger SDK` 
+clients/users/instance.
+
+That is why your server does not need to restart to get the new `FlaggerConfiguration`

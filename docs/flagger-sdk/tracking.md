@@ -4,8 +4,7 @@ title: Tracking API
 sidebar_label: Tracking API
 ---
 
-Flagger has simple event tracking API.
-
+Flagger has a simple event tracking API:
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
@@ -13,7 +12,7 @@ Flagger has simple event tracking API.
 ```javascript
 Flagger.track(eventName: String,
                   eventPayload: JSON, 
-                  entity: Entity  //optional
+                  entity?: Entity  //optional
                  )
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->

@@ -117,7 +117,8 @@ Once entities are filtered into a subset, it makes sense you could add the same 
 
 ![](assets/entity-subset-work.jpeg)
 
-MacOS,” you could add another user entity subset and filter it where “state is California.” This would give you user entities who did not have an operating system of MasOS regardless what state they have and users entities who have a state of California regardless of what operating system they have. 
+For example, given the previous example of a user entity subset where “operating system is not MacOS,” 
+you could add another user entity subset and filter it where “state is California.” This would give you user entities who did not have an operating system of MasOS regardless what state they have and users entities who have a state of California regardless of what operating system they have. 
 
 In this example, it is very likely there is a user who will appear in both pools. However, Airship will only serve them up once an make note of the duplicate.
 
@@ -130,4 +131,17 @@ Typically, entities flow from their subsets through the flag variations. They ar
 You can assign any entity to a specific variation and they will see that variation (as long as the flag is on). You can also assign any entity directly to the constant _Off_. In that case, they will never see any variation regardless of the flag being on or off.
 
 ## Flagging Rules
-- Order of precedence
+Alvin to review
+
+### Order of Precedence
+
+The final combined order of precedence for determining treatments is:
+
+1. Kill Switch: Off if the flag is "killed" (kill switch engaged)
+2. Individual Blacklist: Off if individual entity is blacklisted.
+3. Individual Whitelist: On if individual entity is whitelisted. If the flag is multivariate, the specified treatment is served.
+4. Group Blacklist: Off if enclosing group entity is blacklisted.
+5. Group Whitelist: On if enclosing group entity is whitelisted. If the flag is multivariate, the specified treatment is served.
+6. Individual Population Sampled: On if individual entity is in a sampled population. If the flag is multivariate, a treatment is randomly assigned based on the allocation provided.
+7. Group Population Sampled: On if enclosing group entity is in a sampled population. If the flag is multivariate, a treatment is randomly assigned based on the allocation provided.
+8. Default Variation

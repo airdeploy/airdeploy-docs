@@ -5,7 +5,7 @@ sidebar_label: Default Variation
 ---
 
 ## Overview
-The default variation is the default return value for the flag function
+The default variation is the default return value for the [Flag Functions](flag-functions.md).
 ```json
 {
 	"isEnabled": false,
