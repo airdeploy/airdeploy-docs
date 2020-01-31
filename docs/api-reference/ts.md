@@ -7,9 +7,10 @@ sidebar_label: Typescript
 ## Flagger
 ### Flagger.init(options): Promise<FlaggerInstance>
 
-`init` gets `FlaggerConfiguration`, establish SSE connections and starts an ingester
+`init` gets `FlaggerConfiguration`, establishes and maintains SSE connections and starts Ingester
 
-> `init` must be called only once, at the start of your application. Your program should wait for the promise to resolve so flag functions works properly
+> Note: `init` must be called only once, at the start of your application. 
+>Your program __must__ wait for the promise to resolve before using any `Flagger` method
 
 ```javascript
 import Flagger from 'flagger'
@@ -27,25 +28,34 @@ await Flagger.init({
 | name            | type   | Required | Default                           | Description                                                                                             |
 | --------------- | ------ | -------- | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | apiKey          | string | true     | None                              | API key to an environment                                                                               |
-| sourceUrl       | string | false    | https://api.airshiphq.com/        | URL to get FlaggerConfiguration                                                                         |
-| backupSourceUrl | string | false    | https://backup-api.airshiphq.com/ | backup URL to get FlaggerConfiguration                                                                  |
-| sseUrl          | string | false    | https://sse.airshiphq.com/        | URL for real-time updates via sse                                                                       |
+| sourceUrl       | string | false    | https://api.airshiphq.com/        | URL to get `FlaggerConfiguration`                                                                         |
+| backupSourceUrl | string | false    | https://backup-api.airshiphq.com/ | backup URL to get `FlaggerConfiguration`                                                                  |
+| sseUrl          | string | false    | https://sse.airshiphq.com/        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
 | ingestionUrl    | string | false    | https://ingestion.airshiphq.com   | URL for ingestion                                                                                       |
 | logLevel        | string | false    | ERROR                             | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-Flagger init function specs
-- If `apiKey` is not provided `init` function throws(or returns) an error
-- Optional values are propagated with defaults and print to Debug
-- if second(third …) call of `init` happens:
-    - if the arguments are the same, `init` method does nothing
-    - if arguments differ, Flagger Warns about it and recreates(closes and creates new) resources(SSE connection, 
-    Ingester, gets new FlaggerConfiguration).
-- if initial `FlaggerConfiguration` is not fetched from source/backup than print error as Warning
-- if SSE connection fails than print error as Warning and retry until connection is established
-- if source/backup/SSE fail to get `FlaggerConfiguration` then Flagger is still working, but all flags functions return 
-default variation
-- any flag function that is called BEFORE the Init finishes returns default variation  
+- If `apiKey` is not provided `init` promise is rejected
+- If not provided default arguments values are used and printed to Debug
+- If second(third …) call of `init` happens:
+    - If the arguments are the same, `init` method does nothing
+    - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection, 
+    Ingester, gets new `FlaggerConfiguration`).
+    - > Note: you must call init only once
+- If initial `FlaggerConfiguration` is not fetched from source/backup than print Warning
+- If `Flagger` fails to get `FlaggerConfiguration` then all Flags Functions return [Default Variation](../flagger-sdk/default-variation.md)
+- If SSE connection fails than print Warning and retry until connection is established
+- If you call any Flag Function BEFORE `init` promise is resolved then you get [Default Variation](../flagger-sdk/default-variation.md)  
 
+
+### Flagger.shutdown(): Promise<void>
+
+`shutdown` ingests data(if any), stop ingester and closes SSE connection.
+
+> Note: you __must__ call shutdown only once before the end of the application runtime. 
+
+```typescript
+await Flagger.shutdown()
+```
 
 ### Flagger.addFlaggerConfigUpdateListener(listener: (config: FlaggerConfiguration) ⇒ void): void
 
@@ -56,7 +66,7 @@ Removes a listener
 
 ### Flagger.publish(entity: Entity): void
 
-Sends an entity explicitly to Airship
+Notifies Airship about an Entity explicitly
 
 ```javascript
 Flagger.publish({id:1})

@@ -7,7 +7,7 @@ sidebar_label: Ingestion
 `Flagger` automatically collects every "decision" that was made(for example, whether flagIsEnabled true or false for a 
 given entity), groups this decisions up in "ingestion requests" and then sends it to the Airship.
 
-In the nutshell ingestion is the process of collecting the results of flag functions and making an http call to Airship. 
+In the nutshell ingestion is the process of sending collected data to the server. 
 This process is fully automatic and requires only one thing from the developer - to gracefully shutdown `Flagger SDK` at 
 the end of the application runtime:
 
