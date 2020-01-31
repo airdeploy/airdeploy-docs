@@ -18,11 +18,11 @@ sidebar_label: Overview
 
 ## Design Principles
 ### Stateful
-`Flagger` has a state, it fetches a configuration(we call it `FlaggerConfiguration`) from a server to work, accumulates 
-the usage data as well as the data provided by the developer.
+`Flagger` is stateful SDK, it relies on `FlaggerConfiguration` to work. This config is essential for `Flagger`, so 
+`Flagger` needs to be initialized before used.
 
 ### Initialize before use 
-`Flagger` relies on `FlaggerConfiguration` to work properly. To get it `Flagger` makes an http call to Airship server. 
+`Flagger` makes an http call to Airship server to get `FlaggerConfiguration`. 
 This fact imposes the restrictions on your application, since now 
 your application has to rely on how fast `Flagger` makes this http call. No worries, Airship uses CDN to make 
 initialization as fast as possible.  
@@ -32,7 +32,7 @@ The trade off is that any other `Flagger` methods doesn't require any http call,
  >Note: You must initialized `Flagger` __only once per runtime__. See [Test Flagger installation](quick-start.md#test-the-installation) 
 
 ### Terminate at the end of the runtime
-`Flagger` accumulates some usage data, we call it _exposure_, for instance:
+`Flagger` accumulates usage data, we call it _exposure_, for instance:
 ```json
 {
   "codename": "button",
@@ -54,7 +54,7 @@ It makes it really easy to use `Flagger` from any point of you application.
 
 ### Auto updatable configuration
 `Flagger` uses Server Side Events to make sure `FlaggerConfiguration` stays up to date. During the `init` method `Flagger` 
-establishes and than maintains a connection with Airship enabling it to push new config to every `Flagger SDK` 
-clients/users/instance.
+establishes and then maintains a connection with Airship enabling it to push new config.
 
-That is why your server does not need to restart to get the new `FlaggerConfiguration`
+That is why your application does not need to restart to get the new `FlaggerConfiguration`. Your app will get new 
+FlaggerConfiguration as soon as you make changes in the Dashboard.

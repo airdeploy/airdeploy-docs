@@ -28,7 +28,8 @@
       "flagger-sdk/default-variation",
       "flagger-sdk/ingestion",
       "flagger-sdk/attributes",
-      "flagger-sdk/faq"
+      "flagger-sdk/faq",
+      "flagger-sdk/glossary"
     ],
     "API Reference": [
       "api-reference/overview",

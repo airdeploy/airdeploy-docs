@@ -19,4 +19,4 @@ Flagger.flagIsEnabled("my-flag", {id:"2342"})
 
 ## Should I call Flagger.init method every time I want to use Flag Function?
  
- No, you should call Flagger.init only once, at the start of your application.
+ No, you should call `Flagger.init` only once, at the start of your application.
