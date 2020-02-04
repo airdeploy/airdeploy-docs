@@ -30,14 +30,14 @@ flagger.init(api_key="x2ftC7QtG7arQW9l",
 
 | name            | type   | Required | Default                           | Description                                                                                             |
 | --------------- | ------ | -------- | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| apiKey          | string | true     | None                              | API key to an environment                                                                               |
-| sourceUrl       | string | false    | https://api.airshiphq.com/        | URL to get `FlaggerConfiguration`                                                                         |
-| backupSourceURL | string | false    | https://backup-api.airshiphq.com/ | backup URL to get `FlaggerConfiguration`                                                                  |
-| sseUrl          | string | false    | https://sse.airshiphq.com/        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
-| ingestionUrl    | string | false    | https://ingestion.airshiphq.com   | URL for ingestion                                                                                       |
-| logLevel        | string | false    | ERROR                             | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
+| api_key         | string | true     | None                              | API key to an environment                                                                               |
+| source_url      | string | false    | https://api.airshiphq.com/        | URL to get `FlaggerConfiguration`                                                                         |
+| backup_url      | string | false    | https://backup-api.airshiphq.com/ | backup URL to get `FlaggerConfiguration`                                                                  |
+| sse_url         | string | false    | https://sse.airshiphq.com/        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
+| ingestion_url   | string | false    | https://ingestion.airshiphq.com   | URL for ingestion                                                                                       |
+| log_lvl         | string | false    | ERROR                             | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-- If `apiKey` is not provided `init` throws FlaggerInitializationException
+- If `api_key` is not provided `init` throws FlaggerInitializationException
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `init` happens:
     - If the arguments are the same, `init` method does nothing
