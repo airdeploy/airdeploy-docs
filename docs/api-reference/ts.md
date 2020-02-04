@@ -133,7 +133,7 @@ const entity = {
 }
 Flagger.setEntity(entity)
 
-// here we are omitting, because Flagger has stored "entity"
+// here we are omitting, because Flagger has already stored "entity"
 Flagger.flagIsEnabled("stripe-payment")  
 Flagger.track("some-event", {content: "some-text"})
 

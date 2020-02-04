@@ -25,7 +25,7 @@ public class Main {
         String apiKey = "x2ftC7QtG7arQW9l";
         FlaggerInitConfig flaggerInitConfig = FlaggerInitConfig.builder()
                 .apiKey(apiKey) // the only required field
-                .sourceUrl("http://localhost:3000/config/v3/")
+                .sourceUrl("https://flagger.notairshiphq.com")
                 .backupSourceURL("https://backupflagger.notairshiphq.com")
                 .sseUrl("https://sse.notairshiphq.com")
                 .logLevel(LogLevel.DEBUG)
@@ -151,7 +151,6 @@ public static boolean flagIsEnabled(String codename, IdEntity entity)
 ```
 
 Determines if flag is enabled for entity.
-return true if flag is enabled for the 
 
 ```java
 boolean enabled = Flagger.flagIsEnabled("test", Entity.builder().id("id").build());
