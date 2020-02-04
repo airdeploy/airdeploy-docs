@@ -37,7 +37,7 @@ flagger.init(api_key="x2ftC7QtG7arQW9l",
 | ingestion_url   | string | false    | https://ingestion.airshiphq.com   | URL for ingestion                                                                                       |
 | log_lvl         | string | false    | ERROR                             | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-- If `api_key` is not provided `init` throws FlaggerInitializationException
+- If `api_key` is not provided `init` throws an RuntimeError: "bad init arguments" and print error in console: "empty APIKey"  
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `init` happens:
     - If the arguments are the same, `init` method does nothing
@@ -57,7 +57,7 @@ def shutdown(timeout)
 ```
 
 `shutdown` ingests data(if any), stop ingester and closes SSE connection.
-`shutdown` waits to finish current ingestion request, but no longer than a timeoutMillis.
+`shutdown` waits to finish current ingestion request, but no longer than a `timeout`.
 
 returns `true` if closed by timeout 
 
