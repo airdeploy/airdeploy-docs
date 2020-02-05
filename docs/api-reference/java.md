@@ -34,9 +34,8 @@ public class Main {
 
 
         // rest of the app code goes here
-        Flag flag = Flagger.flag("group-messaging");
-        boolean enabled = flag.isEnabled(Entity.builder().id("57145770").build());
-
+        boolean enabled = Flagger.flagIsEnabled("group-messaging", Entity.builder().id("57145770").build());
+       
         System.out.println(enabled);
     }
 }
