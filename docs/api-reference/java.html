@@ -80,9 +80,8 @@ Your program <strong>must</strong> wait for <code>init</code> to finish before u
 
 
         <span class="hljs-comment">// rest of the app code goes here</span>
-        Flag flag = Flagger.flag(<span class="hljs-string">"group-messaging"</span>);
-        <span class="hljs-keyword">boolean</span> enabled = flag.isEnabled(Entity.builder().id(<span class="hljs-string">"57145770"</span>).build());
-
+        <span class="hljs-keyword">boolean</span> enabled = Flagger.flagIsEnabled(<span class="hljs-string">"group-messaging"</span>, Entity.builder().id(<span class="hljs-string">"57145770"</span>).build());
+       
         System.out.println(enabled);
     }
 }
