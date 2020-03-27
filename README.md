@@ -12,7 +12,22 @@ manually. It consists of html & css & js code
 
 ### Contribution 
 
-Create a PR to a `master` branch with the desired changes and request a review.
+#### Adding a new section
+
+1. Create a file with .md extension and put it to the docs sub-folder you need. File header pattern:
+
+```markdown
+
+---
+id: filename_without_extesion
+title: title
+sidebar_label: sidebar_label  
+---
+```
+
+2. Update `website/sidebars.json` file with a reference to your new file 
+3. Restart/`yarn start` from `website` dir to verify your changes, because you change the structure. You don't need to restart server when you are just editing a file
+4. Create a PR to a `master` branch with the desired changes and request a review
 
 ### Developing
 

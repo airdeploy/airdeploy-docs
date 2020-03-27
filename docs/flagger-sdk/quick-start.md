@@ -27,6 +27,10 @@ API keys are available in the Airship Dashboard.
 ```commandline
 npm install --save flagger
 ```
+<!--React-->
+```commandline
+npm install --save react-flagger
+```
 <!--Ruby-->
 ```commandline
 gem install flagger
@@ -58,7 +62,7 @@ compile "com.airshiphq:flagger:3.0.0"
 
 Now, let's test that our installation is correct
 
->Note: We include randomly generated API key in our code examples
+>We included randomly generated API key in our code examples
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
@@ -82,6 +86,36 @@ To insure Flagger is successfully initialized we may call any flag function, let
 ```javascript
 console.log(Flagger.flagIsEnabled('test', {id: '1'}))
 ```
+
+The result will be `false` printed in console.
+
+<!--React-->
+<br>Initialize Airship to connect to your environment, which fetches data for all feature flags and experiments in that environment.
+```javascript
+import {FlagProvider, FlagSwitch, Flag, withFlag} from 'react-flagger'
+
+const App = () => (
+  <FlagProvider envKey="YOUR_ENV_KEY" entity={user}>
+    {// insert rest of app}
+  </FlagProvider>
+)
+```
+React Flagger contains components that are useful for feature gating; 
+they encapsulate the logic of checking whether or not to render a component, 
+and updates (re-renders) the component in real-time if you make changes on the Airship dashboard.
+
+The Flag component renders its children based on whether the case prop matches the flag variation. 
+The entity is inherited from FlagProvider if provided; 
+if not, make sure to provide a user / entity object to the flag component.
+
+```javascript
+<FlagProvider envKey="YOUR_ENV_KEY" entity={user}>
+  <Flag case="on" flag="bitcoin-pay">
+    <BitcoinPaymentButton />
+  </Flag>
+</FlagProvider>
+```
+
 <!--Ruby-->
 <br>First, import `flagger` to your application code:
 ```ruby
@@ -102,6 +136,9 @@ To insure Flagger is successfully initialized we may call any flag function, let
 ```ruby
 p Flagger.flagIsEnabled('test', {id: '1'})
 ```
+
+The result will be `false` printed in console.
+
 <!--Python-->
 <br>First, import `flagger` to your application code:
 ```python
@@ -120,6 +157,9 @@ To insure Flagger is successfully initialized we may call any flag function, let
 ```python
 print(flagger.flag_is_sampled("test", {"id": "1"}))
 ```
+
+The result will be `false` printed in console.
+
 <!--Go-->
 <br>First, import `flagger` to your application code:
 ```go
@@ -139,6 +179,9 @@ To insure Flagger is successfully initialized we may call any flag function, let
 ```go
 log.Println(flagger.FlagIsEnabled(ctx, "test", &core.Entity{ID: "1"}))
 ```
+
+The result will be `false` printed in console.
+
 <!--Java-->
 <br>First, import `flagger` to your application code:
 ```java
@@ -162,14 +205,17 @@ To insure Flagger is successfully initialized we may call any flag function, let
 IdEntity entity = IdEntity.builder().id("1").build();
 System.out.println(Flagger.flagIsEnabled("test", entity));
 ```
+The result will be `false` printed in console.
+
 <!--END_DOCUSAURUS_CODE_TABS-->
  
-The result would be `false` printed in console. It happens because `Airship` doesn't know about flag with codename 
-"test", in turn `Flagger` doesn't have it in `FlaggerConfiguration` making `flagIsEnabled` to return `false`. 
+You could use flag that `Airship` doesn't know about yet. `Flagger` doesn't have it in `FlaggerConfiguration` making `flagIsEnabled` to return `false`. 
 
 `Flagger` automatically detects any new flags. See [Flag Detection](flag-detection.md)
 
 ## Shutdown Flagger
+
+>Note: this part is irrelevant for front end lib, i.e. `react-flagger`. Flagger sends ingestion data immediately to avoid data loss
 
 You must call `shutdown` method __once__ before the end of your application's runtime to make sure that 
 `Flagger SDK` sends all the accumulated ingestion data:

@@ -57,7 +57,7 @@ It makes it really easy to use `Flagger` from any point of you application.
 establishes and then maintains a connection with Airship enabling it to push new config.
 
 That is why your application does not need to restart to get the new `FlaggerConfiguration`. Your app will get new 
-FlaggerConfiguration as soon as you make changes in the Dashboard.
+`FlaggerConfiguration` as soon as you make changes in the Dashboard.
 
 ### SDK implementation details
 Typescript and Golang version of Flagger is developed from scratch, the rest is the wrapper around the native build of 

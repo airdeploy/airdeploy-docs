@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Getting Started": [
+    "Flagger": [
       "flagger/overview",
       "flagger/design-principles",
       "flagger/work",
@@ -34,6 +34,7 @@
     "API Reference": [
       "api-reference/overview",
       "api-reference/ts",
+      "api-reference/react",
       "api-reference/java",
       "api-reference/ruby",
       "api-reference/python",
