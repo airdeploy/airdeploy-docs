@@ -31,10 +31,10 @@ func main() {
 	ctx := context.Background()
 	err := flagger.Init(ctx, &flagger.InitArgs{
 		APIKey:          "x2ftC7QtG7arQW9l", // the only required field
-		SourceURL:       "https://flagger.notairshiphq.com",
-		BackupSourceURL: "https://backupflagger.notairshiphq.com",
-		SSEURL:          "https://sse.notairshiphq.com",
-		IngestionURL:    "https://ingestion.notairshiphq.com",
+		SourceURL:       "https://flagger.notairdeploy.io",
+		BackupSourceURL: "https://backupflagger.notairdeploy.io",
+		SSEURL:          "https://sse.notairdeploy.io",
+		IngestionURL:    "https://ingestion.notairdeploy.io",
 	})
 	
 	if err != nil {
@@ -48,10 +48,10 @@ func main() {
 | name            | type   | Required | Default                           | Description                                                                                             |
 | --------------- | ------ | -------- | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | APIKey          | string | true     | None                              | API key to an environment                                                                               |
-| SourceURL       | string | false    | https://api.airshiphq.com/        | URL to get `FlaggerConfiguration`                                                                         |
-| BackupSourceURL | string | false    | https://backup-api.airshiphq.com/ | backup URL to get `FlaggerConfiguration`                                                                  |
-| SSEURL          | string | false    | https://sse.airshiphq.com/        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
-| IngestionURL    | string | false    | https://ingestion.airshiphq.com   | URL for ingestion                                                                                       |
+| SourceURL       | string | false    | https://api.airdeploy.io/configurations/        | URL to get `FlaggerConfiguration`                                                                         |
+| BackupSourceURL | string | false    | https://backup-api.airdeploy.io/configurations/ | backup URL to get `FlaggerConfiguration`                                                                  |
+| SSEURL          | string | false    | https://sse.airdeploy.io/sse/v3/?envKey=        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
+| IngestionURL    | string | false    | https://ingestion.airdeploy.io/collector?envKey=   | URL for ingestion                                                                                       |
 
 - If `APIKey` is not provided `Init` returns an error "Bad init agrs" and print an error in the console: "empty APIKey"
 - If not provided default arguments values are used and printed to Debug
@@ -60,9 +60,9 @@ func main() {
     - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection, 
     Ingester, gets new `FlaggerConfiguration`).
     - > Note: you must call init only once
-- If initial `FlaggerConfiguration` is not fetched from source/backup than print Warning
+- If initial `FlaggerConfiguration` is not fetched from source/backup, Flagger prints a warning
 - If `Flagger` fails to get `FlaggerConfiguration` then all Flags Functions return [Default Variation](../flagger-sdk/default-variation.md)
-- If SSE connection fails than print Warning and retry until connection is established
+- If Flagger fails to establish SSE connection, it retries every 30 seconds until succeeded
 - If you call any Flag Function BEFORE `init` is finished then you'll get [Default Variation](../flagger-sdk/default-variation.md)  
 - To change default log level use `logrus.SetLevel`. Flagger uses 3 log levels: `debug`, `warn` and `error` 
 
@@ -72,8 +72,8 @@ func main() {
 func (flagger *Flagger) Shutdown(timeout time.Duration) bool 
 ```
 
-`Shutdown` ingests data(if any), stop ingester and closes SSE connection.
-`Shutdown` waits to finish current ingestion request, but no longer than a `timeout`.
+`shutdown` ingests data(if any), stops ingester and closes SSE connection.
+`Shutdown` waits until current ingestion request is finished, but no longer than a `timeout`.
 
 returns `true` if closed by timeout 
 
@@ -89,7 +89,7 @@ flagger.Shutdown(5 * time.Second)
 func (flagger *Flagger) Publish(ctx context.Context, entity *core.Entity)
 ```
 
-Explicitly notify Airship about an Entity
+Explicitly notify Airdeploy about an Entity
 
 ```go
 flagger.Publish(ctx, &core.Entity{ID: "54"})
@@ -101,7 +101,7 @@ flagger.Publish(ctx, &core.Entity{ID: "54"})
 func (flagger *Flagger) Track(ctx context.Context, event *core.Event)
 ```
 
-Simple event tracking API.
+Event tracking API.
 Entity is an optional parameter if it was set before.
 
 ```go
@@ -138,7 +138,7 @@ flagger.SetEntity(nil)
 >- flag functions always resolve with the default variation
 >- `Track` method doesn't record an event
 
-Rule of thumb: make sure you provided an entity to the Flagger
+Rule of thumb: make sure you always provide an entity to the Flagger
 
 ## Flag Functions
 ### FlagIsEnabled

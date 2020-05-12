@@ -21,20 +21,20 @@ def init(api_key, source_url=None, backup_url=None, sse_url=None, ingestion_url=
 
 ```python
 flagger.init(api_key="x2ftC7QtG7arQW9l",
-             source_url="https://flagger.notairshiphq.com",
-             backup_url="https://backupflagger.notairshiphq.com",
-             sse_url="https://sse.notairshiphq.com",
-             ingestion_url="https://ingestion.notairshiphq.com",
+             source_url="https://flagger.notairdeploy.io",
+             backup_url="https://backupflagger.notairdeploy.io",
+             sse_url="https://sse.notairdeploy.io",
+             ingestion_url="https://ingestion.notairdeploy.io",
              log_lvl="warn")
 ```
 
 | name            | type   | Required | Default                           | Description                                                                                             |
 | --------------- | ------ | -------- | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | api_key         | string | true     | None                              | API key to an environment                                                                               |
-| source_url      | string | false    | https://api.airshiphq.com/        | URL to get `FlaggerConfiguration`                                                                         |
-| backup_url      | string | false    | https://backup-api.airshiphq.com/ | backup URL to get `FlaggerConfiguration`                                                                  |
-| sse_url         | string | false    | https://sse.airshiphq.com/        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
-| ingestion_url   | string | false    | https://ingestion.airshiphq.com   | URL for ingestion                                                                                       |
+| source_url      | string | false    | https://api.airdeploy.io/configurations/        | URL to get `FlaggerConfiguration`                                                                         |
+| backup_url      | string | false    | https://backup-api.airdeploy.io/configurations/ | backup URL to get `FlaggerConfiguration`                                                                  |
+| sse_url         | string | false    | https://sse.airdeploy.io/sse/v3/?envKey=        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
+| ingestion_url   | string | false    | https://ingestion.airdeploy.io/collector?envKey=   | URL for ingestion                                                                                       |
 | log_lvl         | string | false    | ERROR                             | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
 - If `api_key` is not provided `init` throws an RuntimeError: "bad init arguments" and print error in console: "empty APIKey"  
@@ -44,9 +44,9 @@ flagger.init(api_key="x2ftC7QtG7arQW9l",
     - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection, 
     Ingester, gets new `FlaggerConfiguration`).
     - > Note: you must call init only once
-- If initial `FlaggerConfiguration` is not fetched from source/backup than print Warning
+- If initial `FlaggerConfiguration` is not fetched from source/backup, Flagger prints a warning
 - If `Flagger` fails to get `FlaggerConfiguration` then all Flags Functions return [Default Variation](../flagger-sdk/default-variation.md)
-- If SSE connection fails than print Warning and retry until connection is established
+- If Flagger fails to establish SSE connection, it retries every 30 seconds until succeeded
 - If you call any Flag Function BEFORE `init` is finished then you'll get [Default Variation](../flagger-sdk/default-variation.md)  
 
 
@@ -56,8 +56,8 @@ flagger.init(api_key="x2ftC7QtG7arQW9l",
 def shutdown(timeout)
 ```
 
-`shutdown` ingests data(if any), stop ingester and closes SSE connection.
-`shutdown` waits to finish current ingestion request, but no longer than a `timeout`.
+`shutdown` ingests data(if any), stops ingester and closes SSE connection.
+`shutdown` waits until current ingestion request is finished, but no longer than a `timeout`.
 
 returns `true` if closed by timeout 
 
@@ -73,7 +73,7 @@ flagger.shutdown(5000)
 def publish(entity)
 ```
 
-Explicitly notify Airship about an Entity
+Explicitly notify Airdeploy about an Entity
 
 ```python
 flagger.publish({"id": "1"})
@@ -85,7 +85,7 @@ flagger.publish({"id": "1"})
 def track(event_name, event_props, entity=None)
 ```
 
-Simple event tracking API.
+Event tracking API.
 Entity is an optional parameter if it was set before.
 
 ```python
@@ -112,7 +112,7 @@ self.assertTrue(ok)
 >- flag functions always resolve with the default variation
 >- `track` method doesn't record an event
 
-Rule of thumb: make sure you provided an entity to the Flagger
+Rule of thumb: make sure you always provide an entity to the Flagger
 
 ## Flag Functions
 ### flag_is_enabled

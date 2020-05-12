@@ -25,9 +25,9 @@ public class Main {
         String apiKey = "x2ftC7QtG7arQW9l";
         FlaggerInitConfig flaggerInitConfig = FlaggerInitConfig.builder()
                 .apiKey(apiKey) // the only required field
-                .sourceUrl("https://flagger.notairshiphq.com")
-                .backupSourceURL("https://backupflagger.notairshiphq.com")
-                .sseUrl("https://sse.notairshiphq.com")
+                .sourceUrl("https://flagger.notairdeploy.io")
+                .backupSourceURL("https://backupflagger.notairdeploy.io")
+                .sseUrl("https://sse.notairdeploy.io")
                 .logLevel(LogLevel.DEBUG)
                 .build();
         Flagger.init(flaggerInitConfig);
@@ -44,10 +44,10 @@ public class Main {
 | name            | type   | Required | Default                           | Description                                                                                             |
 | --------------- | ------ | -------- | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | apiKey          | string | true     | None                              | API key to an environment                                                                               |
-| sourceUrl       | string | false    | https://api.airshiphq.com/        | URL to get `FlaggerConfiguration`                                                                         |
-| backupSourceURL | string | false    | https://backup-api.airshiphq.com/ | backup URL to get `FlaggerConfiguration`                                                                  |
-| sseUrl          | string | false    | https://sse.airshiphq.com/        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
-| ingestionUrl    | string | false    | https://ingestion.airshiphq.com   | URL for ingestion                                                                                       |
+| sourceUrl       | string | false    | https://api.airdeploy.io/configurations/        | URL to get `FlaggerConfiguration`                                                                         |
+| backupSourceURL | string | false    | https://backup-api.airdeploy.io/configurations/ | backup URL to get `FlaggerConfiguration`                                                                  |
+| sseUrl          | string | false    | https://sse.airdeploy.io/sse/v3/?envKey=        | URL for real-time updates of `FlaggerConfiguration` via sse                                                                       |
+| ingestionUrl    | string | false    | https://ingestion.airdeploy.io/collector?envKey=   | URL for ingestion                                                                                       |
 | logLevel        | string | false    | ERROR                             | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
 - If `apiKey` is not provided `init` throws FlaggerInitializationException
@@ -57,9 +57,9 @@ public class Main {
     - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection, 
     Ingester, gets new `FlaggerConfiguration`).
     - > Note: you must call init only once
-- If initial `FlaggerConfiguration` is not fetched from source/backup than print Warning
+- If initial `FlaggerConfiguration` is not fetched from source/backup, Flagger prints a warning
 - If `Flagger` fails to get `FlaggerConfiguration` then all Flags Functions return [Default Variation](../flagger-sdk/default-variation.md)
-- If SSE connection fails than print Warning and retry until connection is established
+- If Flagger fails to establish SSE connection, it retries every 30 seconds until succeeded
 - If you call any Flag Function BEFORE `init` is finished then you'll get [Default Variation](../flagger-sdk/default-variation.md)  
 
 
@@ -69,8 +69,8 @@ public class Main {
 public static boolean shutdown(int timeoutMillis) 
 ```
 
-`shutdown` ingests data(if any), stop ingester and closes SSE connection.
-`shutdown` waits to finish current ingestion request, but no longer than a timeoutMillis.
+`shutdown` ingests data(if any), stops ingester and closes SSE connection.
+`shutdown` waits until current ingestion request is finished, but no longer than a timeoutMillis.
 
 returns `true` if closed by timeout 
 
@@ -86,7 +86,7 @@ Flagger.shutdown(5000)
 public static void publish(IdEntity entity) 
 ```
 
-Explicitly notify Airship about an Entity
+Explicitly notify Airdeploy about an Entity
 
 ```java
 HashMap<String, Object> attributes = new HashMap<>();
@@ -100,7 +100,7 @@ Flagger.publish(Entity.builder().id("37").attributes(attributes).build());
 public static void track(Event event) {
 ```
 
-Simple event tracking API.
+Event tracking API.
 Entity is an optional parameter if it was set before.
 
 ```java
@@ -140,7 +140,7 @@ Assert.assertTrue(enabled);
 >- flag functions always resolve with the default variation
 >- `track` method doesn't record an event
 
-Rule of thumb: make sure you provided an entity to the Flagger
+Rule of thumb: make sure you always provide an entity to the Flagger
 
 ## Flag Functions
 ### flagIsEnabled
