@@ -32,7 +32,6 @@ Flagger.init(args)
 | ingestion_url   | string | false    | https://ingestion.airdeploy.io/collector?envKey=   | URL for ingestion                                                                                       |
 | log_lvl         | string | false    | ERROR                             | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-- If `api_key` is not provided `init` throws an error
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `init` happens:
     - If the arguments are the same, `init` method does nothing

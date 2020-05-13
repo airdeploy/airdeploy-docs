@@ -61,7 +61,7 @@ returns `true` if closed by timeout
 Probably the best place to call shutdown is at `applicationWillTerminate` method:
 ```swift
 func applicationWillTerminate(_ application: UIApplication) {
-    Flagger.shutdown(1000)
+    _ = Flagger.shutdown(timeoutMillis: 1000)
 }
 ```
 
