@@ -11,7 +11,7 @@ sidebar_label: Golang
 func (flagger *Flagger) Init(ctx context.Context, args *InitArgs) error
 ```
 
-`Init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initialize Ingester
+`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initializes Ingester
 
 > Note: `Init` must be called only once, at the start of your application. 
 >Your program __must__ wait for `Init` to finish before using any other `Flagger` methods
@@ -31,10 +31,6 @@ func main() {
 	ctx := context.Background()
 	err := flagger.Init(ctx, &flagger.InitArgs{
 		APIKey:          "x2ftC7QtG7arQW9l", // the only required field
-		SourceURL:       "https://flagger.notairdeploy.io",
-		BackupSourceURL: "https://backupflagger.notairdeploy.io",
-		SSEURL:          "https://sse.notairdeploy.io",
-		IngestionURL:    "https://ingestion.notairdeploy.io",
 	})
 	
 	if err != nil {

@@ -11,20 +11,15 @@ sidebar_label: Ruby
 def self.init(init_args)
 ```
 
-`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initialize Ingester
+`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initializes Ingester
 
 > Note: `init` must be called only once, at the start of your application. 
 >Your program __must__ wait for `init` to finish before using any other `Flagger` methods
 
 ```ruby
 api_key = 'x2ftC7QtG7arQW9l'
-source_url = "https://flagger.notairdeploy.io"
-sse_url = "https://sse.notairdeploy.io"
-ingestion_url = "https://ingestion.notairdeploy.io"
-backup_url = "https://backup-api.airdeploy.io"
 log_level = "warn"
-args = InitArguments::new(api_key, {log_level: log_level, source_url: source_url, sse_url: sse_url,
-                                  ingestion_url: ingestion_url, backup_url: backup_url})
+args = InitArguments::new(api_key, {log_level: log_level})
 Flagger.init(args)
 ```
 
@@ -76,7 +71,7 @@ Flagger.shutdown(1000)
 Explicitly notify Airdeploy about an Entity
 
 ```ruby
-Flagger.publish(IdEntity::new("42"))
+Flagger.publish(Entity::new("42"))
 ```
 
 ### track
@@ -123,7 +118,7 @@ Rule of thumb: make sure you always provide an entity to the Flagger
 Determines if flag is enabled for entity.
 
 ```ruby
-is_enabled= Flagger.flag_is_enabled('show_wallet', IdEntity::new("42"))
+is_enabled= Flagger.flag_is_enabled('show_wallet', Entity::new("42"))
 ```
 
 Group example:
@@ -143,7 +138,7 @@ is_enabled= Flagger.flag_is_enabled('show_wallet', company)
 Determines if entity is within the targeted subpopulations
 
 ```ruby
-is_sampled= Flagger.flag_is_sampled('show_wallet', IdEntity::new("42"))
+is_sampled= Flagger.flag_is_sampled('show_wallet', Entity::new("42"))
 ```
 
 Group example:
@@ -162,7 +157,7 @@ is_sampled= Flagger.flag_is_sampled('show_wallet', company)
 Returns the variation assigned to the entity in a multivariate flag
 
 ```ruby
-variation = Flagger.flag_get_variation("show_wallet", IdEntity::new("42"))
+variation = Flagger.flag_get_variation("show_wallet", Entity::new("42"))
 ```
 
 Group example:
@@ -181,7 +176,7 @@ variation = Flagger.flag_get_variation("show_wallet", company)
 Returns the payload associated with the treatment assigned to the entity
 
 ```ruby
-payload = Flagger.flag_get_payload('show_wallet', IdEntity::new("42"))
+payload = Flagger.flag_get_payload('show_wallet', Entity::new("42"))
 ```
 
 Group example:

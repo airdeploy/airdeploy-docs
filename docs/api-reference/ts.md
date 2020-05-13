@@ -10,7 +10,7 @@ sidebar_label: Typescript
 Flagger.init(options): Promise<FlaggerInstance>
 ```
 
-`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initialize Ingester
+`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initializes Ingester
 
 > Note: `init` must be called only once, at the start of your application. 
 >Your program __must__ wait for the promise to resolve before using any other `Flagger` methods
@@ -20,10 +20,6 @@ import Flagger from 'flagger'
 
 await Flagger.init({
         "apiKey": "k4k3llrkfl2234l", // the only required option
-        "sourceURL": "https://flagger.notairdeploy.io",
-        "backupSourceURL": "https://backupflagger.notairdeploy.io",
-        "sseURL": "https://sse.notairdeploy.io",
-        "ingestionURL": "https://ingestion.notairdeploy.io",
         "logLevel": 'DEBUG'
 })
 ```

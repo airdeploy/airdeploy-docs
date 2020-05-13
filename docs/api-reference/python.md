@@ -14,7 +14,7 @@ def init(api_key, source_url=None, backup_url=None, sse_url=None, ingestion_url=
 
 
 
-`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initialize Ingester
+`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initializes Ingester
 
 > Note: `init` must be called only once, at the start of your application. 
 >Your program __must__ wait for `init` to finish before using any other `Flagger` methods

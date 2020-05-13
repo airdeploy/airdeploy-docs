@@ -11,13 +11,13 @@ sidebar_label: Java
 public static void init(FlaggerInitConfig config)
 ```
 
-`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initialize Ingester
+`init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initializes Ingester
 
 > Note: `init` must be called only once, at the start of your application. 
 >Your program __must__ wait for `init` to finish before using any other `Flagger` methods
 
 ```java
-import com.airshiphq.flagger.*;
+import io.airdeploy.flagger.*;
 
 public class Main {
 
@@ -25,9 +25,6 @@ public class Main {
         String apiKey = "x2ftC7QtG7arQW9l";
         FlaggerInitConfig flaggerInitConfig = FlaggerInitConfig.builder()
                 .apiKey(apiKey) // the only required field
-                .sourceUrl("https://flagger.notairdeploy.io")
-                .backupSourceURL("https://backupflagger.notairdeploy.io")
-                .sseUrl("https://sse.notairdeploy.io")
                 .logLevel(LogLevel.DEBUG)
                 .build();
         Flagger.init(flaggerInitConfig);
@@ -50,7 +47,6 @@ public class Main {
 | ingestionUrl    | string | false    | https://ingestion.airdeploy.io/collector?envKey=   | URL for ingestion                                                                                       |
 | logLevel        | string | false    | ERROR                             | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-- If `apiKey` is not provided `init` throws FlaggerInitializationException
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `init` happens:
     - If the arguments are the same, `init` method does nothing
@@ -83,14 +79,13 @@ Flagger.shutdown(5000)
 ### publish
 
 ```java
-public static void publish(IdEntity entity) 
+public static void publish(Entity entity) 
 ```
 
 Explicitly notify Airdeploy about an Entity
 
 ```java
-HashMap<String, Object> attributes = new HashMap<>();
-attributes.put("age", 40);
+Attributes attributes = new Attributes().put("age", 40);
 Flagger.publish(Entity.builder().id("37").attributes(attributes).build());
 ```
 
@@ -104,10 +99,10 @@ Event tracking API.
 Entity is an optional parameter if it was set before.
 
 ```java
-Map<String, Object> eventProperties = new HashMap<>();
-eventProperties.put("plan", "gold");
-eventProperties.put("referrer", "www.google.com");
-eventProperties.put("shirt_size", "medium");
+Attributes eventProperties = new Attributes()
+    .put("plan", "gold")
+    .put("referrer", "www.google.com")
+    .put("shirt_size", "medium");
 Event event = Event.builder().name("Purchase Completed")
     .eventProperties(eventProperties)
     .entity(Entity.builder()
@@ -120,20 +115,20 @@ Flagger.track(event);
 ### setEntity
 
 ```java
-public static void setEntity(IdEntity entity)
+public static void setEntity(Entity entity)
 ```
 
 `setEntity` stores an entity in Flagger, which allows omission of entity in other API methods. 
 
 ```java
-IdEntity entity = IdEntity.builder().id(whiteListedEntityUserId).build();
+Entity entity = Entity.builder().id(whiteListedEntityUserId).build();
 
 Flagger.setEntity(entity);
 boolean enabled = Flagger.flagIsEnabled(flagCodenameWhitelisted, null);
 
+Assert.assertTrue(enabled);
 //clean up
 Flagger.setEntity(null);
-Assert.assertTrue(enabled);
 ```
 
 >If you don't provide __any__ entity to Flagger:
@@ -146,7 +141,7 @@ Rule of thumb: make sure you always provide an entity to the Flagger
 ### flagIsEnabled
 
 ```java
-public static boolean flagIsEnabled(String codename, IdEntity entity) 
+public static boolean flagIsEnabled(String codename, Entity entity) 
 ```
 
 Determines if flag is enabled for entity.
@@ -169,7 +164,7 @@ boolean enabledCompany = Flagger.flagIsEnabled("some-flag", company);
 ### flagIsSampled
 
 ```java
-public static boolean flagIsSampled(String codename, IdEntity entity) 
+public static boolean flagIsSampled(String codename, Entity entity) 
 ```
 
 Determines if entity is within the targeted subpopulations
@@ -190,7 +185,7 @@ boolean isSampled = Flagger.flagIsSampled("show_wallet", company)
 ### flagGetVariation
 
 ```java
-public static String flagGetVariation(String codename, IdEntity entity)
+public static String flagGetVariation(String codename, Entity entity)
 ```
 
 Returns the variation assigned to the entity in a multivariate flag
@@ -212,7 +207,7 @@ String variation = Flagger.flagGetVariation("show_wallet", company);
 ### flagGetPayload
 
 ```java
-public static Map<String, Object> flagGetPayload(String codename, IdEntity entity)
+public static Map<String, Object> flagGetPayload(String codename, Entity entity)
 ```
 
 Returns the payload associated with the treatment assigned to the entity
