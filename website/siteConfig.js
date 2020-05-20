@@ -21,10 +21,10 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'Airshiphq Docs', // Title for your website.
+  title: 'Airdeploy Docs', // Title for your website.
   tagline: 'A better way to launch features',
-  url: 'https://jeronimo13.github.io', // Your website URL
-  baseUrl: '/airship-docs/', // Base URL for your project */
+  url: 'https://airdeploy.github.io', // Your website URL
+  baseUrl: '/airdeploy-docs/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
@@ -42,7 +42,7 @@ const siteConfig = {
     },
   ],
   // Used for publishing and more
-  projectName: 'airship-docs',
+  projectName: 'airdeploy-docs',
   organizationName: 'airdeploy',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
@@ -83,7 +83,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Airshiphq`,
+  copyright: `Copyright © ${new Date().getFullYear()} Airdeploy`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.

@@ -66,7 +66,7 @@ class Footer extends React.Component {
           <div>
             <h5>More</h5>
             {/*<a href={`${this.props.config.baseUrl}blog`}>Blog</a>*/}
-            <a href="https://github.com/airshiphq">Airship GitHub</a>
+            <a href="https://github.com/airdeploy">Airdeploy GitHub</a>
             {/*<a*/}
             {/*  className="github-button"*/}
             {/*  href={this.props.config.repoUrl}*/}
