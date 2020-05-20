@@ -4,11 +4,11 @@ title: Organizations
 sidebar_label: Organizations
 ---
 
-When you sign up for Airship, an organization is created for you. This organization has three properties.
+When you sign up for Airdeploy, an organization is created for you. This organization has three properties.
 
 - __Name__ — What the organization is called
 - __AKA__ —The code version of the name. __Editing the organization name requires a code change…__
-- __Open invitations__ — this allows other Airship users with the same domain to inherit this organization when they sign up or add this organization to their account.
+- __Open invitations__ — this allows other Airdeploy users with the same domain to inherit this organization when they sign up or add this organization to their account.
 
 You cannot delete this organization.
 

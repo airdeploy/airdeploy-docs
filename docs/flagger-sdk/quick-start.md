@@ -18,7 +18,7 @@ You must initialize `Flagger` with your account's API key. Otherwise, `Flagger` 
 [Default Variation](default-variation.md) for any [Flag Function](flag-functions.md) call.
 
 Every account is provided with two pairs of keys: one for the testing and one for the production environment. These 
-API keys are available in the Airship Dashboard.
+API keys are available in the Airdeploy Dashboard.
 
 ## Install a client library
 
@@ -41,20 +41,20 @@ pip install flagger
 ```
 <!--Go-->
 ```commandline
-go get github.com/airshiphq/flagger-go
+go get github.com/airdeploy/flagger-go
 ```
 <!--Java-->
 Maven
 ```xml
 <dependency>
-  <groupId>com.airshiphq</groupId>
+  <groupId>io.airdeploy</groupId>
   <artifactId>flagger</artifactId>
   <version>3.0.0</version>
 </dependency>
 ```
 Gradle
 ```commandline
-compile "com.airshiphq:flagger:3.0.0"
+compile "io.airdeploy:flagger:3.0.0"
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
@@ -90,7 +90,7 @@ console.log(Flagger.flagIsEnabled('test', {id: '1'}))
 The result will be `false` printed in console.
 
 <!--React-->
-<br>Initialize Airship to connect to your environment, which fetches data for all feature flags and experiments in that environment.
+<br>Initialize Airdeploy to connect to your environment, which fetches data for all feature flags and experiments in that environment.
 ```javascript
 import {FlagProvider, FlagSwitch, Flag, withFlag} from 'react-flagger'
 
@@ -102,7 +102,7 @@ const App = () => (
 ```
 React Flagger contains components that are useful for feature gating; 
 they encapsulate the logic of checking whether or not to render a component, 
-and updates (re-renders) the component in real-time if you make changes on the Airship dashboard.
+and updates (re-renders) the component in real-time if you make changes on the Airdeploy dashboard.
 
 The Flag component renders its children based on whether the case prop matches the flag variation. 
 The entity is inherited from FlagProvider if provided; 
@@ -110,8 +110,8 @@ if not, make sure to provide a user / entity object to the flag component.
 
 ```javascript
 <FlagProvider envKey="YOUR_ENV_KEY" entity={user}>
-  <Flag case="on" flag="bitcoin-pay">
-    <BitcoinPaymentButton />
+  <Flag case="on" flag="color-theme">
+    <NewColorComponent />
   </Flag>
 </FlagProvider>
 ```
@@ -163,7 +163,7 @@ The result will be `false` printed in console.
 <!--Go-->
 <br>First, import `flagger` to your application code:
 ```go
-import "github.com/airshiphq/flagger-sdks/flagger"
+import "github.com/airdeploy/flagger-go"
 ```
 
 `Flagger` requires only 1 network request. This request is implemented in the `init()` method.
@@ -185,7 +185,7 @@ The result will be `false` printed in console.
 <!--Java-->
 <br>First, import `flagger` to your application code:
 ```java
-import com.airshiphq.flagger.*;
+import io.airdeploy.flagger.*;
 ```
 
 `Flagger` requires only 1 network request. This request is implemented in the `init()` method.
@@ -202,20 +202,21 @@ Flagger.init(flaggerInitConfig);
 
 To insure Flagger is successfully initialized we may call any flag function, let's call `flagIsEnabled` for example:
 ```java
-IdEntity entity = IdEntity.builder().id("1").build();
+Entity entity = Entity.builder().id("1").build();
 System.out.println(Flagger.flagIsEnabled("test", entity));
 ```
 The result will be `false` printed in console.
 
 <!--END_DOCUSAURUS_CODE_TABS-->
  
-You could use flag that `Airship` doesn't know about yet. `Flagger` doesn't have it in `FlaggerConfiguration` making `flagIsEnabled` to return `false`. 
-
+You can use a flag that `Airdeploy` doesn't know about yet.
+If `Flagger` doesn't have it in `FlaggerConfiguration`, `flagIsEnabled` returns `false`.
+ 
 `Flagger` automatically detects any new flags. See [Flag Detection](flag-detection.md)
 
 ## Shutdown Flagger
 
->Note: this part is irrelevant for front end lib, i.e. `react-flagger`. Flagger sends ingestion data immediately to avoid data loss
+>Note: If you use `Flagger` in a browser, this part is irrelevant. `Flagger` sends ingestion data immediately to avoid data loss
 
 You must call `shutdown` method __once__ before the end of your application's runtime to make sure that 
 `Flagger SDK` sends all the accumulated ingestion data:
@@ -243,7 +244,7 @@ Flagger.shutdown(5000) // shutdown takes a timeout as an argument
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-> Note: If your application doesn't call `shutdown` before the end of the runtime then __there is a risk that all 
+> Note: If your application doesn't call `shutdown` before the end of the runtime then __there is a risk that 
 >accumulated data is lost__.
 
 > Note: __do not__ call `shutdown` more than __once per runtime__.
@@ -251,4 +252,4 @@ Flagger.shutdown(5000) // shutdown takes a timeout as an argument
 ## Summary
 
 At this point we initialized `Flagger`, called Flag Function and shut down `Flagger`.
-The result of it is `false` printed in the console and a new flag with a codename `"test"` in Airship Dashboard 
+The result of it is `false` printed in the console and a new flag with a codename `"test"` in Airdeploy Dashboard 

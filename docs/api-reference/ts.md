@@ -155,7 +155,7 @@ Flagger.flagIsEnabled(codename: String, entity: Entity): Boolean
 
 Determines if flag is enabled for entity.
 
-    const isEnabled = Flagger.flagIsEnabled("bitcoin-pay", { id: 1 });
+    const isEnabled = Flagger.flagIsEnabled("color-theme", { id: 1 });
 
 Group example:
 
@@ -164,7 +164,7 @@ Group example:
         id: '19421826',
         group: {type: 'Company', id: '52272353'}
       }
-    const isEnabled = Flagger.flagisEnabled("bitcoin-pay", entityWithGroup);
+    const isEnabled = Flagger.flagisEnabled("color-theme", entityWithGroup);
 
 
 
@@ -176,7 +176,7 @@ Flagger.flagIsSampled(codename: String, entity: Entity): Boolean
 
 Determines if entity is within the targeted subpopulations
 
-    const isSampled = Flagger.flagIsSampled("bitcoin-pay", { id: 1 });
+    const isSampled = Flagger.flagIsSampled("color-theme", { id: 1 });
 
 Group example:
 
@@ -185,7 +185,7 @@ Group example:
         id: '19421826',
         group: {type: 'Company', id: '52272353'}
       }
-    const isSampled = Flagger.flagIsSampled("bitcoin-pay", entityWithGroup);
+    const isSampled = Flagger.flagIsSampled("color-theme", entityWithGroup);
 
 
 ### flagGetVariation
@@ -196,7 +196,7 @@ Flagger.flagGetVariation(codename: String, entity: Entity): String
 
 Returns the variation assigned to the entity in a multivariate flag
 
-    const variation = Flagger.flagGetVariation("bitcoin-pay", { id: 1 });
+    const variation = Flagger.flagGetVariation("color-theme", { id: 1 });
 
 Group example:
 
@@ -205,7 +205,7 @@ Group example:
         id: '19421826',
         group: {type: 'Company', id: '52272353'}
       }
-    const variation = Flagger.flagGetVariation("bitcoin-pay", entityWithGroup);
+    const variation = Flagger.flagGetVariation("color-theme", entityWithGroup);
 
 
 
@@ -217,7 +217,7 @@ Flagger.flagGetPayload(codename: String, entity: Entity): Object
 
 Returns the payload associated with the treatment assigned to the entity
 
-    const payload = Flagger.flagGetPayload("bitcoin-pay", { id: 1 });
+    const payload = Flagger.flagGetPayload("color-theme", { id: 1 });
 
 Group example:
 
@@ -226,4 +226,4 @@ Group example:
         id: '19421826',
         group: {type: 'Company', id: '52272353'}
       }
-    const payload = Flagger.flagGetPayload("bitcoin-pay", entityWithGroup);
+    const payload = Flagger.flagGetPayload("color-theme", entityWithGroup);

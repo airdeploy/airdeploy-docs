@@ -4,7 +4,7 @@ title: Team
 sidebar_label: Team
 ---
 
-Each Airship account comes with three team member seats. You may invite an unlimited number of team members, and your plan will scale (see more on pricing and plans on our website).
+Each Airdeploy account comes with three team member seats. You may invite an unlimited number of team members, and your plan will scale (see more on pricing and plans on our website).
 
 ## Team Management
 
@@ -16,7 +16,7 @@ Each Airship account comes with three team member seats. You may invite an unlim
 - Add one or more email addresses.
 - Click “Send Invites”
 
-Team members will be invited via email to join your organization (and to create an Airship account if they don’t have one).
+Team members will be invited via email to join your organization (and to create an Airdeploy account if they don’t have one).
 
 Team members who are invited appear in the “invited” list, along with the date. You can cancel an invitation by:
 

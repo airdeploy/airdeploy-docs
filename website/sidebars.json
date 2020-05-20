@@ -1,25 +1,26 @@
 {
   "docs": {
-    "Flagger": [
-      "flagger/overview",
-      "flagger/design-principles",
-      "flagger/work",
-      "flagger/first-flag",
-      "flagger/projects",
-      "flagger/flags",
-      "flagger/environments",
-      "flagger/entities",
-      "flagger/organizations",
-      "flagger/data",
-      "flagger/team",
-      "flagger/usage-billing",
-      "flagger/your-profile",
-      "flagger/data-retention",
-      "flagger/ace",
-      "flagger/glossary",
-      "flagger/how-to-use"
+    "Airdeploy": [
+      "airdeploy/overview",
+      "airdeploy/design-principles",
+      "airdeploy/work",
+      "airdeploy/first-flag",
+      "airdeploy/projects",
+      "airdeploy/flags",
+      "airdeploy/environments",
+      "airdeploy/entities",
+      "airdeploy/organizations",
+      "airdeploy/data",
+      "airdeploy/team",
+      "airdeploy/usage-billing",
+      "airdeploy/your-profile",
+      "airdeploy/data-retention",
+      "airdeploy/ace",
+      "airdeploy/glossary",
+      "airdeploy/how-to-use",
+      "airdeploy/ace"
     ],
-    "SDK": [
+    "Flagger SDK": [
       "flagger-sdk/overview",
       "flagger-sdk/quick-start",
       "flagger-sdk/flag-detection",

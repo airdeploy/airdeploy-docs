@@ -43,14 +43,14 @@ const siteConfig = {
   ],
   // Used for publishing and more
   projectName: 'airship-docs',
-  organizationName: 'jeronimo13',
+  organizationName: 'airdeploy',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'flagger/overview', label: 'Docs'},
+    {doc: 'airdeploy/overview', label: 'Docs'},
     {doc: 'api-reference/overview', label: 'API Reference'},
   ],
 
