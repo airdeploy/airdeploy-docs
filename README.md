@@ -1,7 +1,7 @@
 
 ### Description
 
-This is the Airship Documentation website project.
+This is the Airdeploy Documentation website project.
 
 It's built on [Docusaurus](https://docusaurus.io) framework
 

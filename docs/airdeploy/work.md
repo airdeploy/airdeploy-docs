@@ -1,22 +1,22 @@
 ---
 id: work
-title: How Does Airship Work?
-sidebar_label: How Does Airship Work?
+title: How Does Airdeploy Work?
+sidebar_label: How Does Airdeploy Work?
 ---
 
-At the highest level, Airship routes data & traffic to features.
+At the highest level, Airdeploy routes data & traffic to features.
 
-Airship also enables you to get specific of the data & traffic as well as which features are presented.
+Airdeploy also enables you to get specific of the data & traffic as well as which features are presented.
 
-Airship consists of:
+Airdeploy consists of:
 - Dashboard UI for authoring and managing flags and re-routing traffic
 - Server that notifies live clients (devices, browsers, etc.) of changes to any flags and updates applications
-- Flagger SDKs which are installable clients that communicate with Airship servers and has an API for developers to incorporate flags
+- Flagger SDKs which are installable clients that communicate with Airdeploy servers and has an API for developers to incorporate flags
 
 
 ## What is a flag?
 
-If you’re familiar with coding your app with feature switches, then Airship’s flags will make your life infinitely easier (not to mention more powerful).
+If you’re familiar with coding your app with feature switches, then Airdeploy’s flags will make your life infinitely easier (not to mention more powerful).
 
 Let’s say you are developing an accounting app with a Billing feature that generates invoices monthly. You now want to try a new Billing feature that generates invoices weekly.
 
@@ -32,7 +32,7 @@ If you were savvy, you might create a code switch to handle the traffic in some 
  
 This brings the features into the same codebase. However, this logic can only be updated within the code and with another deployment. Additionally, if more features are added, this logic becomes increasingly complex and fractured.
 
-Airship sits between your traffic (or content, or other entity interacting with your app) and gives you immediate and virtual control over who sees what feature.
+Airdeploy sits between your traffic (or content, or other entity interacting with your app) and gives you immediate and virtual control over who sees what feature.
 You can configure and access multiple flags in a project and enables you to do so much more:
 
 
@@ -54,7 +54,7 @@ An entity is something that can touch your software. Generically, if it’s a no
 - Departments
 - Product items
 
-When you define entities (section: how do I create entities?), you enable Airship to serve them through a flag. What entities you define and what flags to send them through is the main function of Airship.
+When you define entities (section: how do I create entities?), you enable Airdeploy to serve them through a flag. What entities you define and what flags to send them through is the main function of Airdeploy.
 
 Entities are minimally comprised of:
 
@@ -64,9 +64,9 @@ Entities are minimally comprised of:
 - A type (required)
     - This is the “noun” description (above) that you define to categorize your entities.
 - A Name (optional, but recommended)
-    - This is a human-readable identifier for the entity. While optional, Airship is designed to display this whenever entities are listed for easy recognition.
+    - This is a human-readable identifier for the entity. While optional, Airdeploy is designed to display this whenever entities are listed for easy recognition.
 
-Entities are also allowed an unlimited number of user-defined fields. These can be helpful in the management and organization of your flag results, but they do not impact the operation or results of Airship. These fields are fully readable within Airship in the Entities section any project.
+Entities are also allowed an unlimited number of user-defined fields. These can be helpful in the management and organization of your flag results, but they do not impact the operation or results of Airdeploy. These fields are fully readable within Airdeploy in the Entities section any project.
 
 Entities are unique to each environment (link to topic of environments).
 
@@ -90,7 +90,7 @@ The advanced flag can technically receive an unlimited number of variations, but
 
 For any given flag you must define the entities that will flow through it.
 
-Airship flags are designed to receive entities by type. By default, the User type (if detected in your entities population) is connected to your flag. This means that all user entities will receive your feature if it is turned on, or all user entities will not receive your feature if it is turned off.
+Airdeploy flags are designed to receive entities by type. By default, the User type (if detected in your entities population) is connected to your flag. This means that all user entities will receive your feature if it is turned on, or all user entities will not receive your feature if it is turned off.
 
 You may add an unlimited number of entity types to the flag.
 
@@ -120,7 +120,7 @@ Once entities are filtered into a subset, it makes sense you could add the same 
 For example, given the previous example of a user entity subset where “operating system is not MacOS,” 
 you could add another user entity subset and filter it where “state is California.” This would give you user entities who did not have an operating system of MasOS regardless what state they have and users entities who have a state of California regardless of what operating system they have. 
 
-In this example, it is very likely there is a user who will appear in both pools. However, Airship will only serve them up once an make note of the duplicate.
+In this example, it is very likely there is a user who will appear in both pools. However, Airdeploy will only serve them up once an make note of the duplicate.
 
 ## What is whitelisting and blacklisting?
 

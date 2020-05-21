@@ -73,7 +73,7 @@ Deleting a flag is a permanent decision. All flag configuration is removed, incl
 
 ## Understanding Flag Activity
 
-Airship displays a rolling 30-day activity summary for each flag in the project screen.
+Airdeploy displays a rolling 30-day activity summary for each flag in the project screen.
 
 ![](assets/flag-activity.jpeg)
 

@@ -5,8 +5,8 @@ sidebar_label: Flag Functions
 ---
 ## Overview
 Once you've installed a Flagger library, you'll have access to all the flags in a particular environment. 
-Flag functions are the main way developers interact with Airship to fork behavior in code, relying on 
-Airship to resolve all the different feature flag rules.
+Flag functions are the main way developers interact with Airdeploy to fork behavior in code, relying on 
+Airdeploy to resolve all the different feature flag rules.
 
 ## Flag functions
 There are 4 main functions used for controlling the flow:
@@ -54,13 +54,13 @@ func FlagGetPayload(codename string, entity *core.Entity) bool
 ```
 <!--Java-->
 ```java
-public static boolean flagIsEnabled(String codename, IdEntity entity) 
+public static boolean flagIsEnabled(String codename, Entity entity) 
 
-public static String flagGetVariation(String codename, IdEntity entity) 
+public static String flagGetVariation(String codename, Entity entity) 
 
-public static boolean flagIsSampled(String codename, IdEntity entity) 
+public static boolean flagIsSampled(String codename, Entity entity) 
 
-public static Map<String, Object> flagGetPayload(String codename, IdEntity entity) 
+public static Map<String, Object> flagGetPayload(String codename, Entity entity) 
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
@@ -75,57 +75,57 @@ Check whether a flag is enabled for an entity
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
 ```typescript
-const enabled = Flagger.flagIsEnabled('bitcoin-pay', {id: "1"})
+const enabled = Flagger.flagIsEnabled('color-theme', {id: "1"})
 
 if (enabled) {
-  // show bitcoin pay button
+  // show new color button
 } else {
-  // show normal credit card payment button
+  // show old color button
 }
 ```
 <!--Ruby-->
 ```ruby
-enabled = Flagger.flag_is_enabled('bitcoin-pay', IdEntity::new("1"))
+enabled = Flagger.flag_is_enabled('color-theme', Entity::new("1"))
 
 if enabled
-  # show bitcoin pay button
+  # show new color button
 else 
-  # show normal credit card payment button
+  # show old color button
 end
 ```
 <!--Python-->
 ```python
-enabled = flagger.flag_is_enabled('bitcoin-pay', {"id": "1"})
+enabled = flagger.flag_is_enabled('color-theme', {"id": "1"})
 
 if enabled:
-    # show bitcoin pay button
+    # show new color button
 else:
-    # show normal credit card payment button
+    # show old color button
 ```
 <!--Go-->
 ```go
 import 	"github.com/jeronimo13/flagger-sdks/flagger/core"
 
-enable := flagger.FlagIsEnabled("bitcoin-pay", &core.Entity{ID: "1"})
+enable := flagger.FlagIsEnabled("color-theme", &core.Entity{ID: "1"})
 	
 if enable {
-// show bitcoin pay button
+// show new color button
 } else { 
-// show normal credit card payment button
+// show old color button
 }
 ```
 <!--Java-->
 ```java
-import com.airshiphq.flagger.entity.Entity;
+import io.airdeploy.flagger.entity.Entity;
 
 
 Entity entity = Entity.builder().id("1").build();
-boolean enabled = Flagger.flagIsEnabled("bitcoin-pay", entity);
+boolean enabled = Flagger.flagIsEnabled("color-theme", entity);
 
 if(enabled){
-    // show bitcoin pay button
+    // show new color button
 } else {
-    // show normal credit card payment button
+    // show old color button
 }
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -149,7 +149,7 @@ if (variation === 'halloween') {
 ```
 <!--Ruby-->
 ```ruby
-variation = Flagger.flag_get_variation('color-theme', IdEntity::new("1"))
+variation = Flagger.flag_get_variation('color-theme', Entity::new("1"))
 
 case variation 
 when 'halloween'
@@ -176,7 +176,7 @@ elif variation == 'coca-cola':
 ```go
 import 	"github.com/jeronimo13/flagger-sdks/flagger/core"
 
-variation := flagger.FlagGetVariation("bitcoin-pay", &core.Entity{ID: "1"})
+variation := flagger.FlagGetVariation("color-theme", &core.Entity{ID: "1"})
 	
 if variation == "halloween" {
   // show orange and black button
@@ -188,10 +188,10 @@ if variation == "halloween" {
 ```
 <!--Java-->
 ```java
-import com.airshiphq.flagger.entity.Entity;
+import io.airdeploy.flagger.entity.Entity;
 
 Entity entity = Entity.builder().id("1").build();
-String variation = Flagger.flagGetVariation("bitcoin-pay", entity);
+String variation = Flagger.flagGetVariation("color-theme", entity);
 
 if(variation == "halloween"){
   // show orange and black button
@@ -203,74 +203,74 @@ if(variation == "halloween"){
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
->    flagGetVariation returns 'off' as the default variation
+> flagGetVariation returns 'off' as the default variation (see [Default Variation](./default-variation.md))
 
 ## Helpful Flag Functions
 These two functions are less often-used, but are helpful in some cases.
 
 ### flagIsSampled
-Returns whether or not an entity is within one of the targeted populations (see [Airship Flags](../flagger/flags.md)). 
+Returns whether or not an entity is within one of the targeted populations (see [Flags](../airdeploy/flags.md)). 
 However, the entity may or may not be "sampled". A sampled entity may someday receive this feature, but this function only determines whether entity is sampled.
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
 ```typescript
-const isSampled = Flagger.flagIsSampled('bitcoin-pay', {id: "1"})
+const isSampled = Flagger.flagIsSampled('color-theme', {id: "1"})
 ```
 <!--Ruby-->
 ```ruby
-sampled = Flagger.flag_is_sampled('bitcoin-pay', IdEntity::new("1"))
+sampled = Flagger.flag_is_sampled('color-theme', Entity::new("1"))
 ```
 <!--Python-->
 ```python
-sampled = flagger.flag_is_sampled('bitcoin-pay', {"id": "1"})
+sampled = flagger.flag_is_sampled('color-theme', {"id": "1"})
 ```
 <!--Go-->
 ```go
 import 	"github.com/jeronimo13/flagger-sdks/flagger/core"
 
-enable := flagger.flagIsSampled("bitcoin-pay", &core.Entity{ID: "1"})
+enable := flagger.flagIsSampled("color-theme", &core.Entity{ID: "1"})
 ```
 <!--Java-->
 ```java
-import com.airshiphq.flagger.entity.Entity;
+import io.airdeploy.flagger.entity.Entity;
 
 Entity entity = Entity.builder().id("1").build();
-boolean isSampled = Flagger.flagIsSampled("bitcoin-pay", entity);
+boolean isSampled = Flagger.flagIsSampled("color-theme", entity);
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ### flagGetPayload
-Returns a JSON payload that can be added to any treatment via the Airship Dashboard.
+Returns a JSON payload that can be added to any treatment via the Airdeploy Dashboard.
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
 ```typescript
-const payload = Flagger.flagGetPayload('bitcoin-pay', {id: "1"})
-// => {"bitcoin-price": "$9001"}
+const payload = Flagger.flagGetPayload('color-theme', {id: "1"})
+// => {"button-color": "blue"}
 ```
 <!--Ruby-->
 ```ruby
-payload = Flagger.flag_get_payload('color-theme', IdEntity::new("1"))
-# => {"bitcoin-price": "$9001"}
+payload = Flagger.flag_get_payload('color-theme', Entity::new("1"))
+# => {"button-color": "blue"}
 ```
 <!--Python-->
 ```python
 payload = Flagger.flag_get_payload('color-theme', {id: "1"})
-# => {"bitcoin-price": "$9001"}
+# => {"button-color": "blue"}
 ```
 <!--Go-->
 ```go
 import 	"github.com/jeronimo13/flagger-sdks/flagger/core"
 
-payload := flagger.FlagGetPayload("bitcoin-pay", &core.Entity{ID: "1"})
-// => {"bitcoin-price": "$9001"}
+payload := flagger.FlagGetPayload("color-theme", &core.Entity{ID: "1"})
+// => {"button-color": "blue"}
 ```
 <!--Java-->
 ```java
-import com.airshiphq.flagger.entity.Entity;
+import io.airdeploy.flagger.entity.Entity;
 
 Entity entity = Entity.builder().id("1").build();
-Map<String, Object> payload = Flagger.flagGetPayload("bitcoin-pay", entity);
-// => {"bitcoin-price": "$9001"}
+Map<String, Object> payload = Flagger.flagGetPayload("color-theme", entity);
+// => {"button-color": "blue"}
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
