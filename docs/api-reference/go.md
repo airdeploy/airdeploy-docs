@@ -26,9 +26,12 @@ import (
 )
 
 func main() {
-	logrus.SetLevel(logrus.DebugLevel) // Flagger uses logrus as a logger
+    // Flagger uses logrus as a logger
+    // By default Flagger will output all warn and error
+	logrus.SetLevel(logrus.DebugLevel) 
 
 	ctx := context.Background()
+	flagger := NewFlagger()
 	err := flagger.Init(ctx, &flagger.InitArgs{
 		APIKey:          "x2ftC7QtG7arQW9l", // the only required field
 	})
