@@ -1,7 +1,7 @@
 ---
 id: how-to-use
-title: How will you use Airship?
-sidebar_label: How will you use Airship?
+title: How will you use Airdeploy?
+sidebar_label: How will you use Airdeploy?
 ---
 
 ## Need to release a pilot version of your product?

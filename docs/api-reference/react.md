@@ -46,8 +46,8 @@ if not, make sure to provide a user / entity object to the flag component.
 
 ```javascript
 <FlagProvider envKey="YOUR_ENV_KEY" entity={user}>
-  <Flag case="on" flag="bitcoin-pay">
-    <BitcoinPaymentButton />
+  <Flag case="on" flag="color-theme">
+    <NewColorComponent />
   </Flag>
 </FlagProvider>
 ```
@@ -80,7 +80,7 @@ This prop allows you to write more complex conditional logic within a component.
 The prop is a dictionary of flag names to flag info:
 
 ```javascript
-this.props.flags['bitcoin-pay']
+this.props.flags['color-theme']
 // => {
 //    enabled: true,
 //    eligible: true,
@@ -95,14 +95,14 @@ import {withFlag} from 'flagger/react'
 
 class PaymentOptions extends Component {
 	render() {
-    if (this.props.flags['bitcoin-pay'].enabled) {
-    	return <BitcoinPaymentButton />
+    if (this.props.flags['color-theme'].enabled) {
+    	return <NewColorComponent />
     } else {
-      return <CreditCardPaymentButton />
+      return <DefaultColorComponent />
     }
   }
 }
 
-export default withFlag(PaymentOptions, 'bitcoin-pay', 'another-flag-name')
+export default withFlag(PaymentOptions, 'color-theme', 'another-flag-name')
 ```
 

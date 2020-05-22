@@ -31,7 +31,7 @@ The left navigation panel has a few capabilities:
 
 - __Find Entities__ — a way to search for a specific entity in the list. You may search on any of the columns listed.
 - __Only Show in Groups__ — a way to cluster entities by their common attributes
-- __Type Filters__ — These are the types Airship detected in your Entity list. There is a filter for each type. Clicking it restricts the list to that type.
+- __Type Filters__ — These are the types Airdeploy detected in your Entity list. There is a filter for each type. Clicking it restricts the list to that type.
 
 The main view of the Entities screen is the list of entities (filtered or not) and an Entity detail. Clicking on any Entity will load its detail.
 

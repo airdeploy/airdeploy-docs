@@ -4,6 +4,7 @@ title: Attributes
 sidebar_label: Attributes
 ---
 
+Both entity and group entity could have attributes. These are key-value pairs provided by the developer.
 `Flagger` does some attributes manipulations before trying to match it against filters.
 
 Here is the wrap-up of all the things `Flagger` does with attributes:

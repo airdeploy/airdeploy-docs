@@ -4,7 +4,7 @@ title: Overview
 sidebar_label: Overview
 ---
 
-Airship enables you to fine-tune your app with your users without continual redeployment. 
+Airdeploy enables you to fine-tune your app with your users without continual redeployment. 
 
 Within minutes of your first deployment, you can:
 
@@ -13,7 +13,7 @@ Within minutes of your first deployment, you can:
 - Allow certain users to see specific features
 - Restrict certain users from specific features
 
-## What else can I use Airship for?
+## What else can I use Airdeploy for?
 
 These are just a few examples:
 

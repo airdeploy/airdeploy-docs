@@ -24,14 +24,14 @@ Entity is an optional parameter if it was set before via `Flagger.setEntity` met
 ```js
 Flagger.track('Purchase Completed', {
             "plan": "Gold",
-      "referrer": "www.Google.com",
+      "referrer": "https://www.google.com",
       "shirt_size": "medium"
     }, {id: "543"})
     
 // If `entity` has been set before with Flagger.setEntity method:
 Flagger.track('Purchase Completed', {
         "plan": "Gold",
-  "referrer": "www.Google.com",
+  "referrer": "https://www.google.com",
   "shirt_size": "medium"
 })
 ```

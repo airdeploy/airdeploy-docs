@@ -16,7 +16,7 @@ Just like in the __Managing Flags__, you can [Enable and Disable a Flag](project
 
 ## Entities & Subsets
 
-All flags need an Entity Source in order to function. By default, Airship creates a User type Entity Source if it detects user entities in your list.
+All flags need an Entity Source in order to function. By default, Airdeploy creates a User type Entity Source if it detects user entities in your list.
  
 ### Removing an Entity Source
 
@@ -72,27 +72,27 @@ You can add as many filters as you need to create the specific subset you need.
 
 With a default flag, you can control whether entities flow through your feature or not. This binary action allows you to effectively turn features on or off from a software perspective.
 
-The power of Airship is magnified when you leverage feature variations. See 
+The power of Airdeploy is magnified when you leverage feature variations. See 
 [How do flags and variations work](work.md#how-do-flags-and-variations-work)? for more explanation on the function.
 
 ### Renaming a variation
 
 - Click the variation. A side panel appears.
 - In the side panel, make changes to the name, description, or [whitelisted entities](#whitelisting-an-entity).
-    - > Note: Changing the name will change the code-reference name. __This will require a modification to the Airship code snippet in your code and a redeployment__.
+    - > Note: Changing the name will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
 
 ### Adding a variation
 
 - Click “Add a feature variation” at the bottom of the variations panel. A side panel appears.
 - In the side panel, make changes to the name, description, or whitelisted entities.
-    - > Note: Adding a variation will change the code-reference name. __This will require a modification to the Airship code snippet in your code and a redeployment__.
+    - > Note: Adding a variation will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
 
 ### Balancing variations
 
 ![](assets/balance-v.png)
 
 
-When you have two or more variations, Airship automatically balances their probability evenly. This means that there is an equal probability that the combined Entity Sources will be served one variation over the other.
+When you have two or more variations, Airdeploy automatically balances their probability evenly. This means that there is an equal probability that the combined Entity Sources will be served one variation over the other.
 
 You may rebalance the percentages to suit your situation as long as they total 100%. Realtime feedback will let you know if you are over-, under-, or exactly allocated.
 
@@ -110,7 +110,7 @@ You may rebalance the percentages to suit your situation as long as they total 1
 - The variation will be removed.
     - > Note: If you still have more than one variation, you may need to [rebalance your variations](#balancing-variations).
   
-    - > Note: Removing a variation will change the code-reference name. __This will require a modification to the Airship code snippet in your code and a redeployment__.
+    - > Note: Removing a variation will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
 
 
 ## Whitelisting Entities

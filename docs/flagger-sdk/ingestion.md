@@ -5,7 +5,7 @@ sidebar_label: Ingestion
 ---
 
 `Flagger` automatically collects every "decision" that was made(for example, whether flagIsEnabled true or false for a 
-given entity), groups this decisions up in "ingestion requests" and then sends it to the Airship.
+given entity), groups this decisions up in "ingestion requests" and then sends it to the Airdeploy.
 
 In the nutshell ingestion is the process of sending collected data to the server. 
 This process is fully automatic and requires only one thing from the developer - to gracefully shutdown `Flagger SDK` at 
@@ -31,6 +31,16 @@ Flagger.shutdown(3000)
 <!--Java-->
 ```java
 Flagger.shutdown(3000)
+```
+<!--Swift-->
+```swift
+// iOS
+func applicationWillTerminate(_ application: UIApplication) {
+    _ = Flagger.shutdown(timeoutMillis: 1000)
+}
+
+// anywhere else:
+_ = Flagger.shutdown(timeoutMillis: 1000)
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
