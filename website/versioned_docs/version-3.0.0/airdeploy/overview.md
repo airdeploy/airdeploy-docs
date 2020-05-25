@@ -1,9 +1,9 @@
 ---
-id: overview
+id: version-3.0.0-overview
 title: Overview
 sidebar_label: Overview
+original_id: overview
 ---
-Hello!
 
 Airdeploy enables you to fine-tune your app with your users without continual redeployment. 
 
