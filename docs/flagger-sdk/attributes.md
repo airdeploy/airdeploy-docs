@@ -44,3 +44,14 @@ notice that `id` stays untouched
     //filter: age "not_in" [20]
     {id:"1", type:"User", attributes:{id:"1", type:"User"}} // true, since there is no attribute "age"
 
+---
+
+4. Golang's users must use only `int` or`float64` types for number types.  
+
+```go
+&core.Entity{ID: "1", Attributes: map[string]interface{}{
+		"age":         21, // int
+		"friends":     55, // int
+		"probability": 0.5, // float64
+	}}
+```

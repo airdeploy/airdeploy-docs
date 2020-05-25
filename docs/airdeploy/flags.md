@@ -18,29 +18,9 @@ Just like in the __Managing Flags__, you can [Enable and Disable a Flag](project
 
 All flags need an Entity Source in order to function. By default, Airdeploy creates a User type Entity Source if it detects user entities in your list.
  
-### Removing an Entity Source
-
-![](assets/remove-es.jpeg)
-
-
-- Hover over the Entity Source
-- Click on the “X” tab that appears.
-- Confirm the dialog warning to continue, or cancel to stop.
-
-### Adding an Entity Source
-You may have more than one Entity Source in a flag. This is helpful when you begin to create Subsets 
-(see more about [Entity subset filters](work.md#how-do-entity-subset-filters-work)).
-
-![](assets/add-es.jpeg)
-
-
-- Click the “Add an Entity Source” button 
-- Choose the type from the “Choose an entity type…” dropdown.
-- A new Entity Source will appear under the last Entity Source in your flag.
-
 ### Adjusting Entity Source strength
 
-![](assets/adjust-es.jpeg)
+![](assets/adjust-es.png)
 
 
 By default, all Entity Sources are at 100%. This means that all the entities of that type will be assigned to one of the variations. You can control the percentage of all your entities that will be assigned by using the slider (or text input) on the Entity Source.
@@ -49,7 +29,7 @@ The source strength only controls the volume of entities passing through your fl
 
 ### Creating a subset
 
-![](assets/create-subset.jpeg)
+![](assets/create-subset.png)
 
 You can hone in on certain properties of your entity type by creating a subset through filtering. Each filter consists of an attribute (populated by your entity list), and operator, and a target value (populated based on your entity list or the type of the attribute).
 
@@ -79,13 +59,13 @@ The power of Airdeploy is magnified when you leverage feature variations. See
 
 - Click the variation. A side panel appears.
 - In the side panel, make changes to the name, description, or [whitelisted entities](#whitelisting-an-entity).
-    - > Note: Changing the name will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
+> Note: Changing the name will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
 
 ### Adding a variation
 
 - Click “Add a feature variation” at the bottom of the variations panel. A side panel appears.
 - In the side panel, make changes to the name, description, or whitelisted entities.
-    - > Note: Adding a variation will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
+> Note: Adding a variation will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
 
 ### Balancing variations
 
@@ -105,12 +85,12 @@ You may rebalance the percentages to suit your situation as long as they total 1
 
 ![](assets/remove-v.png)
 
-- Hover over the variation. 
-- Click the “X” tab that appears.
+- Click on three dots. 
+- Click the “Delete” option in the popup that appears.
 - The variation will be removed.
-    - > Note: If you still have more than one variation, you may need to [rebalance your variations](#balancing-variations).
+> Note: If you still have more than one variation, you may need to [rebalance your variations](#balancing-variations).
   
-    - > Note: Removing a variation will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
+> Note: Removing a variation will change the code-reference name. __This will require a modification to the Airdeploy code snippet in your code and a redeployment__.
 
 
 ## Whitelisting Entities
@@ -140,14 +120,16 @@ A badge displays the number of entities whitelisted for that variation.
 - Hover over the entity you wish to remove. 
 - Click the “X” that appears.
 
-## Traffic Assignment Preview 
+## Preview
 
 As you configure your flag, you may want to see how the entities be assigned. This panel will update in realtime as you modify entities, subsets, feature variations, and whitelisting.
 
-![The Assignment Relationship Chart (left) and the Assignment Detail Table (right).](assets/t-a.png)
+![Flag Preview Table](assets/t-a.png)
 
 
 ### Assignment Relationship Chart
+
+Alvin to review -> do we still have it? Looks like no
 
 The left panel displays an interactive chart showing where entities will be assigned  when the flag is active.
 
@@ -177,7 +159,7 @@ Each published session is detailed by what was added, removed, or changed.
 - Click on the “Add Comment” button. A side panel will appear.
 - Add your comment.
 - Click “Save Comment”
-    - > Note: Comments are not threaded.
+> Note: Comments are not threaded.
 
 ## Flag Experiments
 

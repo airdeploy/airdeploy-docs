@@ -10,7 +10,12 @@ Each Airdeploy account comes with three team member seats. You may invite an unl
 
 `Main Navigation > Choose Team`
 
+![](assets/team.png)
+
+
 ### Inviting Team Members
+
+![](assets/invite-member.png)
 
 - On the Team screen, click the “+”. A side panel will appear.
 - Add one or more email addresses.
