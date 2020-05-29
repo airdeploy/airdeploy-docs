@@ -151,7 +151,9 @@ This table is sortable on Feature variation, Entity Type, Entity ID, and Entity 
 
 Flag history is a way of seeing all of the “Save & Publish” sessions committed on a flag. It is organized by date and time stamp as well as the team member associated with the session.
 
-Each published session is detailed by what was added, removed, or changed. 
+Each published session is detailed by what was added, removed, or changed.
+
+![](assets/flag-history.png)
 
 ### Commenting on a published session
 
