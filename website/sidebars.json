@@ -23,6 +23,7 @@
     "Flagger SDK": [
       "flagger-sdk/overview",
       "flagger-sdk/quick-start",
+      "flagger-sdk/examples",
       "flagger-sdk/flag-detection",
       "flagger-sdk/flag-functions",
       "flagger-sdk/tracking",
