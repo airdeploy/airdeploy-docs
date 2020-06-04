@@ -10,7 +10,7 @@ sidebar_label: Projects
 
 This screen enables you to add or remove projects, as well as environments (see [Environments](environments.md)).
 
-![](assets/managing-projects.jpeg)
+![](assets/managing-projects.png)
 
 ### Add a Project 
 
@@ -39,7 +39,7 @@ There are two ways to open a project:
 
 This screen displays all flags for this project. They are organized by flags you created or are a member of (“My Flags”), “Other Flags,” and “Archived.”
 
-![](assets/managing-flags.jpeg)
+![](assets/managing-flags.png)
 
 ### Add a Flag
 
@@ -54,7 +54,7 @@ This screen displays all flags for this project. They are organized by flags you
 When a flag is disabled, all entities will not see any variations. When a flag is enabled, the configured entity subsets will see their assigned variations.
 
 - Click the toggle under a flag to enable or disable it.
-- The Flag is immediately enabled or disabled.
+- The Flag is immediately enabled or disabled. (is this still valid? We pack changes rn AFAIK Alvin to review)
 
 ### Archive a Flag
 Archiving a flag is a great way to declutter you “My Flags” portion of the Projects screen while retaining the flag’s configuration. 
@@ -75,7 +75,7 @@ Deleting a flag is a permanent decision. All flag configuration is removed, incl
 
 Airdeploy displays a rolling 30-day activity summary for each flag in the project screen.
 
-![](assets/flag-activity.jpeg)
+![](assets/flag-activity.png)
 
 12am to 5:59am, 6:00am to 11:59am, 12pm to 5:59pm, 6:00pm to 11:59pm). The columns run from left as the oldest (30-days ago) to the right as the newest (the last 24-hours). The rightmost column is blue in order to call it out glanceably.
 
@@ -101,7 +101,7 @@ Metrics are global to a Project. You can create them in two locations—at the P
 - Hover over the Metric you wish to delete.
 - Click the “X” which appears.
 - Confirm the dialog warning to continue, or cancel to stop.
-    - >Note: Deleting a Metric from the Project removes all historical data collected on that metric for every Flag with an Experiment using it.
+>Note: Deleting a Metric from the Project removes all historical data collected on that metric for every Flag with an Experiment using it.
 
 ### Creating a Metric on a Flag Experiment
 
@@ -113,13 +113,13 @@ Metrics are global to a Project. You can create them in two locations—at the P
     - Create a New Metric
         - In the side panel, complete the fields.
         - Click “Add Metric”
-            - >Note: This metric is now available to all Flag Experiments in this Project, but only active on the Flag Experiment you are in when you create it.
+>Note: This metric is now available to all Flag Experiments in this Project, but only active on the Flag Experiment you are in when you create it.
 
 ### Removing a Metric from a Flag Experiment
 
 - Hover over the metric you wish to remove. 
 - Click on the “X” tab that appears.
 - Confirm the dialog warning to continue, or cancel to stop.
-    - > Note: Deleting a metric from a flag removes all historical data collected on that metric for this flag. If you add the same metric back, data will be collected starting from that date.
+> Note: Deleting a metric from a flag removes all historical data collected on that metric for this flag. If you add the same metric back, data will be collected starting from that date.
     
-    - > Note: the metric is not deleted from the Project.
+> Note: the metric is not deleted from the Project.

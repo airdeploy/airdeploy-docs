@@ -36,7 +36,7 @@ The left navigation panel has a few capabilities:
 The main view of the Entities screen is the list of entities (filtered or not) and an Entity detail. Clicking on any Entity will load its detail.
 
 
-![](assets/cory-larson.png)
+![](assets/entity.png)
 
 
 There are a few constant sections of the Entity detail and the rest is custom. You may add as many custom fields to 
