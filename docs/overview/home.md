@@ -1,7 +1,7 @@
 ---
 id: home
-title: Home
-sidebar_label: Airdeploy Documentation
+title: Airdeploy Documentation
+sidebar_label: Home
 ---
 
 Welcome to Airdeploy documentation. Airdeploy is a feature flagging library that routes traffic to features, and allows development teams to remotely launch, rollback, or toggle features on / off.
