@@ -21,7 +21,7 @@
 // ];
 
 const siteConfig = {
-  title: 'Airdeploy Docs', // Title for your website.
+  title: 'Airdeploy Documentation', // Title for your website.
   tagline: 'A better way to launch features',
   url: 'https://airdeploy.github.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
@@ -29,18 +29,16 @@ const siteConfig = {
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
-  cname: "docs.staging.airdeploy.io",
+  cname: 'docs.staging.airdeploy.io',
 
   markdownOptions: {
-    html: true
+    html: true,
   },
 
   markdownPlugins: [
     function foo(md) {
-      md.inline.ruler.enable(['mark']);
-      md.block.ruler.enable([
-        'deflist'
-      ]);
+      md.inline.ruler.enable(['mark'])
+      md.block.ruler.enable(['deflist'])
     },
   ],
   // Used for publishing and more
@@ -52,7 +50,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'airdeploy/overview', label: 'Docs'},
+    {doc: 'overview/home', label: 'Docs'},
     {doc: 'api-reference/overview', label: 'API Reference'},
   ],
 
@@ -60,14 +58,14 @@ const siteConfig = {
   // users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/favicon.ico',
+  headerIcon: 'img/logo_color_inverted.svg',
   footerIcon: 'img/favicon.ico',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#3358b5',
-    secondaryColor: '#26426a',
+    primaryColor: '#000c32',
+    secondaryColor: '#64CB6D',
   },
 
   /* Custom fonts for website */
@@ -102,7 +100,7 @@ const siteConfig = {
 
   docsUrl: '', // reset '/docs' prefix for all urls to ''
 
-  docsSideNavCollapsible: true,
+  docsSideNavCollapsible: false,
 
   // Open Graph and Twitter card images.
   // ogImage: 'img/undraw_online.svg',
@@ -121,6 +119,6 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
-};
+}
 
-module.exports = siteConfig;
+module.exports = siteConfig
