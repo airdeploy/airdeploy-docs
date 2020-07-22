@@ -32,7 +32,7 @@ Pass an entity to share it across all FlagProvider's children:
 import {FlagProvider, FlagSwitch, Flag, withFlag} from 'flagger/react'
 
 const App = () => (
-  <FlagProvider apiKey="YOUR_ENV_KEY" entity={user}>
+  <FlagProvider apiKey="<API_KEY>" entity={user}>
     // insert the rest of the app
   </FlagProvider>
 )
@@ -45,7 +45,7 @@ The entity is inherited from FlagProvider if provided;
 if not, make sure to provide a user / entity object to the flag component.
 
 ```javascript
-<FlagProvider envKey="YOUR_ENV_KEY" entity={user}>
+<FlagProvider apiKey="<API_KEY>" entity={user}>
   <Flag case="on" flag="color-theme">
     <NewColorComponent />
   </Flag>
@@ -59,7 +59,7 @@ and have more treatments to handle.
 It's used in combination with the Flag component.
 
 ```javascript
-<FlagProvider envKey="YOUR_ENV_KEY" entity={user}>
+<FlagProvider apiKey="<API_KEY>" entity={user}>
   <FlagSwitch flag="color-theme">
     <Flag case="blue">
       <Button color="blue" />
