@@ -8,8 +8,8 @@ sidebar_label: Javascript
 
 ### init
 
-```typescript
-Flagger.init(options): Promise<FlaggerInstance>
+```javascript
+Flagger.init(options): Promise<void>
 ```
 
 `init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initializes Ingester
@@ -21,19 +21,19 @@ Flagger.init(options): Promise<FlaggerInstance>
 import Flagger from 'flagger'
 
 await Flagger.init({
-  apiKey: 'k4k3llrkfl2234l', // the only required option
+  apiKey: '<API-KEY>', // the only required field
   logLevel: 'DEBUG',
 })
 ```
 
-| name            | type   | Required | Default                                          | Description                                                                                             |
-| --------------- | ------ | -------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| apiKey          | string | true     | None                                             | API key to an environment                                                                               |
-| sourceURL       | string | false    | https://api.airdeploy.io/configurations/         | URL to get `FlaggerConfiguration`                                                                       |
-| backupSourceURL | string | false    | https://backup-api.airdeploy.io/configurations/  | backup URL to get `FlaggerConfiguration`                                                                |
-| sseURL          | string | false    | https://sse.airdeploy.io/sse/v3/?envKey=         | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
-| ingestionURL    | string | false    | https://ingestion.airdeploy.io/collector?envKey= | URL for ingestion                                                                                       |
-| logLevel        | string | false    | ERROR                                            | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
+| name            | type   | Required | Default                                     | Description                                                                                             |
+| --------------- | ------ | -------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| apiKey          | string | true     | None                                        | API key to an environment                                                                               |
+| sourceURL       | string | false    | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                                                                       |
+| backupSourceURL | string | false    | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                                                                |
+| sseURL          | string | false    | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
+| ingestionURL    | string | false    | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
+| logLevel        | string | false    | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
 - If `apiKey` is not provided `init` promise is rejected
 - If not provided default arguments values are used and printed to Debug
@@ -49,37 +49,41 @@ await Flagger.init({
 
 ### shutdown
 
-```typescript
+```javascript
 Flagger.shutdown(): Promise<void>
 ```
 
-`shutdown` ingests data(if any), stops ingester and closes SSE connection.
+ingests data(if any), stops ingester and closes SSE connection.
 
 > Note: you **must** call shutdown only once before the end of the application runtime.
 
-```typescript
+```javascript
 await Flagger.shutdown()
 ```
 
 ### addFlaggerConfigUpdateListener
 
-```typescript
-Flagger.addFlaggerConfigUpdateListener(listener: (config: FlaggerConfiguration) ⇒ void): void
+```javascript
+public static addFlaggerConfigUpdateListener(
+    listener: (config: IFlaggerConfiguration) => void
+  ): void
 ```
 
 Add a listener to subscribe to event when `Flagger` gets new `FlaggerConfiguration`
 
 ### removeFlaggerConfigUdateListener
 
-```typescript
-Flagger.removeFlaggerConfigUpdateListener(listener: (config: FlaggerConfiguration)⇒ void): void
+```javascript
+public static removeFlaggerConfigUpdateListener(
+    listener: (config: IFlaggerConfiguration) => void
+  ): void
 ```
 
 Removes a listener
 
 ### publish
 
-```typescript
+```javascript
 Flagger.publish(entity: Entity): void
 ```
 
@@ -91,7 +95,7 @@ Flagger.publish({id: 1})
 
 ### track
 
-```typescript
+```javascript
 Flagger.track(eventName: String, eventProperties: Object, entity: Entity): void
 ```
 
@@ -119,7 +123,7 @@ Flagger.track('Purchase Completed', {
 
 ### setEntity
 
-```typescript
+```javascript
 Flagger.setEntity(entity: Entity): void
 ```
 
@@ -134,12 +138,12 @@ const entity = {
 Flagger.setEntity(entity)
 
 // here we are omitting, because Flagger has already stored "entity"
-Flagger.flagIsEnabled('stripe-payment')
+Flagger.isEnabled('stripe-payment')
 Flagger.track('some-event', {content: 'some-text'})
 
 // Flagger will use "differentEntity", because it will override "entity"
 const differentEntity = {id: '94239643'}
-Flagger.flagIsEnabled('strip-payment', differentEntity)
+Flagger.isEnabled('strip-payment', differentEntity)
 
 Flagger.setEntity(null) // to remove global entity
 ```
@@ -153,78 +157,94 @@ Rule of thumb: make sure you always provide an entity to the Flagger
 
 ## Flag Functions
 
-### flagIsEnabled
+### isEnabled
 
-```typescript
-Flagger.flagIsEnabled(codename: String, entity: Entity): Boolean
+```javascript
+Flagger.isEnabled(codename: String, entity: Entity): Boolean
 ```
 
 Determines if flag is enabled for entity.
 
-    const isEnabled = Flagger.flagIsEnabled("color-theme", { id: 1 });
+```javascript
+const isEnabled = Flagger.isEnabled('color-theme', {id: 1})
+```
 
 Group example:
 
-    const entityWithGroup = {
-        type: 'User',
-        id: '19421826',
-        group: {type: 'Company', id: '52272353'}
-      }
-    const isEnabled = Flagger.flagisEnabled("color-theme", entityWithGroup);
+```javascript
+const entityWithGroup = {
+  type: 'User',
+  id: '19421826',
+  group: {type: 'Company', id: '52272353'},
+}
+const isEnabled = Flagger.flagisEnabled('color-theme', entityWithGroup)
+```
 
-### flagIsSampled
+### isSampled
 
-```typescript
-Flagger.flagIsSampled(codename: String, entity: Entity): Boolean
+```javascript
+Flagger.isSampled(codename: String, entity: Entity): Boolean
 ```
 
 Determines if entity is within the targeted subpopulations
 
-    const isSampled = Flagger.flagIsSampled("color-theme", { id: 1 });
+```javascript
+const isSampled = Flagger.isSampled('color-theme', {id: 1})
+```
 
 Group example:
 
-    const entityWithGroup = {
-        type: 'User',
-        id: '19421826',
-        group: {type: 'Company', id: '52272353'}
-      }
-    const isSampled = Flagger.flagIsSampled("color-theme", entityWithGroup);
+```javascript
+const entityWithGroup = {
+  type: 'User',
+  id: '19421826',
+  group: {type: 'Company', id: '52272353'},
+}
+const isSampled = Flagger.isSampled('color-theme', entityWithGroup)
+```
 
-### flagGetVariation
+### getVariation
 
-```typescript
-Flagger.flagGetVariation(codename: String, entity: Entity): String
+```javascript
+Flagger.getVariation(codename: String, entity: Entity): String
 ```
 
 Returns the variation assigned to the entity in a multivariate flag
 
-    const variation = Flagger.flagGetVariation("color-theme", { id: 1 });
+```javascript
+const variation = Flagger.getVariation('color-theme', {id: 1})
+```
 
 Group example:
 
-    const entityWithGroup = {
-        type: 'User',
-        id: '19421826',
-        group: {type: 'Company', id: '52272353'}
-      }
-    const variation = Flagger.flagGetVariation("color-theme", entityWithGroup);
+```javascript
+const entityWithGroup = {
+  type: 'User',
+  id: '19421826',
+  group: {type: 'Company', id: '52272353'},
+}
+const variation = Flagger.getVariation('color-theme', entityWithGroup)
+```
 
-### flagGetPayload
+### getPayload
 
-```typescript
-Flagger.flagGetPayload(codename: String, entity: Entity): Object
+```javascript
+Flagger.getPayload(codename: String, entity: Entity): Object
 ```
 
 Returns the payload associated with the treatment assigned to the entity
 
-    const payload = Flagger.flagGetPayload("color-theme", { id: 1 });
+```javascript
+const payload = Flagger.getPayload('color-theme', {id: 1})
+```
 
 Group example:
 
-    const entityWithGroup = {
-        type: 'User',
-        id: '19421826',
-        group: {type: 'Company', id: '52272353'}
-      }
-    const payload = Flagger.flagGetPayload("color-theme", entityWithGroup);
+```javascript
+const entityWithGroup = {
+  type: 'User',
+  id: '19421826',
+  group: {type: 'Company', id: '52272353'},
+}
+const payload = Flagger.getPayload('color-theme', entityWithGroup)
+```

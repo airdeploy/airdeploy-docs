@@ -29,6 +29,7 @@ Flagger returns data to it's remote server that is useful, but does appropriate 
 Currently Flagger supports the following languages:
 
 - Javascript / Node.js
+- React
 - Java
 - Ruby
 - Python

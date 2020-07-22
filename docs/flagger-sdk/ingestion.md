@@ -39,16 +39,4 @@ Flagger.shutdown(3000)
 Flagger.shutdown(3000)
 ```
 
-<!--Swift-->
-
-```swift
-// iOS
-func applicationWillTerminate(_ application: UIApplication) {
-    _ = Flagger.shutdown(timeoutMillis: 1000)
-}
-
-// anywhere else:
-_ = Flagger.shutdown(timeoutMillis: 1000)
-```
-
 <!--END_DOCUSAURUS_CODE_TABS-->

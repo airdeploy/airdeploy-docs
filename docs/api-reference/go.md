@@ -33,7 +33,7 @@ func main() {
 	ctx := context.Background()
 	flagger := NewFlagger()
 	err := flagger.Init(ctx, &flagger.InitArgs{
-		APIKey:          "x2ftC7QtG7arQW9l", // the only required field
+		APIKey: "<API-KEY>", // the only required field
 	})
 
 	if err != nil {
@@ -44,13 +44,13 @@ func main() {
 }
 ```
 
-| name            | type   | Required | Default                                          | Description                                                 |
-| --------------- | ------ | -------- | ------------------------------------------------ | ----------------------------------------------------------- |
-| APIKey          | string | true     | None                                             | API key to an environment                                   |
-| SourceURL       | string | false    | https://api.airdeploy.io/configurations/         | URL to get `FlaggerConfiguration`                           |
-| BackupSourceURL | string | false    | https://backup-api.airdeploy.io/configurations/  | backup URL to get `FlaggerConfiguration`                    |
-| SSEURL          | string | false    | https://sse.airdeploy.io/sse/v3/?envKey=         | URL for real-time updates of `FlaggerConfiguration` via sse |
-| IngestionURL    | string | false    | https://ingestion.airdeploy.io/collector?envKey= | URL for ingestion                                           |
+| name            | type   | Required | Default                                     | Description                                                 |
+| --------------- | ------ | -------- | ------------------------------------------- | ----------------------------------------------------------- |
+| APIKey          | string | true     | None                                        | API key to an environment                                   |
+| SourceURL       | string | false    | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                           |
+| BackupSourceURL | string | false    | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                    |
+| SSEURL          | string | false    | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse |
+| IngestionURL    | string | false    | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                           |
 
 - If `APIKey` is not provided `Init` returns an error "Bad init agrs" and print an error in the console: "empty APIKey"
 - If not provided default arguments values are used and printed to Debug
@@ -125,8 +125,8 @@ func (flagger *Flagger) SetEntity(entity *core.Entity) {
 
 ```go
 flagger.SetEntity(&core.Entity{ID: "90843823"})
-enabled := flagger.FlagIsEnabled("new-signup-flow", nil)
-nonEmptyVariation := flagger.FlagGetVariation("new-signup-flow", nil)
+enabled := flagger.IsEnabled("new-signup-flow", nil)
+nonEmptyVariation := flagger.GetVariation("new-signup-flow", nil)
 assert.True(t, enabled)
 assert.Equal(t, "enabled", nonEmptyVariation)
 
@@ -142,22 +142,22 @@ Rule of thumb: make sure you always provide an entity to the Flagger
 
 ## Flag Functions
 
-### FlagIsEnabled
+### IsEnabled
 
 ```go
-func (flagger *Flagger) FlagIsEnabled(codename string, entity *core.Entity) bool
+func (flagger *Flagger) IsEnabled(codename string, entity *core.Entity) bool
 ```
 
 Determines if flag is enabled for entity.
 
 ```go
-flagger.FlagIsEnabled("test", &core.Entity{ID: "1"})
+flagger.IsEnabled("test", &core.Entity{ID: "1"})
 ```
 
-### FlagIsSampled
+### IsSampled
 
 ```go
-func (flagger *Flagger) FlagIsSampled(codename string, entity *core.Entity) bool
+func (flagger *Flagger) IsSampled(codename string, entity *core.Entity) bool
 ```
 
 Determines if entity is within the targeted subpopulations
@@ -168,13 +168,13 @@ entity := &core.Entity{
     Attributes: core.Attributes{"admin": true},
 }
 
-sampled := flagger.FlagIsSampled("premium-support", entity)
+sampled := flagger.IsSampled("premium-support", entity)
 ```
 
-### FlagGetVariation
+### GetVariation
 
 ```go
-func (flagger *Flagger) FlagGetVariation(codename string, entity *core.Entity) string
+func (flagger *Flagger) GetVariation(codename string, entity *core.Entity) string
 ```
 
 Returns the variation assigned to the entity in a multivariate flag
@@ -186,17 +186,17 @@ entity := &core.Entity{
     Attributes: core.Attributes{"admin": true},
 }
 
-variation := flagger.FlagGetVariation("premium-support", entity)
+variation := flagger.GetVariation("premium-support", entity)
 ```
 
-### FlagGetPayload
+### GetPayload
 
 ```go
-func (flagger *Flagger) FlagGetPayload(codename string, entity *core.Entity) core.Payload
+func (flagger *Flagger) GetPayload(codename string, entity *core.Entity) core.Payload
 ```
 
 Returns the payload associated with the treatment assigned to the entity
 
 ```go
-payload := flagger.FlagGetPayload("enterprise-dashboard", &core.Entity{ID: "31404847", Type: "Company"})
+payload := flagger.GetPayload("enterprise-dashboard", &core.Entity{ID: "31404847", Type: "Company"})
 ```

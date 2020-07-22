@@ -51,6 +51,15 @@ To manually modify previous versions of the documentation by editing the `websit
 3. Restart `yarn start` from `website` dir to verify your changes, because you change the structure. You don't need to restart server when you are just editing a file
 4. Create a PR to a `master` branch with the desired changes and request a review
 
+### Adding New Supported Language
+
+1. Update flagger-sdk/overview.md "Supported Languages" section
+2. Update flagger-sdk/quickstart.md
+3. Update flagger-sdk/flag-functions.md
+4. Update flagger-sdk/tracking.md
+5. flagger-sdk/ingestion.md
+6. Add a new section to api-reference
+
 ## Deployment
 
 ### Version update
