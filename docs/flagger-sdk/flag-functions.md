@@ -15,8 +15,8 @@ There are 4 main functions used for controlling traffic flow:
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
 
-```typescript
-Flagger.flagIsEnabled(codename: String, entity?: Entity): Boolean
+```javascript
+Flagger.isEnabled(codename: String, entity?: Entity): Boolean
 
 Flagger.getVariation(codename: String, entity?: Entity): String
 
@@ -29,7 +29,7 @@ Flagger.getPayload(codename: String, entity?: Entity): Object
 <!--Ruby-->
 
 ```ruby
-Flagger.flag_is_enabled(codename, *entity)
+Flagger.is_enabled(codename, *entity)
 
 Flagger.get_variation(codename, *entity)
 
@@ -41,7 +41,7 @@ Flagger.get_payload(codename, *entity)
 <!--Python-->
 
 ```python
-flagger.flag_is_enabled(codename, entity=None)
+flagger.is_enabled(codename, entity=None)
 
 flagger.get_variation(codename, entity=None)
 
@@ -53,25 +53,25 @@ flagger.get_payload(codename, entity=None)
 <!--Go-->
 
 ```go
-func FlagIsEnabled(codename string, entity *core.Entity) bool
+func IsEnabled(codename string, entity *core.Entity) bool
 
-func FlagGetVariation(codename string, entity *core.Entity) bool
+func GetVariation(codename string, entity *core.Entity) string
 
-func FlagIsSampled(codename string, entity *core.Entity) bool
+func IsSampled(codename string, entity *core.Entity) bool
 
-func FlagGetPayload(codename string, entity *core.Entity) bool
+func GetPayload(codename string, entity *core.Entity) core.Payload
 ```
 
 <!--Java-->
 
 ```java
-public static boolean flagIsEnabled(String codename, Entity entity)
+public static boolean isEnabled(String codename, Entity entity)
 
-public static String flagGetVariation(String codename, Entity entity)
+public static String getVariation(String codename, Entity entity)
 
-public static boolean flagIsSampled(String codename, Entity entity)
+public static boolean isSampled(String codename, Entity entity)
 
-public static Map<String, Object> flagGetPayload(String codename, Entity entity)
+public static Map<String, Object> getPayload(String codename, Entity entity)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -82,7 +82,7 @@ public static Map<String, Object> flagGetPayload(String codename, Entity entity)
 
 These two functions you will probably use the most.
 
-### flagIsEnabled
+### isEnabled
 
 Check whether a flag is enabled for an entity
 
@@ -90,7 +90,7 @@ Check whether a flag is enabled for an entity
 <!--Javascript-->
 
 ```typescript
-const enabled = Flagger.flagIsEnabled('color-theme', {id: '1'})
+const enabled = Flagger.isEnabled('color-theme', {id: '1'})
 
 if (enabled) {
   // show new color button
@@ -102,7 +102,7 @@ if (enabled) {
 <!--Ruby-->
 
 ```ruby
-enabled = Flagger.flag_is_enabled('color-theme', Entity::new("1"))
+enabled = Flagger.is_enabled('color-theme', Entity::new("1"))
 
 if enabled
   # show new color button
@@ -114,7 +114,7 @@ end
 <!--Python-->
 
 ```python
-enabled = flagger.flag_is_enabled('color-theme', {"id": "1"})
+enabled = flagger.is_enabled('color-theme', {"id": "1"})
 
 if enabled:
     # show new color button
@@ -125,9 +125,9 @@ else:
 <!--Go-->
 
 ```go
-import 	"github.com/jeronimo13/flagger-sdks/flagger/core"
+import 	"github.com/airdeploy/flagger-go/core"
 
-enable := flagger.FlagIsEnabled("color-theme", &core.Entity{ID: "1"})
+enable := flagger.IsEnabled("color-theme", &core.Entity{ID: "1"})
 
 if enable {
 // show new color button
@@ -143,7 +143,7 @@ import io.airdeploy.flagger.entity.Entity;
 
 
 Entity entity = Entity.builder().id("1").build();
-boolean enabled = Flagger.flagIsEnabled("color-theme", entity);
+boolean enabled = Flagger.isEnabled("color-theme", entity);
 
 if(enabled){
     // show new color button
@@ -154,7 +154,7 @@ if(enabled){
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-### flagGetVariation
+### getVariation
 
 Returns the variation that the entity will receive (after resolving all Flagging Rules).
 This is a more general flag function that is useful for multivariate flags.
@@ -163,7 +163,7 @@ This is a more general flag function that is useful for multivariate flags.
 <!--Javascript-->
 
 ```typescript
-const variation = Flagger.flagGetVariation('color-theme', {id: '1'})
+const variation = Flagger.getVariation('color-theme', {id: '1'})
 
 if (variation === 'halloween') {
   // show orange and black button
@@ -177,7 +177,7 @@ if (variation === 'halloween') {
 <!--Ruby-->
 
 ```ruby
-variation = Flagger.flag_get_variation('color-theme', Entity::new("1"))
+variation = Flagger.get_variation('color-theme', Entity::new("1"))
 
 case variation
 when 'halloween'
@@ -192,7 +192,7 @@ end
 <!--Python-->
 
 ```python
-variation = Flagger.flag_get_variation('color-theme', {id: "1"})
+variation = Flagger.get_variation('color-theme', {id: "1"})
 
 if variation == 'halloween':
   print('show orange and black button')
@@ -206,9 +206,9 @@ elif variation == 'coca-cola':
 <!--Go-->
 
 ```go
-import 	"github.com/jeronimo13/flagger-sdks/flagger/core"
+import 	"github.com/airdeploy/flagger-go/core"
 
-variation := flagger.FlagGetVariation("color-theme", &core.Entity{ID: "1"})
+variation := flagger.GetVariation("color-theme", &core.Entity{ID: "1"})
 
 if variation == "halloween" {
   // show orange and black button
@@ -225,7 +225,7 @@ if variation == "halloween" {
 import io.airdeploy.flagger.entity.Entity;
 
 Entity entity = Entity.builder().id("1").build();
-String variation = Flagger.flagGetVariation("color-theme", entity);
+String variation = Flagger.getVariation("color-theme", entity);
 
 if(variation == "halloween"){
   // show orange and black button
@@ -238,13 +238,13 @@ if(variation == "halloween"){
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-> flagGetVariation returns 'off' as the default variation (see [Default Variation](./default-variation.md))
+> getVariation returns 'off' as the default variation (see [Default Variation](./default-variation.md))
 
 ## Other Helpful Functions
 
 These two functions are less often-used, but are helpful in some cases.
 
-### flagIsSampled
+### isSampled
 
 Returns whether or not an entity is within one of the targeted populations.
 However, the entity may or may not be "sampled". A sampled entity may someday receive this feature, but this function only determines whether entity is sampled.
@@ -253,27 +253,27 @@ However, the entity may or may not be "sampled". A sampled entity may someday re
 <!--Javascript-->
 
 ```typescript
-const isSampled = Flagger.flagIsSampled('color-theme', {id: '1'})
+const isSampled = Flagger.isSampled('color-theme', {id: '1'})
 ```
 
 <!--Ruby-->
 
 ```ruby
-sampled = Flagger.flag_is_sampled('color-theme', Entity::new("1"))
+sampled = Flagger.is_sampled('color-theme', Entity::new("1"))
 ```
 
 <!--Python-->
 
 ```python
-sampled = flagger.flag_is_sampled('color-theme', {"id": "1"})
+sampled = flagger.is_sampled('color-theme', {"id": "1"})
 ```
 
 <!--Go-->
 
 ```go
-import 	"github.com/jeronimo13/flagger-sdks/flagger/core"
+import 	"github.com/airdeploy/flagger-go/core"
 
-enable := flagger.flagIsSampled("color-theme", &core.Entity{ID: "1"})
+enable := flagger.IsSampled("color-theme", &core.Entity{ID: "1"})
 ```
 
 <!--Java-->
@@ -282,12 +282,12 @@ enable := flagger.flagIsSampled("color-theme", &core.Entity{ID: "1"})
 import io.airdeploy.flagger.entity.Entity;
 
 Entity entity = Entity.builder().id("1").build();
-boolean isSampled = Flagger.flagIsSampled("color-theme", entity);
+boolean isSampled = Flagger.isSampled("color-theme", entity);
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-### flagGetPayload
+### getPayload
 
 Returns a JSON payload that can be added to any treatment via the Airdeploy Dashboard.
 
@@ -295,30 +295,30 @@ Returns a JSON payload that can be added to any treatment via the Airdeploy Dash
 <!--Javascript-->
 
 ```typescript
-const payload = Flagger.flagGetPayload('color-theme', {id: '1'})
+const payload = Flagger.getPayload('color-theme', {id: '1'})
 // => {"button-color": "blue"}
 ```
 
 <!--Ruby-->
 
 ```ruby
-payload = Flagger.flag_get_payload('color-theme', Entity::new("1"))
+payload = Flagger.get_payload('color-theme', Entity::new("1"))
 # => {"button-color": "blue"}
 ```
 
 <!--Python-->
 
 ```python
-payload = Flagger.flag_get_payload('color-theme', {id: "1"})
+payload = Flagger.get_payload('color-theme', {id: "1"})
 # => {"button-color": "blue"}
 ```
 
 <!--Go-->
 
 ```go
-import 	"github.com/jeronimo13/flagger-sdks/flagger/core"
+import 	"github.com/airdeploy/flagger-go/core"
 
-payload := flagger.FlagGetPayload("color-theme", &core.Entity{ID: "1"})
+payload := flagger.GetPayload("color-theme", &core.Entity{ID: "1"})
 // => {"button-color": "blue"}
 ```
 
@@ -328,7 +328,7 @@ payload := flagger.FlagGetPayload("color-theme", &core.Entity{ID: "1"})
 import io.airdeploy.flagger.entity.Entity;
 
 Entity entity = Entity.builder().id("1").build();
-Map<String, Object> payload = Flagger.flagGetPayload("color-theme", entity);
+Map<String, Object> payload = Flagger.getPayload("color-theme", entity);
 // => {"button-color": "blue"}
 ```
 

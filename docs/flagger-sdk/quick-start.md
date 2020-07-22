@@ -97,10 +97,10 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 await Flagger.init({apiKey: <API_KEY>})
 ```
 
-To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `flagIsEnabled`.
+To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
 
 ```javascript
-console.log(Flagger.flagIsEnabled('test-flag', {id: '1'}))
+console.log(Flagger.isEnabled('test-flag', {id: '1'}))
 ```
 
 The result will be `false` printed in console.
@@ -117,7 +117,7 @@ The `FlagProvider` HOC can be inserted into the application so that Flagger is i
 import {FlagProvider, FlagSwitch, Flag, withFlag} from 'react-flagger'
 
 const App = () => (
-  <FlagProvider envKey="YOUR_ENV_KEY" entity={user}>
+  <FlagProvider envKey="<API_KEY>" entity={user}>
     {// insert rest of app}
   </FlagProvider>
 )
@@ -126,7 +126,7 @@ const App = () => (
 The `Flag` component renders its children based on whether the `case` prop matches the flag variation. The entity is inherited from FlagProvider if provided. If one was not provided to the `FlagProvider` component, or you would like to override the entity, one can be provided to the Flag component as the `entity` prop.
 
 ```javascript
-<FlagProvider envKey="YOUR_ENV_KEY" entity={user}>
+<FlagProvider envKey="<API_KEY>" entity={user}>
   <Flag case="on" flag="color-theme">
     <NewColorComponent />
   </Flag>
@@ -146,15 +146,15 @@ To initialize, Flagger requires only 1 network request. This request is made by 
 A natural way of calling `init()` is to do it only once per runtime, at the start of the application.
 
 ```ruby
-api_key = 'x2ftC7QtG7arQW9l'
+api_key = '<API_KEY>'
 args = InitArguments::new(api_key)
 Flagger.init(args)
 ```
 
-To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `flagIsEnabled`.
+To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
 
 ```ruby
-p Flagger.flagIsEnabled('test-flag', {id: '1'})
+p Flagger.is_enabled('test-flag', {id: '1'})
 ```
 
 The result will be `false` printed in console.
@@ -172,13 +172,13 @@ To initialize, Flagger requires only 1 network request. This request is made by 
 A natural way of calling `init()` is to do it only once per runtime, at the start of the application.
 
 ```python
-flagger.init("x2ftC7QtG7arQW9l")
+flagger.init("<API_KEY>")
 ```
 
-To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `flagIsEnabled`.
+To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
 
 ```python
-print(flagger.flag_is_sampled("test-flag", {"id": "1"}))
+print(flagger.is_enabled("test-flag", {"id": "1"}))
 ```
 
 The result will be `false` printed in console.
@@ -197,13 +197,13 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 
 ```go
 ctx := context.Background()
-err := flagger.Init(ctx, &flagger.InitArgs{APIKey: "x2ftC7QtG7arQW9l"})
+err := flagger.Init(ctx, &flagger.InitArgs{APIKey: "<API_KEY>"})
 ```
 
-To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `flagIsEnabled`.
+To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
 
 ```go
-log.Println(flagger.FlagIsEnabled(ctx, "test-flag", &core.Entity{ID: "1"}))
+log.Println(flagger.isEnabled(ctx, "test-flag", &core.Entity{ID: "1"}))
 ```
 
 The result will be `false` printed in console.
@@ -221,18 +221,18 @@ To initialize, Flagger requires only 1 network request. This request is made by 
 A natural way of calling `init()` is to do it only once per runtime, at the start of the application.
 
 ```java
-String apiKey = "x2ftC7QtG7arQW9l";
+String apiKey = "<API_KEY>";
 FlaggerInitConfig flaggerInitConfig = FlaggerInitConfig.builder()
                           .apiKey(apiKey)
                           .build();
 Flagger.init(flaggerInitConfig);
 ```
 
-To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `flagIsEnabled`.
+To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
 
 ```java
 Entity entity = Entity.builder().id("1").build();
-System.out.println(Flagger.flagIsEnabled("test-flag", entity));
+System.out.println(Flagger.isEnabled("test-flag", entity));
 ```
 
 The result will be `false` printed in console.
