@@ -117,7 +117,7 @@ The `FlagProvider` HOC can be inserted into the application so that Flagger is i
 import {FlagProvider, FlagSwitch, Flag, withFlag} from 'react-flagger'
 
 const App = () => (
-  <FlagProvider envKey="<API_KEY>" entity={user}>
+  <FlagProvider apiKey="<API_KEY>" entity={user}>
     {// insert rest of app}
   </FlagProvider>
 )
@@ -126,7 +126,7 @@ const App = () => (
 The `Flag` component renders its children based on whether the `case` prop matches the flag variation. The entity is inherited from FlagProvider if provided. If one was not provided to the `FlagProvider` component, or you would like to override the entity, one can be provided to the Flag component as the `entity` prop.
 
 ```javascript
-<FlagProvider envKey="<API_KEY>" entity={user}>
+<FlagProvider apiKey="<API_KEY>" entity={user}>
   <Flag case="on" flag="color-theme">
     <NewColorComponent />
   </Flag>
