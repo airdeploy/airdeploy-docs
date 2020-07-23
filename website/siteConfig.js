@@ -29,7 +29,7 @@ const siteConfig = {
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
-  cname: 'docs.staging.airdeploy.io',
+  cname: 'docs.airdeploy.io',
 
   markdownOptions: {
     html: true,
