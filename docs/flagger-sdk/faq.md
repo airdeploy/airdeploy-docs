@@ -6,13 +6,9 @@ sidebar_label: FAQ
 
 ## Why do all flag functions always return `false`/`off`/`{}`(empty payload)?
 
-- Check that you are using correct API Key
+- Check that you are using correct API Key. API Keys differ for different environments (test, dev, prod etc.)
 
-  API Keys differ for different environments(test, dev, prod etc.)
-
-- Flagger may not be initialized properly
-
-  Check to make sure Flagger is initialized before using the library.
+- Flagger may not be initialized properly. Check to make sure Flagger is initialized before using the library.
 
   In Javascript, the `init()` method is a promise; make sure it's resolved before calling any other functions.
 
@@ -25,16 +21,9 @@ sidebar_label: FAQ
   // => true
   ```
 
-- Entity is not sampled
+- Entity may not sampled. Subpopulation sampling percentage is set to 0% by default (which prevents any traffic from going through the flag). Check that it is set to the appropriate value.
 
-  The sampling rate for the newly created flag is 0%.
-
-- Filters are off
-
-- `codename` is incorrect
-
-  make sure you are using `codename` not the `name` of the flag. For example `New Dashboard` is the name and
-  `new-dashboard` is the codename
+- Check that the flag codename is correct. Make sure you are using codename and not the name of the flag. For example, a flag named "New Dashboard" may have a codename of `new-dashboard`.
 
 ## Should I call Flagger.init method every time I want to use Flag Function?
 
