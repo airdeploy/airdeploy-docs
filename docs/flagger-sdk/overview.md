@@ -4,61 +4,33 @@ title: Overview
 sidebar_label: Overview
 ---
 
-`Flagger SDK`(or `Flagger` for short) is the open-source implementation of the feature flagging(feature gating, feature toggles) concept. 
+The Flagger SDKs are a set of open-source libraries that allow you to integrate feature flags into your application. It can connect to a remote source (like Airdeploy) so flags can be updated in real-time.
 
-## Features
-- Blazing fast, requires only one backend call
-- Highly customizable
-- Sampling(canary release) and multivariate A/B testing with custom filters
-- Auto-updatable configuration(via SSE)
-- Records usage analytics as well as custom events
-- white- and blacklisting
-- 2 level entity support (for example Manager-Employee, Client-Company)
+Each Flagger SDK implements a common API, and implements feature flags according to a shared approach.
 
+### Deterministic & Consistent
 
-## Design Principles
-### Stateful
-`Flagger` is stateful SDK, it relies on `FlaggerConfiguration` to work. This config is essential for `Flagger`, so 
-`Flagger` needs to be initialized before used.
+For any given entity, a feature flag should resolve in an identical way - across languages, devices, operating systems, etc. It also means the flag should resolve consistently. Meaning users should not flip-flop between different states or variations.
 
-### Initialize before use 
-`Flagger` makes an http call to Airdeploy server to get `FlaggerConfiguration`. 
-This fact imposes the restrictions on your application, since now 
-your application has to rely on how fast `Flagger` makes this http call. Don't worry, Airdeploy uses CDN to make 
-initialization as fast as possible.  
+### Local / Stateful
 
-The trade off is that any other `Flagger` methods doesn't require any http call, making them extremely fast
+Resolution of a feature flag should happen locally - without a depdendency on a constant network connection. That means Flagger SDKs are stateful, that - although relies on a remotely retrieved configuration - does not rely on a network connection to resolve flags.
 
- >Note: You must initialized `Flagger` __only once per runtime__. See [Test Flagger installation](quick-start.md#test-the-installation) 
+### Updates in Real-Time
 
-### Terminate at the end of the runtime
-`Flagger` accumulates usage data, we call it _exposure_, for instance:
-```json
-{
-  "codename": "button",
-  "variation": "green",
-  "entity": {"id":  "1"},
-  "methodCalled": "isEnabled"
-}
-```
+Flagger receives lives and atomic updates of changes made to feature flags. Applications integrated with Flagger do not need to be restarted to receive the updated configuration. As soon as changes are made remotely (e.g. through the Airdeploy dashboard), they should be reflected on all instances of the application with Flagger installed and initialized.
 
-This data allows Airdeploy to show A/B results and lots of other important things. `Flagger` groups this data up before 
-sending to Airdeploy to decrease network usage and Airdeploy server load. If your application stops without properly 
-shutting down `Flagger` all the accumulated data will be lost. See [Shutdown Flagger](quick-start.md#shutdown-flagger)   
+### Data Ingestion
 
- >Note: You must call `Flagger.shutdown` __once before the end of the runtime__ 
+Flagger returns data to it's remote server that is useful, but does appropriate batching and caching to decrease network usage.
 
+## Supported Languages
 
-### All methods are static
-It makes it really easy to use `Flagger` from any point of you application.
+Currently Flagger supports the following languages:
 
-### Auto updatable configuration
-`Flagger` uses Server Side Events to make sure `FlaggerConfiguration` stays up to date. During the `init` method `Flagger` 
-establishes and then maintains a connection with Airdeploy enabling it to push new config.
-
-That is why your application does not need to restart to get the new `FlaggerConfiguration`. Your app will get new 
-`FlaggerConfiguration` as soon as you make changes in the Dashboard.
-
-### SDK implementation details
-Typescript and Golang version of Flagger is developed from scratch, the rest is the wrapper around the native build of 
-Golang library. Native code is built via xgo for Linux, Mac, Win for x86 and x32 architectures. 
+- Javascript / Node.js
+- React
+- Java
+- Ruby
+- Python
+- Golang

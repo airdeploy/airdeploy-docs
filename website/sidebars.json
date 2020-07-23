@@ -1,24 +1,16 @@
 {
   "docs": {
-    "Airdeploy": [
-      "airdeploy/overview",
-      "airdeploy/design-principles",
-      "airdeploy/work",
-      "airdeploy/first-flag",
-      "airdeploy/projects",
-      "airdeploy/flags",
-      "airdeploy/environments",
-      "airdeploy/entities",
-      "airdeploy/organizations",
-      "airdeploy/data",
-      "airdeploy/team",
-      "airdeploy/usage-billing",
-      "airdeploy/your-profile",
-      "airdeploy/data-retention",
-      "airdeploy/ace",
-      "airdeploy/glossary",
-      "airdeploy/how-to-use",
-      "airdeploy/ace"
+    "Overview": ["overview/home", "overview/introduction"],
+    "Concepts": ["concepts/flags", "concepts/entities", "concepts/groups", "concepts/targeting"],
+    "Dashboard": [
+      "dashboard/organizations",
+      "dashboard/projects",
+      "dashboard/environments",
+      "dashboard/managing-flags",
+      "dashboard/configuring-flags",
+      "dashboard/flag-history",
+      "dashboard/flag-preview",
+      "dashboard/team"
     ],
     "Flagger SDK": [
       "flagger-sdk/overview",
@@ -29,18 +21,15 @@
       "flagger-sdk/default-variation",
       "flagger-sdk/ingestion",
       "flagger-sdk/attributes",
-      "flagger-sdk/faq",
-      "flagger-sdk/glossary"
+      "flagger-sdk/faq"
     ],
     "API Reference": [
-      "api-reference/overview",
-      "api-reference/ts",
+      "api-reference/js",
       "api-reference/react",
       "api-reference/java",
       "api-reference/ruby",
       "api-reference/python",
-      "api-reference/go",
-      "api-reference/swift"
+      "api-reference/go"
     ]
   }
 }

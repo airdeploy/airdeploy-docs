@@ -1,0 +1,29 @@
+{
+  "name": "airdeploy-docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/airdeploy/airdeploy-docs.git",
+  "author": "engineering@airdeploy.io",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "workspaces": [
+    "website"
+  ],
+  "scripts": {
+    "start": "yarn workspaces run start",
+    "build": "yarn workspaces run build",
+    "publish": "yarn workspaces run publish-gh-pages",
+    "version": "yarn workspaces run version",
+    "rename-version": "yarn workspaces run rename-version"
+  }
+}

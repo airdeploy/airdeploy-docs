@@ -4,20 +4,19 @@ title: Default Variation
 sidebar_label: Default Variation
 ---
 
-## Overview
 The default variation is the default return value for the [Flag Functions](flag-functions.md).
+
 ```json
 {
-	"isEnabled": false,
-	"isSampled": false,
-	"variation": "off",
-	"payload": {}
+  "isEnabled": false,
+  "isSampled": false,
+  "variation": "off",
+  "payload": {}
 }
 ```
 
-## Why do I get default variation?
+The default variation can be returned for a number of reasons, including:
 
-- Your flag's kill switch is on
-- entity/group entity is in the blacklist
-- entity/group entity is not sampled in the population
-- entity filters are not matched with the flag filters 
+- The flag's kill switch is on
+- Entity/group is whitelisted to the default variation
+- Entity/group is not part of the sampled subpopulation
