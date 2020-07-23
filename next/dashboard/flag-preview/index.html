@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Flag Preview · Airdeploy Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="As you configure your flag, you may want to see how the entities be assigned. The flag preview page projects the flag&#x27;s current configuration onto all known entities."/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Flag Preview · Airdeploy Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://airdeploy.github.io/"/><meta property="og:description" content="As you configure your flag, you may want to see how the entities be assigned. The flag preview page projects the flag&#x27;s current configuration onto all known entities."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo_color_inverted.svg" alt="Airdeploy Documentation"/><h2 class="headerTitleWithLogo">Airdeploy Documentation</h2></a><a href="/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Dashboard</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/next/overview/home">Home</a></li><li class="navListItem"><a class="navItem" href="/next/overview/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Concepts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/next/concepts/flags">Flags</a></li><li class="navListItem"><a class="navItem" href="/next/concepts/entities">Entities</a></li><li class="navListItem"><a class="navItem" href="/next/concepts/groups">Groups</a></li><li class="navListItem"><a class="navItem" href="/next/concepts/targeting">Targeting Methods</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Dashboard</h3><ul class=""><li class="navListItem"><a class="navItem" href="/next/dashboard/organizations">Organizations</a></li><li class="navListItem"><a class="navItem" href="/next/dashboard/projects">Projects</a></li><li class="navListItem"><a class="navItem" href="/next/dashboard/environments">Environments</a></li><li class="navListItem"><a class="navItem" href="/next/dashboard/managing-flags">Managing Flags</a></li><li class="navListItem"><a class="navItem" href="/next/dashboard/configuring-flags">Configuring Flags</a></li><li class="navListItem"><a class="navItem" href="/next/dashboard/flag-history">Flag History</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/next/dashboard/flag-preview">Flag Preview</a></li><li class="navListItem"><a class="navItem" href="/next/dashboard/team">Team</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Flagger SDK</h3><ul class=""><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/quick-start">Quick Start</a></li><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/flag-detection">Flag Detection</a></li><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/flag-functions">Flag Functions</a></li><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/tracking">Tracking API</a></li><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/default-variation">Default Variation</a></li><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/ingestion">Ingestion</a></li><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/attributes">Attributes</a></li><li class="navListItem"><a class="navItem" href="/next/flagger-sdk/faq">FAQ</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/next/api-reference/js">Javascript</a></li><li class="navListItem"><a class="navItem" href="/next/api-reference/react">React</a></li><li class="navListItem"><a class="navItem" href="/next/api-reference/java">Java</a></li><li class="navListItem"><a class="navItem" href="/next/api-reference/ruby">Ruby</a></li><li class="navListItem"><a class="navItem" href="/next/api-reference/python">Python</a></li><li class="navListItem"><a class="navItem" href="/next/api-reference/go">Golang</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Flag Preview</h1></header><article><div><span><p>As you configure your flag, you may want to see how the entities be assigned. The flag preview page projects the flag's current configuration onto all known entities.</p>
+<p>This panel will update in realtime as you modify entities, subsets, feature variations, and whitelisting.</p>
+<p><img src="/assets/t-a.png" alt="Flag Preview Table"></p>
+<p>The table on this page shows which variation each entity will be assigned (and whether the entity will receive the feature or not) before it occurs, along with the reason for the assignment.</p>
+<p>You can search this list of known entities the double check the flag configuration or find out which variation any specific entity will be receiving.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/next/dashboard/flag-history"><span class="arrow-prev">← </span><span>Flag History</span></a><a class="docs-next button" href="/next/dashboard/team"><span>Team</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="Airdeploy Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/overview.html">Getting Started</a><a href="/en/api-references.html">API Reference</a></div><div><h5>More</h5><a href="https://github.com/airdeploy">Airdeploy GitHub</a></div></section><section class="copyright">Copyright © 2020 Airdeploy</section></footer></div></body></html>
