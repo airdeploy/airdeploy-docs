@@ -14,14 +14,6 @@ Airdeploy consists of a dashboard and libraries in different languages:
 - **Live Updates** - Services for notifying clients (devices, browsers, etc.) of changes to any flags or rollouts
 - **Flagger SDKs** - The SDK for integrating feature flags into apps
 
-## Getting Started
-
-To get started, you might find some of these links useful:
-
-- **Quick Start**
-- **Feature Flagging Concepts**
-- **How Does Airdeploy Work?**
-
 ## Contributing and Support
 
 Looking for an SDK for a language we don't yet support? Found an error and want to help fix it? Have a suggestion? Contact our team at: <engineering@airdeploy.io>
