@@ -103,7 +103,7 @@ To ensure that Flagger is successfully initialized, call any flag function. For 
 console.log(Flagger.isEnabled('test-flag', {id: '1'}))
 ```
 
-The result will be `false` printed in console.
+The result will be `false` printed in a console.
 
 <!--React-->
 
@@ -147,17 +147,17 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 
 ```ruby
 api_key = '<API_KEY>'
-args = InitArguments::new(api_key)
-Flagger.init(args)
+Flagger.init(api_key)
 ```
 
 To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
 
 ```ruby
-p Flagger.is_enabled('test-flag', {id: '1'})
+
+p Flagger.is_enabled('test-flag', FlaggerClasses::Entity::new('1'))
 ```
 
-The result will be `false` printed in console.
+The result will be `false` printed in a console.
 
 <!--Python-->
 
@@ -181,7 +181,7 @@ To ensure that Flagger is successfully initialized, call any flag function. For 
 print(flagger.is_enabled("test-flag", {"id": "1"}))
 ```
 
-The result will be `false` printed in console.
+The result will be `false` printed in a console.
 
 <!--Go-->
 
@@ -206,7 +206,7 @@ To ensure that Flagger is successfully initialized, call any flag function. For 
 log.Println(flagger.isEnabled(ctx, "test-flag", &core.Entity{ID: "1"}))
 ```
 
-The result will be `false` printed in console.
+The result will be `false` printed in a console.
 
 <!--Java-->
 
@@ -235,7 +235,7 @@ Entity entity = Entity.builder().id("1").build();
 System.out.println(Flagger.isEnabled("test-flag", entity));
 ```
 
-The result will be `false` printed in console.
+The result will be `false` printed in a console.
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 

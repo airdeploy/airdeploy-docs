@@ -70,7 +70,11 @@ Flagger.shutdown(1000)
 Explicitly notify Airdeploy about an Entity
 
 ```ruby
-Flagger.publish(Entity::new("42"))
+Flagger.publish(FlaggerClasses::Entity::new("42"))
+
+# or
+
+Flagger.publish({id: "42"})
 ```
 
 ### track
@@ -83,7 +87,7 @@ Event tracking API.
 Entity is an optional parameter if it was set before.
 
 ```ruby
-Flagger.track('test', {:age => 40}, Entity::new("42", Hash::new))
+Flagger.track('test', {:age => 40}, FlaggerClasses::Entity::new("42"))
 ```
 
 ### set_entity
@@ -95,7 +99,7 @@ Flagger.track('test', {:age => 40}, Entity::new("42", Hash::new))
 `set_entity` stores an entity in Flagger, which allows omission of entity in other API methods.
 
 ```ruby
-Flagger.set_entity(Entity::new("42", Hash::new))
+Flagger.set_entity(FlaggerClasses::Entity::new("42"))
 
 # here we are omitting, because Flagger has already stored "entity"
 Flagger.is_enabled('show_wallet')
@@ -119,14 +123,13 @@ Rule of thumb: make sure you always provide an entity to the Flagger
 Determines if flag is enabled for entity.
 
 ```ruby
-is_enabled= Flagger.is_enabled('show_wallet', Entity::new("42"))
+is_enabled= Flagger.is_enabled('show_wallet', FlaggerClasses::Entity::new("42"))
 ```
 
 Group example:
 
 ```ruby
-company = Entity::new '42', :group => (Entity::new '4242', :type => "Company")
-is_enabled= Flagger.is_enabled('show_wallet', company)
+is_enabled= Flagger.is_enabled('show_wallet', {id:"42", group: {id:"4242", type: 'company'}})
 ```
 
 ### is_sampled
@@ -138,14 +141,13 @@ is_enabled= Flagger.is_enabled('show_wallet', company)
 Determines if entity is within the targeted subpopulations
 
 ```ruby
-is_sampled= Flagger.is_sampled('show_wallet', Entity::new("42"))
+is_sampled= Flagger.is_sampled('show_wallet', FlaggerClasses::Entity::new("42"))
 ```
 
 Group example:
 
 ```ruby
-company = Entity::new '42', :group => (Entity::new '4242', :type => "Company")
-is_sampled= Flagger.is_sampled('show_wallet', company)
+is_sampled= Flagger.is_sampled('show_wallet', {id:"42", group: {id:"4242", type: 'company'}})
 ```
 
 ### get_variation
@@ -157,14 +159,13 @@ is_sampled= Flagger.is_sampled('show_wallet', company)
 Returns the variation assigned to the entity in a multivariate flag
 
 ```ruby
-variation = Flagger.get_variation("show_wallet", Entity::new("42"))
+variation = Flagger.get_variation("show_wallet", FlaggerClasses::Entity::new("42"))
 ```
 
 Group example:
 
 ```ruby
-company = Entity::new '42', :group => (Entity::new '4242', :type => "Company")
-variation = Flagger.get_variation("show_wallet", company)
+variation = Flagger.get_variation('show_wallet', {id:"42", group: {id:"4242", type: 'company'}})
 ```
 
 ### get_payload
@@ -176,12 +177,11 @@ variation = Flagger.get_variation("show_wallet", company)
 Returns the payload associated with the treatment assigned to the entity
 
 ```ruby
-payload = Flagger.get_payload('show_wallet', Entity::new("42"))
+payload = Flagger.get_payload('show_wallet', FlaggerClasses::Entity::new("42"))
 ```
 
 Group example:
 
 ```ruby
-company = Entity::new '42', :group => (Entity::new '4242', :type => "Company")
-payload = flagger.get_payload("show_wallet", company)
+payload = Flagger.get_payload('show_wallet', {id:"42", group: {id:"4242", type: 'company'}})
 ```
