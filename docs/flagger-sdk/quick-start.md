@@ -32,7 +32,7 @@ npm install --save flagger
 <!--React-->
 
 ```commandline
-npm install --save react-flagger
+npm install --save flagger-react
 ```
 
 <!--Ruby-->
@@ -114,7 +114,7 @@ The Flagger React library contains components that encapsulate the logic of chec
 The `FlagProvider` HOC can be inserted into the application so that Flagger is initialized when the application starts.
 
 ```javascript
-import {FlagProvider, FlagSwitch, Flag, withFlag} from 'react-flagger'
+import {FlagProvider, FlagSwitch, Flag, withFlag} from 'flagger-react'
 
 const App = () => (
   <FlagProvider apiKey="<API_KEY>" entity={user}>
