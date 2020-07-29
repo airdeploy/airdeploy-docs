@@ -42,7 +42,7 @@ Entities are also allowed a user-defined **attributes** map. Attributes are used
 {
   "type": "User",
   "id": "639482",
-  "displayName": "Danaerys Targaeryen",
+  "name": "Danaerys Targaeryen",
   "attributes": {
     "email": "dany@ironthronehr.com",
     "first_name": "Danaerys",
@@ -63,16 +63,16 @@ Entities are also allowed a user-defined **attributes** map. Attributes are used
 
 ## Groups / Relationships
 
-Entities can be segmented into groups. Groups allow modeling of parent-child relationships between entities. Enabling a feature for a group, for example, will enable the feature for all it's children.
+Entities can be segmented into groups. Groups allow modeling of parent-child relationships between entities. Enabling a feature for a group, for example, will enable the feature for all its children.
 
 ## Entity Model Reference
 
 In most languages, entities are represented as a map, dictionary, struct, or comparable data structure. Each language's documentation specifies more clearly how to represent entities, but they share these common components:
 
-| Field       | Input Type          | Description                                                                                                                                                        |
-| ----------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| type        | String              | **Optional** (defaults to "User") Type of this Entity. Example: 'User', 'Company', 'Group', 'Page, 'Product Listing'                                               |
-| id          | String              | **Required**. A unique identifier. We recommend using your internal identifier (such as object/document ID).                                                       |
-| displayName | String              | **Required**. A human-readable display name. This can be a username, a full name, email, etc.                                                                      |
-| attributes  | Map / Dictionary    | **Optional**. Key-value pairs that contains attributes that can be used in Airship to target specific users or objects. Read about Entities & Users to learn more. |
-| group       | Object / Dictionary | **Optional**. Associate an entity with a group by nesting the entity that represents the parent entity.                                                            |
+| Field      | Input Type          | Description                                                                                                                                                        |
+| ---------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| id         | String              | **Required**. A unique identifier. We recommend using your internal identifier (such as object/document ID).                                                       |
+| type       | String              | **Optional** (defaults to "User") Type of this Entity. Example: 'User', 'Company', 'Group', 'Page, 'Product Listing'                                               |
+| name       | String              | **Optional**. A human-readable display name. This can be a username, a full name, email, etc.                                                                      |
+| attributes | Map / Dictionary    | **Optional**. Key-value pairs that contains attributes that can be used in Airship to target specific users or objects. Read about Entities & Users to learn more. |
+| group      | Object / Dictionary | **Optional**. Associate an entity with a group by nesting the entity that represents the parent entity.                                                            |

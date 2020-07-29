@@ -20,7 +20,7 @@ In the example below, the User entity is associated with a group (a Club entity)
 {
   "type": "User",
   "id": "1234",
-  "displayName": "ironman@stark.com",
+  "name": "ironman@stark.com",
   "attributes": {
     "tShirtSize": "M",
     "dateCreated": "2018-02-18",
@@ -31,7 +31,7 @@ In the example below, the User entity is associated with a group (a Club entity)
   "group": {
     "type": "Club",
     "id": "5678",
-    "displayName": "Avengers Club",
+    "name": "Avengers Club",
     "attributes": {
       "founded": "2016-01-01",
       "active": true
