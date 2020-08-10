@@ -102,7 +102,7 @@ if (enabled) {
 <!--Ruby-->
 
 ```ruby
-enabled = Flagger.is_enabled('color-theme', FlaggerClasses::Entity::new("1"))
+enabled = Flagger::is_enabled('color-theme', Flagger::Entity::new("1"))
 
 if enabled
   # show new color button
@@ -177,7 +177,7 @@ if (variation === 'halloween') {
 <!--Ruby-->
 
 ```ruby
-variation = Flagger.get_variation('color-theme', FlaggerClasses::Entity::new("1"))
+variation = Flagger::get_variation('color-theme', Flagger::Entity::new("1"))
 
 case variation
 when 'halloween'
@@ -259,7 +259,7 @@ const isSampled = Flagger.isSampled('color-theme', {id: '1'})
 <!--Ruby-->
 
 ```ruby
-sampled = Flagger.is_sampled('color-theme', FlaggerClasses::Entity::new("1"))
+sampled = Flagger::is_sampled('color-theme', Flagger::Entity::new("1"))
 ```
 
 <!--Python-->
@@ -302,7 +302,7 @@ const payload = Flagger.getPayload('color-theme', {id: '1'})
 <!--Ruby-->
 
 ```ruby
-payload = Flagger.get_payload('color-theme', FlaggerClasses::Entity::new("1"))
+payload = Flagger::get_payload('color-theme', Flagger::Entity::new("1"))
 # => {"button-color": "blue"}
 ```
 

@@ -147,14 +147,14 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 
 ```ruby
 api_key = '<API_KEY>'
-Flagger.init(api_key)
+Flagger::init(api_key)
 ```
 
-To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
+To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `is_enabled`.
 
 ```ruby
 
-p Flagger.is_enabled('test-flag', FlaggerClasses::Entity::new('1'))
+p Flagger::is_enabled('test-flag', Flagger::Entity::new('1'))
 ```
 
 The result will be `false` printed in a console.
@@ -175,7 +175,7 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 flagger.init("<API_KEY>")
 ```
 
-To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
+To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `is_enabled`.
 
 ```python
 print(flagger.is_enabled("test-flag", {"id": "1"}))
