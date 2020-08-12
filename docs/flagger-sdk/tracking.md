@@ -71,15 +71,15 @@ Flagger.track('Purchase Completed', {
 <!--Ruby-->
 
 ```ruby
-Flagger.track('Purchase Completed',
+Flagger::track('Purchase Completed',
   {:plan => "Gold",
    :referrer => "https://www.google.com",
    :shirt_size => "medium"},
-  Entity::new("42", Hash::new)
+  Flagger::Entity::new("42")
 )
 
 # If `entity` has been set before with Flagger.set_entity method:
-Flagger.track('Purchase Completed',
+Flagger::track('Purchase Completed',
   {:plan => "Gold",
    :referrer => "https://www.google.com",
    :shirt_size => "medium"}
