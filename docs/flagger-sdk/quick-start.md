@@ -111,14 +111,14 @@ The result will be `false` printed in a console.
 
 The Flagger React library contains components that encapsulate the logic of checking whether or not to render a component, and will trigger updates (re-rendering) in real-time if changes are made to the flag (i.e. toggling the flag on / off in the dashboard).
 
-The `FlagProvider` HOC can be inserted into the application so that Flagger is initialized when the application starts.
+The `FlagProvider` component can be inserted into the application so that Flagger is initialized when the application starts.
 
 ```javascript
-import {FlagProvider, FlagSwitch, Flag, withFlag} from 'flagger-react'
+import {FlagProvider, FlagSwitch, Flag, Variation, withFlag, useVariation, useFlag} from 'flagger-react'
 
 const App = () => (
   <FlagProvider apiKey="<API_KEY>" entity={user}>
-    {// insert rest of app}
+    // insert rest of app
   </FlagProvider>
 )
 ```

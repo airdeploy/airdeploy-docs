@@ -7,20 +7,39 @@ sidebar_label: React
 ## FlagProvider
 
 ```typescript
-interface IFlagProvider {
+type IFlagProviderProps = {
   apiKey: string
   sourceURL?: string
   backupSourceURL?: string
   sseURL?: string
   ingestionURL?: string
   logLevel?: 'warn' | 'warning' | 'deb' | 'debug' | 'err' | 'error'
-  entity: IEntity // entity to set for all FlagProvider's children
+  entity?: IEntity // entity to set for all FlagProvider's children
   loadingView: JSX.Element // render a view when Flagger is fetching configuration
-}
+} & (
+  | {
+      loadingView: JSX.Element
+      children: React.ReactNode
+    }
+  | {
+      children: (props: IFlaggerCtx) => React.ReactNode // pass children function for even more control
+    }
+)
 
 defaultProps = {
   children: null,
   loadingView: null,
+}
+
+interface IFlaggerCtx {
+  entity?: IEntity
+  config?: IFlaggerConfiguration
+  loading: boolean
+  getVariation: (codename: string, entity?: IEntity) => string
+  getFlagDetails: (
+    codename: string,
+    entity?: IEntity
+  ) => {variation: string; enabled: boolean; isSampled: boolean; payload: any}
 }
 ```
 
@@ -29,11 +48,28 @@ The purpose of this component is to initialize Flagger, `apiKey` is the only req
 Pass an entity to share it across all FlagProvider's children:
 
 ```javascript
-import {FlagProvider, FlagSwitch, Flag, withFlag} from 'flagger/react'
+import {FlagProvider, FlagSwitch, Flag, withFlag} from 'flagger-react'
 
 const App = () => (
   <FlagProvider apiKey="<API_KEY>" entity={user}>
     // insert the rest of the app
+  </FlagProvider>
+)
+```
+
+Pass a function as a child
+
+```javascript
+import {FlagProvider, FlagSwitch, Flag, withFlag} from 'flagger-react'
+
+const App = () => (
+  <FlagProvider apiKey="<API_KEY>" entity={user}>
+    {({loading}) => {
+      if (loading) {
+        return <AppLoading />
+      }
+      return <AppContent />
+    }}
   </FlagProvider>
 )
 ```
@@ -44,12 +80,38 @@ The Flag component renders its children based on whether the case prop matches t
 The entity is inherited from FlagProvider if provided;
 if not, make sure to provide a user / entity object to the flag component.
 
+```typescript
+interface IFlagProps {
+  flag?: string
+  case: string
+  children?: ((props: {case: string; flag?: string}) => React.ReactNode) | React.ReactNode
+  component?: React.ComponentType<{
+    case: string
+    flag?: string
+  }>
+  entity?: IEntity
+  isSwitchChild?: boolean
+}
+```
+
 ```javascript
-<FlagProvider apiKey="<API_KEY>" entity={user}>
-  <Flag case="on" flag="color-theme">
-    <NewColorComponent />
-  </Flag>
-</FlagProvider>
+import {FlagProvider, Flag} from 'flagger-react'
+
+const App = () => (
+  <FlagProvider apiKey="<API_KEY>" entity={user}>
+    <Flag case="on" flag="color-theme">
+      <NewColorComponent />
+    </Flag>
+
+    {/* function as a child */}
+    <Flag case="on" flag="color-theme">
+      {() => <NewColorComponent />}
+    </Flag>
+
+    {/* component prop */}
+    <Flag case="on" flag="color-theme" component={NewColorComponent} />
+  </FlagProvider>
+)
 ```
 
 ## FlagSwitch
@@ -58,20 +120,111 @@ FlagSwitch component is useful, especially for multivariate flags that are not s
 and have more treatments to handle.
 It's used in combination with the Flag component.
 
+```typescript
+interface IFlagSwitchProps {
+  flag: string
+  entity?: IEntity
+  children?: ((props: IComponentProps) => React.ReactNode) | React.ReactNode
+  component?: React.ComponentType<IComponentProps>
+}
+
+interface IComponentProps {
+  flag: string
+  entity?: IEntity
+  variation: string
+  loading: boolean
+}
+```
+
 ```javascript
-<FlagProvider apiKey="<API_KEY>" entity={user}>
-  <FlagSwitch flag="color-theme">
-    <Flag case="blue">
-      <Button color="blue" />
-    </Flag>
-    <Flag case="lavender">
-      <Button color="lavender" />
-    </Flag>
-    <Flag case="off">
-      <Button color="default" />
-    </Flag>
-  </FlagSwitch>
-</FlagProvider>
+import {FlagProvider, FlagSwitch, Flag} from 'flagger-react'
+
+const App = () => (
+  <FlagProvider apiKey="<API_KEY>" entity={user}>
+    <FlagSwitch flag="color-theme">
+      <Flag case="blue">
+        <Button color="blue" />
+      </Flag>
+      <Flag case="lavender">
+        <Button color="lavender" />
+      </Flag>
+      <Flag case="off">
+        <Button color="default" />
+      </Flag>
+    </FlagSwitch>
+
+    {/* component prop */}
+    <FlagSwitch
+      flag="color-theme"
+      component={function RenderColorThemeSwitch({variation}) {
+        switch (variation) {
+          case 'blue':
+            return <Button color="blue" />
+          case 'lavender':
+            return <Button color="lavender" />
+          case 'off':
+          default:
+            return <Button color="default" />
+        }
+      }}
+    />
+
+    {/* function as a child */}
+    <FlagSwitch flag="color-theme">
+      {({variation}) => {
+        switch (variation) {
+          case 'blue':
+            return <Button color="blue" />
+          case 'lavender':
+            return <Button color="lavender" />
+          case 'off':
+          default:
+            return <Button color="default" />
+        }
+      }}
+    </FlagSwitch>
+  </FlagProvider>
+)
+```
+
+## Variation
+
+You also can use `Variation` component (instead of `Flag`) inside `FlagSwitch`. It is a dummy component added for convenience. Variation cannot be used outside `FlagSwitch`.
+
+```typescript
+interface IVariationProps {
+  case: string
+  flag?: string
+  children?: ((props: {case: string; flag?: string}) => React.ReactNode) | React.ReactNode
+  component?: React.ComponentType<{
+    flag?: string
+    case: string
+  }>
+}
+```
+
+```javascript
+import {FlagProvider, FlagSwitch, Variation} from 'flagger-react'
+
+const App = () => (
+  <FlagProvider apiKey="<API_KEY>" entity={user}>
+    <FlagSwitch flag="color-theme">
+      <Variation case="red">
+        <Button color="red" />
+      </Variation>
+
+      {/* function as a child */}
+      <Variation case="green">{() => <Button color="green" />}</Variation>
+
+      {/* component prop */}
+      <Variation case="blue" component={BlueButton} />
+
+      <Variation case="off">
+        <Button color="default" />
+      </Variation>
+    </FlagSwitch>
+  </FlagProvider>
+)
 ```
 
 ## withFlag()
@@ -91,18 +244,125 @@ this.props.flags['color-theme']
 ```
 
 ```javascript
-import React, {Component} from 'react'
-import {withFlag} from 'flagger/react'
+import React from 'react'
+import {withFlag} from 'flagger-react'
 
-class PaymentOptions extends Component {
-  render() {
-    if (this.props.flags['color-theme'].enabled) {
-      return <NewColorComponent />
-    } else {
-      return <DefaultColorComponent />
-    }
+function PaymentOptions(props) {
+  if (props.loading) {
+    return <Spinner />
+  }
+  if (props.flags['color-theme'].enabled) {
+    return <NewColorComponent />
+  } else {
+    return <DefaultColorComponent />
   }
 }
 
 export default withFlag(PaymentOptions, 'color-theme', 'another-flag-name')
+```
+
+## Hook useVariation()
+
+Hook useVariation is equivalent to FlagSwitch with function as a child
+
+```typescript
+type useVariation = (codename: string, entity?: IEntity) => IUseVariationResponse
+
+interface IUseVariationResponse {
+  codename: string
+  entity?: IEntity
+  variation: string
+  loading: boolean
+}
+```
+
+```javascript
+import {useVariation} from 'flagger-react'
+
+const App = () => {
+  const {loading, variation} = useVariation('color-theme')
+  if (loading) {
+    return <Spinner />
+  }
+  switch (variation) {
+    case 'blue':
+      return <Button color="blue" />
+    case 'lavender':
+      return <Button color="lavender" />
+    case 'off':
+    default:
+      return <Button color="default" />
+  }
+}
+```
+
+in comparison with FlagSwitch:
+
+```javascript
+import {FlagSwitch} from 'flagger-react'
+
+const App = () => (
+  <FlagSwitch flag="color-theme">
+    {({loading, variation}) => {
+      if (loading) {
+        return <Spinner />
+      }
+      switch (variation) {
+        case 'blue':
+          return <Button color="blue" />
+        case 'lavender':
+          return <Button color="lavender" />
+        case 'off':
+        default:
+          return <Button color="default" />
+      }
+    }}
+  </FlagSwitch>
+)
+```
+
+## Hook useFlag()
+
+Hook useFlag is equivalent to withFlag HOC
+
+```typescript
+type useFlag = (codename: string, entity?: IEntity) => IUseFlagResponse
+
+interface IUseFlagResponse {
+  loading: boolean
+  codename: string
+  entity?: IEntity
+  enabled: boolean
+  isSampled: boolean
+  variation: string
+  payload: any
+}
+```
+
+```javascript
+import {useFlag} from 'flagger-react'
+
+const App = () => {
+  const {loading, enabled, isSampled, variation, payload} = useFlag('color-theme'/*, entity */)
+  if (loading) {
+    return <Spinner />
+  }
+  ...
+}
+```
+
+in comparison with withFlag:
+
+```javascript
+import {withFlag} from 'flagger-react'
+
+const WrappedComponent = ({flags, loading}) => {
+  const {enabled, isSampled, variation, payload} = flags['color-theme']
+  if (loading) {
+    return <Spinner />
+  }
+  ...
+}
+
+export default withFlag(WrappedComponent, 'color-theme')
 ```
