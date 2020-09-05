@@ -43,9 +43,9 @@ interface IFlaggerCtx {
 }
 ```
 
-The purpose of this component is to initialize Flagger, `apiKey` is the only required field.
+The purpose of this component is to initialize Flagger in your application component tree. `apiKey` is the only required field.
 
-Pass an entity to share it across all FlagProvider's children:
+Pass an entity to share it across all FlagProvider's children, for example, if there a single user entity that is constant. You can also override this entity with downstream components.
 
 ```javascript
 import {FlagProvider, FlagSwitch, Flag, withFlag} from 'flagger-react'
@@ -57,7 +57,7 @@ const App = () => (
 )
 ```
 
-Pass a function as a child
+`FlagProvider` takes a function as a child with parameters passed to it from Flagger.
 
 ```javascript
 import {FlagProvider, FlagSwitch, Flag, withFlag} from 'flagger-react'
@@ -77,8 +77,10 @@ const App = () => (
 ## Flag
 
 The Flag component renders its children based on whether the case prop matches the flag variation.
-The entity is inherited from FlagProvider if provided;
-if not, make sure to provide a user / entity object to the flag component.
+
+The entity is inherited from FlagProvider if provided; if not, make sure to provide a user / entity object to the flag component.
+
+The props that the Flag component takes are described by the following interface:
 
 ```typescript
 interface IFlagProps {
@@ -93,6 +95,8 @@ interface IFlagProps {
   isSwitchChild?: boolean
 }
 ```
+
+The Flag component can be added anywhere in the React component tree as long as it's inside of the FlagProvider.
 
 ```javascript
 import {FlagProvider, Flag} from 'flagger-react'
@@ -116,9 +120,9 @@ const App = () => (
 
 ## FlagSwitch
 
-FlagSwitch component is useful, especially for multivariate flags that are not simply on/off -
-and have more treatments to handle.
-It's used in combination with the Flag component.
+The FlagSwitch wraps multivariate flags that are not simply on/off - and have multiple variations to handle. It's used in combination with the Flag component.
+
+The props that the FlagSwitch component takes are described by the following interface:
 
 ```typescript
 interface IFlagSwitchProps {
@@ -189,7 +193,7 @@ const App = () => (
 
 ## Variation
 
-You also can use `Variation` component (instead of `Flag`) inside `FlagSwitch`. It is a dummy component added for convenience. Variation cannot be used outside `FlagSwitch`.
+You also can use the `Variation` component (instead of `Flag`) inside `FlagSwitch`. It is used to guard the component sub-tree behind each variation. `Variation` components must be used inside a `FlagSwitch`.
 
 ```typescript
 interface IVariationProps {
@@ -230,8 +234,8 @@ const App = () => (
 ## withFlag()
 
 withFlag() is a variadic HOC that injects feature flags information as the flags prop into the wrapped component.
-This prop allows you to write more complex conditional logic within a component.
-The prop is a dictionary of flag names to flag info:
+
+This prop allows you to write more complex conditional logic within a component. The prop is a dictionary of flag names to flag info:
 
 ```javascript
 this.props.flags['color-theme']
@@ -261,9 +265,9 @@ function PaymentOptions(props) {
 export default withFlag(PaymentOptions, 'color-theme', 'another-flag-name')
 ```
 
-## Hook useVariation()
+## Hook: useVariation()
 
-Hook useVariation is equivalent to FlagSwitch with function as a child
+The hook `useVariation`, like the `FlagSwitch` component, returns the variation for an entity.
 
 ```typescript
 type useVariation = (codename: string, entity?: IEntity) => IUseVariationResponse
@@ -296,7 +300,7 @@ const App = () => {
 }
 ```
 
-in comparison with FlagSwitch:
+It does the same thing as a FlagSwitch component used like this:
 
 ```javascript
 import {FlagSwitch} from 'flagger-react'
@@ -321,9 +325,9 @@ const App = () => (
 )
 ```
 
-## Hook useFlag()
+## Hook: useFlag()
 
-Hook useFlag is equivalent to withFlag HOC
+The hook `useVariation`, like the `withFlag` HOC, returns details about the flag for handling.
 
 ```typescript
 type useFlag = (codename: string, entity?: IEntity) => IUseFlagResponse
@@ -351,7 +355,7 @@ const App = () => {
 }
 ```
 
-in comparison with withFlag:
+It does the same thing as the `withFlag` component used like this:
 
 ```javascript
 import {withFlag} from 'flagger-react'
