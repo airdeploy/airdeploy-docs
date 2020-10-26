@@ -6,7 +6,9 @@ sidebar_label: Ingestion
 
 Flagger collects every "decision" that was made (for example, whether `isEnabled` true or false for a given entity), and then sends it to populate the Airdeploy dashboard. This data is used to populate known entities, set up filters, and preview how flag assignments will be made.
 
-This process is fully automatic and requires only one thing from the developer - to gracefully shutdown Flagger.
+Flagger caches ingestions and sends them to Airdeploy automatically.
+
+Shutdown Flagger gracefully at the end of the application's runtime to send cached ingestion:
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
@@ -37,6 +39,12 @@ Flagger.shutdown(3000)
 
 ```java
 Flagger.shutdown(3000)
+```
+
+<!--Swift-->
+
+```swift
+let isTimeOut = Flagger.shutdown(timeoutMillis: 1000)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

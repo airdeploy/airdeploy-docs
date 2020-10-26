@@ -29,7 +29,8 @@
       "api-reference/java",
       "api-reference/ruby",
       "api-reference/python",
-      "api-reference/go"
+      "api-reference/go",
+      "api-reference/ios"
     ]
   }
 }

@@ -71,6 +71,20 @@ Gradle
 compile "io.airdeploy:flagger:3.0.0"
 ```
 
+<!--Swift (Cocoapod)-->
+
+Add Flagger to your Podfile:
+
+```
+  pod 'Flagger'
+```
+
+and then install pod:
+
+`pod install`
+
+[More info on how to manage your pods](https://cocoapods.org/)
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Test the installation
@@ -237,6 +251,26 @@ System.out.println(Flagger.isEnabled("test-flag", entity));
 
 The result will be `false` printed in a console.
 
+<!--Swift-->
+
+Initialize Flagger, as soon as your app starts, for example In AppDelegate.swift:
+
+```swift
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // todo: Override point for customization after application launch.
+        Flagger.initialize(apiKey: "<API_KEY>")
+        return true
+    }
+
+```
+
+then, use Flagger in your components:
+
+```swift
+let entity = Entity(id: "1", name: "Frank")
+self.isEnabled = Flagger.flagIsEnabled(codename: "example-flag", entity: entity)
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Shutdown Flagger
@@ -274,6 +308,16 @@ Flagger.shutdown(5000) // shutdown takes a timeout as an argument
 
 ```java
 Flagger.shutdown(5000) // shutdown takes a timeout as an argument
+```
+
+<!--Swift-->
+
+In `AppDelegate.swift`:
+
+```swift
+    func applicationWillTerminate(_ application: UIApplication) {
+        _ = Flagger.shutdown(timeoutMillis: 1000)
+    }
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

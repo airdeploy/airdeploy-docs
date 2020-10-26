@@ -1,7 +1,7 @@
 ---
-id: swift
-title: Swift API Reference
-sidebar_label: Swift
+id: ios
+title: iOS API Reference
+sidebar_label: iOS
 ---
 
 ## Flagger
@@ -79,7 +79,7 @@ Flagger.publish(Entity("343223"))
 ### track
 
 ```swift
-public static func track(_ event: Event) -> Void {
+public static func track(_ event: Event) -> Void
 ```
 
 Event tracking API.
