@@ -60,7 +60,7 @@
 <ol>
 <li><code>Flagger</code> lower case all the keys in the Entities attributes:</li>
 </ol>
-<pre><code class="hljs">{&quot;IsAdMiN&quot;: true} 
+<pre><code class="hljs">{&quot;IsAdMiN&quot;: true}
 </code></pre>
 <p>becomes</p>
 <pre><code class="hljs">{&quot;isadmin&quot;: true}
@@ -70,15 +70,14 @@
 <li><code>Flagger</code> copies <code>id</code> and <code>type</code> to the filter attributes unless <code>id</code> or <code>type</code> is defined in attributes,
 examples:</li>
 </ol>
-<pre><code class="hljs">{id:&quot;1&quot;, type:&quot;User&quot;} 
+<pre><code class="hljs">{id:&quot;1&quot;, type:&quot;User&quot;}
 </code></pre>
 <p>becomes</p>
 <pre><code class="hljs">{id:&quot;1&quot;, type:&quot;User&quot;, attributes:{id:&quot;1&quot;, type:&quot;User&quot;}}
 </code></pre>
 <p>But does not override provided attribute</p>
-<pre><code class="hljs">{id:&quot;1&quot;, type:&quot;User&quot;, attributes:{id:&quot;2&quot;}}
-</code></pre>
-<p>notice that <code>id</code> stays untouched</p>
+<p>{id:&quot;1&quot;, type:&quot;User&quot;, attributes:{id:&quot;2&quot;}}
+notice that <code>id</code> stays untouched</p>
 <pre><code class="hljs">{id:&quot;1&quot;, type:&quot;User&quot;, attributes:{id:&quot;2&quot;, type:&quot;User&quot;}}
 </code></pre>
 <hr>
@@ -93,7 +92,7 @@ examples:</li>
 </code></pre>
 <hr>
 <ol start="4">
-<li>Golang's users must use only <code>int</code> or<code>float64</code> types for number types.</li>
+<li>Golang's users must use only <code>int</code> or <code>float64</code> types for number types.</li>
 </ol>
 <pre><code class="hljs css language-go">&amp;core.Entity{ID: <span class="hljs-string">"1"</span>, Attributes: <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>]<span class="hljs-keyword">interface</span>{}{
         <span class="hljs-string">"age"</span>:         <span class="hljs-number">21</span>, <span class="hljs-comment">// int</span>
