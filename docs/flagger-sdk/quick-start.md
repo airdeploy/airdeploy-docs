@@ -268,7 +268,7 @@ then, use Flagger in your components:
 
 ```swift
 let entity = Entity(id: "1", name: "Frank")
-self.isEnabled = Flagger.flagIsEnabled(codename: "example-flag", entity: entity)
+let isEnabled = Flagger.isEnabled(codename: "test-flag", entity: entity)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

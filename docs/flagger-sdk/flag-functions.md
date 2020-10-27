@@ -77,13 +77,13 @@ public static Map<String, Object> getPayload(String codename, Entity entity)
 <!--Swift-->
 
 ```swift
-public static func flagIsEnabled(codename: String, entity: Entity) -> Bool
+public static func isEnabled(codename: String, entity: Entity) -> Bool
 
-public static func flagGetVariation(codename: String, entity: Entity) -> String
+public static func getVariation(codename: String, entity: Entity) -> String
 
-public static func flagIsSampled(codename: String, entity: Entity) -> Bool
+public static func isSampled(codename: String, entity: Entity) -> Bool
 
-public static func flagGetPayload(codename: String, entity: Entity) -> [String:Any]
+public static func getPayload(codename: String, entity: Entity) -> [String:Any]
 
 ```
 
@@ -172,7 +172,7 @@ import Flagger
 
 let entity = Entity(id: "someId", name: "Frank")
 
-let isEnabled = Flagger.flagIsEnabled(codename: "color-theme", entity: entity)
+let isEnabled = Flagger.isEnabled(codename: "color-theme", entity: entity)
 
 if isEnabled {
     // show new color button
@@ -271,7 +271,7 @@ if(variation == "halloween"){
 import Flagger
 
 let entity = Entity(id: "someId", name: "Frank")
-let variation = Flagger.flagGetVariation(codename: "color-theme", entity: entity)
+let variation = Flagger.getVariation(codename: "color-theme", entity: entity)
 
 if variation == "halloween" {
   // show orange and black button
@@ -337,7 +337,7 @@ boolean isSampled = Flagger.isSampled("color-theme", entity);
 import Flagger
 
 let entity = Entity(id: "someId", name: "Frank")
-let isSampled = Flagger.flagIsSampled(codename: "color-theme", entity: entity)
+let isSampled = Flagger.isSampled(codename: "color-theme", entity: entity)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -393,7 +393,7 @@ Map<String, Object> payload = Flagger.getPayload("color-theme", entity);
 import Flagger
 
 let entity = Entity(id: "someId", name: "Frank")
-let variation = Flagger.flagGetPayload(codename: "color-theme", entity: entity)
+let payload = Flagger.getPayload(codename: "color-theme", entity: entity)
 // => {"button-color": "blue"}
 ```
 

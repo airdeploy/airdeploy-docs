@@ -155,8 +155,6 @@ Flagger.setEntity(null) // to remove global entity
 
 Rule of thumb: make sure you always provide an entity to the Flagger
 
-## Flag Functions
-
 ### isEnabled
 
 ```javascript

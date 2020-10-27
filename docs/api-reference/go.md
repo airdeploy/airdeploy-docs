@@ -140,8 +140,6 @@ flagger.SetEntity(nil)
 
 Rule of thumb: make sure you always provide an entity to the Flagger
 
-## Flag Functions
-
 ### IsEnabled
 
 ```go

@@ -111,8 +111,6 @@ Flagger::is_enabled('show_wallet')
 
 Rule of thumb: make sure you always provide an entity to the Flagger
 
-## Flag Functions
-
 ### is_enabled
 
 ```ruby

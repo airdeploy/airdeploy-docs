@@ -9,8 +9,12 @@ sidebar_label: iOS
 ### initialize
 
 ```swift
-public static func initialize(apiKey: String, logLevel: LogLevel = LogLevel.error) -> Void
-public static func initialize(apiKey: String, sourceURL: String, backupSourceURL: String, sseURL: String, ingestionURL: String, logLevel: LogLevel = LogLevel.error) -> Void
+public static func initialize(apiKey: String,
+                              sourceURL: String = "",
+                              backupSourceURL: String = "",
+                              sseURL: String = "",
+                              ingestionURL: String = "",
+                              logLevel: LogLevel = LogLevel.error) -> Void
 ```
 
 Use this function once at the start of the application
@@ -18,7 +22,7 @@ Use this function once at the start of the application
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
    // Override point for customization after application launch.
-   Flagger.initialize(apiKey: "ufu4gf04fh")
+   Flagger.initialize(apiKey: "<API_KEY>")
 
    return true
 }
@@ -121,8 +125,6 @@ XCTAssertFalse(Flagger.flagIsEnabled(codename: "group-messaging"))
 
 Rule of thumb: make sure you always provide an entity to the Flagger
 
-## Flag Functions
-
 ### flagIsEnabled
 
 ```swift
@@ -183,7 +185,7 @@ public static func flagGetPayload(codename: String) -> [String:Any]
 Returns the payload associated with the treatment assigned to the entity
 
 ```swift
-let payload =  Flagger.flagGetPayload(codename: "faq-redesign", entity: Entity(id: "92784783"))
+let payload = Flagger.flagGetPayload(codename: "faq-redesign", entity: Entity(id: "92784783"))
 if let showButtonsPayload = payload["show-buttons"]{
 
     if let showButtons = showButtonsPayload as? Bool{

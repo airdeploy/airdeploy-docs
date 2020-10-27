@@ -109,8 +109,6 @@ self.assertTrue(ok)
 
 Rule of thumb: make sure you always provide an entity to the Flagger
 
-## Flag Functions
-
 ### is_enabled
 
 ```python
