@@ -40,6 +40,12 @@ Track(ctx context.Context, event *core.Event)
 public static void track(Event event)
 ```
 
+<!--Swift-->
+
+```swift
+public static func track(_ event: Event) -> Void
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 Entity is an optional parameter if it was set before via `Flagger.setEntity` method
@@ -130,6 +136,19 @@ Entity entity = Entity.builder().id("42")
         .build();
 Event event = new Event("Purchase Completed", eventProperties, entity);
 Flagger.track(event);
+```
+
+<!--Swift-->
+
+```swift
+let entity = Entity(id: "57145770", type: "User", name:"John", group:
+    Group(id: "321", attributes:
+        Attributes().put(key: "isAdmin", value: true),
+    name: "Cool Company"))
+let event = Event(name: "test",
+    attributes: Attributes().put(key: "isAdmin", value: true),
+    entity: entity)
+Flagger.track(event)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

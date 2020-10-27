@@ -74,6 +74,19 @@ public static boolean isSampled(String codename, Entity entity)
 public static Map<String, Object> getPayload(String codename, Entity entity)
 ```
 
+<!--Swift-->
+
+```swift
+public static func flagIsEnabled(codename: String, entity: Entity) -> Bool
+
+public static func flagGetVariation(codename: String, entity: Entity) -> String
+
+public static func flagIsSampled(codename: String, entity: Entity) -> Bool
+
+public static func flagGetPayload(codename: String, entity: Entity) -> [String:Any]
+
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 > Flagger has a `setEntity` method which sets a default `entity`. If an entity is not provided to the flag function, the default entity, if it has been set, is used to evaluate the flag.
@@ -146,6 +159,22 @@ Entity entity = Entity.builder().id("1").build();
 boolean enabled = Flagger.isEnabled("color-theme", entity);
 
 if(enabled){
+    // show new color button
+} else {
+    // show old color button
+}
+```
+
+<!--Swift-->
+
+```
+import Flagger
+
+let entity = Entity(id: "someId", name: "Frank")
+
+let isEnabled = Flagger.flagIsEnabled(codename: "color-theme", entity: entity)
+
+if isEnabled {
     // show new color button
 } else {
     // show old color button
@@ -236,6 +265,23 @@ if(variation == "halloween"){
 }
 ```
 
+<!--Swift-->
+
+```swift
+import Flagger
+
+let entity = Entity(id: "someId", name: "Frank")
+let variation = Flagger.flagGetVariation(codename: "color-theme", entity: entity)
+
+if variation == "halloween" {
+  // show orange and black button
+} else if variation == "christmas" {
+  // show green and red button
+} else if variation == "coca-cola" {
+  // show red and black button
+}
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 > getVariation returns 'off' as the default variation (see [Default Variation](./default-variation.md))
@@ -285,6 +331,15 @@ Entity entity = Entity.builder().id("1").build();
 boolean isSampled = Flagger.isSampled("color-theme", entity);
 ```
 
+<!--Swift-->
+
+```
+import Flagger
+
+let entity = Entity(id: "someId", name: "Frank")
+let isSampled = Flagger.flagIsSampled(codename: "color-theme", entity: entity)
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ### getPayload
@@ -329,6 +384,16 @@ import io.airdeploy.flagger.entity.Entity;
 
 Entity entity = Entity.builder().id("1").build();
 Map<String, Object> payload = Flagger.getPayload("color-theme", entity);
+// => {"button-color": "blue"}
+```
+
+<!--Swift-->
+
+```swift
+import Flagger
+
+let entity = Entity(id: "someId", name: "Frank")
+let variation = Flagger.flagGetPayload(codename: "color-theme", entity: entity)
 // => {"button-color": "blue"}
 ```
 

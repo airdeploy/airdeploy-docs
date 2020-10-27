@@ -26,7 +26,7 @@ Flagger returns data to it's remote server that is useful, but does appropriate 
 
 ## Supported Languages
 
-Currently Flagger supports the following languages:
+Currently, Flagger supports the following languages:
 
 - Javascript / Node.js
 - React
@@ -34,3 +34,4 @@ Currently Flagger supports the following languages:
 - Ruby
 - Python
 - Golang
+- Swift(iOS)
