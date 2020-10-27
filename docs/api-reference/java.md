@@ -138,8 +138,6 @@ Flagger.setEntity(null);
 
 Rule of thumb: make sure you always provide an entity to the Flagger
 
-## Flag Functions
-
 ### isEnabled
 
 ```java
