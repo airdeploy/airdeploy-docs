@@ -21,7 +21,7 @@ func (flagger *Flagger) Init(ctx context.Context, args *InitArgs) error
 import (
 	"context"
 	"fmt"
-	"github.com/airdeploy/flagger-go"
+	"github.com/airdeploy/flagger-go/v3"
 	"github.com/sirupsen/logrus"
 )
 

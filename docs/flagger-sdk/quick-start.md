@@ -50,7 +50,7 @@ pip install flagger
 <!--Go-->
 
 ```commandline
-go get github.com/airdeploy/flagger-go
+go get github.com/airdeploy/flagger-go/v3
 ```
 
 <!--Java-->
@@ -202,7 +202,7 @@ The result will be `false` printed in a console.
 <br>First, import the Flagger library in your application code:
 
 ```go
-import "github.com/airdeploy/flagger-go"
+import "github.com/airdeploy/flagger-go/v3"
 ```
 
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
