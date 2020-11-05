@@ -28,7 +28,7 @@ import (
 func main() {
     // Flagger uses logrus as a logger
     // By default Flagger will output all warn and error
-	logrus.SetLevel(logrus.DebugLevel)
+	logrus.SetLevel(logrus.DebugLevel) // set to debug to see all messages
 
 	ctx := context.Background()
 	flagger := NewFlagger()
