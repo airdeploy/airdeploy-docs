@@ -20,22 +20,23 @@ becomes
 
 ---
 
-2. `Flagger` copies `id` and `type` to the filter attributes unless `id` or `type` is defined in attributes,
+2. `Flagger` copies `id` and `name` to the filter attributes unless `id` or `name` is defined in attributes,
    examples:
 
 
-    {id:"1", type:"User"}
+    {id:"1", name:"John"}
 
 becomes
 
-    {id:"1", type:"User", attributes:{id:"1", type:"User"}}
+    {id:"1", type:"User", attributes:{id:"1", name:"John"}}
 
-But does not override provided attribute
-  
- {id:"1", type:"User", attributes:{id:"2"}}
+But does not override provided attributes:
+
+    {id:"1", name:"John", attributes:{id:"2"}}
+
 notice that `id` stays untouched
 
-    {id:"1", type:"User", attributes:{id:"2", type:"User"}}
+    {id:"1", type:"User", attributes:{id:"2", name:"John"}}
 
 ---
 
@@ -43,10 +44,10 @@ notice that `id` stays untouched
 
 
     //filter: age "is_not" 20
-    {id:"1", type:"User", attributes:{id:"1", type:"User"}} // true, since there is no attribute "age"
+    {id:"1", type:"User", attributes:{id:"1"}} // true, since there is no attribute "age"
 
     //filter: age "not_in" [20]
-    {id:"1", type:"User", attributes:{id:"1", type:"User"}} // true, since there is no attribute "age"
+    {id:"1", type:"User", attributes:{id:"1"}} // true, since there is no attribute "age"
 
 ---
 

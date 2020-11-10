@@ -50,7 +50,7 @@ pip install flagger
 <!--Go-->
 
 ```commandline
-go get github.com/airdeploy/flagger-go
+go get github.com/airdeploy/flagger-go/v3
 ```
 
 <!--Java-->
@@ -108,7 +108,7 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 > Note: for a refresher on promises, you can reference this [article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 ```javascript
-await Flagger.init({apiKey: <API_KEY>})
+await Flagger.init({apiKey: <API_KEY>, logLevel: 'debug'})
 ```
 
 To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
@@ -161,7 +161,7 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 
 ```ruby
 api_key = '<API_KEY>'
-Flagger::init(api_key)
+Flagger::init(api_key, log_level: "debug)
 ```
 
 To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `is_enabled`.
@@ -186,7 +186,7 @@ To initialize, Flagger requires only 1 network request. This request is made by 
 A natural way of calling `init()` is to do it only once per runtime, at the start of the application.
 
 ```python
-flagger.init("<API_KEY>")
+flagger.init(api_key="<API_KEY>", log_lvl="debug")
 ```
 
 To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `is_enabled`.
@@ -202,7 +202,7 @@ The result will be `false` printed in a console.
 <br>First, import the Flagger library in your application code:
 
 ```go
-import "github.com/airdeploy/flagger-go"
+import "github.com/airdeploy/flagger-go/v3"
 ```
 
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
@@ -210,6 +210,11 @@ To initialize, Flagger requires only 1 network request. This request is made by 
 A natural way of calling `init()` is to do it only once per runtime, at the start of the application.
 
 ```go
+
+// Flagger uses logrus as a logger
+// By default Flagger will output all warn and error
+logrus.SetLevel(logrus.DebugLevel) // set to debug to see all messages
+
 ctx := context.Background()
 err := flagger.Init(ctx, &flagger.InitArgs{APIKey: "<API_KEY>"})
 ```
@@ -238,6 +243,7 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 String apiKey = "<API_KEY>";
 FlaggerInitConfig flaggerInitConfig = FlaggerInitConfig.builder()
                           .apiKey(apiKey)
+                          .logLevel(LogLevel.DEBUG)
                           .build();
 Flagger.init(flaggerInitConfig);
 ```
@@ -258,7 +264,7 @@ Initialize Flagger, as soon as your app starts, for example In AppDelegate.swift
 ```swift
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // todo: Override point for customization after application launch.
-        Flagger.initialize(apiKey: "<API_KEY>")
+        Flagger.initialize(apiKey: "<API_KEY>", logLevel: LogLevel.debug)
         return true
     }
 
@@ -267,7 +273,7 @@ Initialize Flagger, as soon as your app starts, for example In AppDelegate.swift
 then, use Flagger in your components:
 
 ```swift
-let entity = Entity(id: "1", name: "Frank")
+let entity = Entity(id: "1")
 let isEnabled = Flagger.isEnabled(codename: "test-flag", entity: entity)
 ```
 

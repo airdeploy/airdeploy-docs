@@ -246,3 +246,11 @@ const entityWithGroup = {
 }
 const payload = Flagger.getPayload('color-theme', entityWithGroup)
 ```
+
+### isConfigured
+
+```javascript
+Flagger.isConfigured(): boolean
+```
+
+Returns `true` if init() promise is resolved - i.e., flagger has apiKey and received FlaggerConfiguration from server.

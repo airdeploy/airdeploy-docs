@@ -138,7 +138,7 @@ else:
 <!--Go-->
 
 ```go
-import 	"github.com/airdeploy/flagger-go/core"
+import 	"github.com/airdeploy/flagger-go/v3/core"
 
 enable := flagger.IsEnabled("color-theme", &core.Entity{ID: "1"})
 
@@ -235,7 +235,7 @@ elif variation == 'coca-cola':
 <!--Go-->
 
 ```go
-import 	"github.com/airdeploy/flagger-go/core"
+import 	"github.com/airdeploy/flagger-go/v3/core"
 
 variation := flagger.GetVariation("color-theme", &core.Entity{ID: "1"})
 
@@ -317,7 +317,7 @@ sampled = flagger.is_sampled('color-theme', {"id": "1"})
 <!--Go-->
 
 ```go
-import 	"github.com/airdeploy/flagger-go/core"
+import 	"github.com/airdeploy/flagger-go/v3/core"
 
 enable := flagger.IsSampled("color-theme", &core.Entity{ID: "1"})
 ```
@@ -371,7 +371,7 @@ payload = Flagger.get_payload('color-theme', {id: "1"})
 <!--Go-->
 
 ```go
-import 	"github.com/airdeploy/flagger-go/core"
+import 	"github.com/airdeploy/flagger-go/v3/core"
 
 payload := flagger.GetPayload("color-theme", &core.Entity{ID: "1"})
 // => {"button-color": "blue"}

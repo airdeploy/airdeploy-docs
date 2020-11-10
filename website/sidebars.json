@@ -1,17 +1,6 @@
 {
   "docs": {
     "Overview": ["overview/home", "overview/introduction"],
-    "Concepts": ["concepts/flags", "concepts/entities", "concepts/groups", "concepts/targeting"],
-    "Dashboard": [
-      "dashboard/organizations",
-      "dashboard/projects",
-      "dashboard/environments",
-      "dashboard/managing-flags",
-      "dashboard/configuring-flags",
-      "dashboard/flag-history",
-      "dashboard/flag-preview",
-      "dashboard/team"
-    ],
     "Flagger SDK": [
       "flagger-sdk/overview",
       "flagger-sdk/quick-start",
@@ -31,6 +20,17 @@
       "api-reference/python",
       "api-reference/go",
       "api-reference/ios"
+    ],
+    "Concepts": ["concepts/flags", "concepts/entities", "concepts/groups", "concepts/targeting"],
+    "Dashboard": [
+      "dashboard/organizations",
+      "dashboard/projects",
+      "dashboard/environments",
+      "dashboard/managing-flags",
+      "dashboard/configuring-flags",
+      "dashboard/flag-history",
+      "dashboard/flag-preview",
+      "dashboard/team"
     ]
   }
 }

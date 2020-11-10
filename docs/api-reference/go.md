@@ -21,14 +21,14 @@ func (flagger *Flagger) Init(ctx context.Context, args *InitArgs) error
 import (
 	"context"
 	"fmt"
-	"github.com/airdeploy/flagger-go"
+	"github.com/airdeploy/flagger-go/v3"
 	"github.com/sirupsen/logrus"
 )
 
 func main() {
     // Flagger uses logrus as a logger
     // By default Flagger will output all warn and error
-	logrus.SetLevel(logrus.DebugLevel)
+	logrus.SetLevel(logrus.DebugLevel) // set to debug to see all messages
 
 	ctx := context.Background()
 	flagger := NewFlagger()
