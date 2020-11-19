@@ -222,7 +222,7 @@ err := flagger.Init(ctx, &flagger.InitArgs{APIKey: "<API_KEY>"})
 To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
 
 ```go
-log.Println(flagger.isEnabled(ctx, "test-flag", &core.Entity{ID: "1"}))
+log.Println(flagger.IsEnabled("test-flag", &core.Entity{ID: "1"}))
 ```
 
 The result will be `false` printed in a console.
