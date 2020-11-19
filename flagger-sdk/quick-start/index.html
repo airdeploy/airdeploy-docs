@@ -124,7 +124,7 @@
 <p>A natural way of calling <code>init()</code> is to do it only once per runtime, at the start of the application.</p>
 <pre><code class="hljs css language-go"><br /><span class="hljs-comment">// Flagger uses logrus as a logger</span><br /><span class="hljs-comment">// By default Flagger will output all warn and error</span><br />logrus.SetLevel(logrus.DebugLevel) <span class="hljs-comment">// set to debug to see all messages</span><br /><br />ctx := context.Background()<br />err := flagger.Init(ctx, &amp;flagger.InitArgs{APIKey: <span class="hljs-string">"&lt;API_KEY&gt;"</span>})<br /></code></pre>
 <p>To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use <code>isEnabled</code>.</p>
-<pre><code class="hljs css language-go">log.Println(flagger.isEnabled(ctx, <span class="hljs-string">"test-flag"</span>, &amp;core.Entity{ID: <span class="hljs-string">"1"</span>}))<br /></code></pre>
+<pre><code class="hljs css language-go">log.Println(flagger.IsEnabled(<span class="hljs-string">"test-flag"</span>, &amp;core.Entity{ID: <span class="hljs-string">"1"</span>}))<br /></code></pre>
 <p>The result will be <code>false</code> printed in a console.</p>
 </span></div></div><div id="tab-group-51-content-57" class="tab-pane" data-group="group_51" tabindex="-1"><div><span><p><br>First, import the Flagger library in your application code:</p>
 <pre><code class="hljs css language-java"><span class="hljs-keyword">import</span> io.airdeploy.flagger.*;<br /></code></pre>
