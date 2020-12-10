@@ -90,7 +90,7 @@ Flagger.publish(entity: Entity): void
 Explicitly notify Airdeploy about an Entity
 
 ```javascript
-Flagger.publish({id: 1})
+Flagger.publish({id: '1'})
 ```
 
 ### track
@@ -110,7 +110,7 @@ Flagger.track(
     referrer: 'www.Google.com',
     shirt_size: 'medium',
   },
-  {id: 543}
+  {id: '543'}
 )
 
 // If `entity` has been set before:
@@ -131,7 +131,7 @@ Flagger.setEntity(entity: Entity): void
 
 ```javascript
 const entity = {
-  id: 543,
+  id: '543',
   type: 'User', // optional - type defaults to "User"
   name: 'John Smithson',
 }
@@ -164,7 +164,7 @@ Flagger.isEnabled(codename: String, entity: Entity): Boolean
 Determines if flag is enabled for entity.
 
 ```javascript
-const isEnabled = Flagger.isEnabled('color-theme', {id: 1})
+const isEnabled = Flagger.isEnabled('color-theme', {id: '1'})
 ```
 
 Group example:
@@ -187,7 +187,7 @@ Flagger.isSampled(codename: String, entity: Entity): Boolean
 Determines if entity is within the targeted subpopulations
 
 ```javascript
-const isSampled = Flagger.isSampled('color-theme', {id: 1})
+const isSampled = Flagger.isSampled('color-theme', {id: '1'})
 ```
 
 Group example:
@@ -210,7 +210,7 @@ Flagger.getVariation(codename: String, entity: Entity): String
 Returns the variation assigned to the entity in a multivariate flag
 
 ```javascript
-const variation = Flagger.getVariation('color-theme', {id: 1})
+const variation = Flagger.getVariation('color-theme', {id: '1'})
 ```
 
 Group example:
@@ -233,7 +233,7 @@ Flagger.getPayload(codename: String, entity: Entity): Object
 Returns the payload associated with the treatment assigned to the entity
 
 ```javascript
-const payload = Flagger.getPayload('color-theme', {id: 1})
+const payload = Flagger.getPayload('color-theme', {id: '1'})
 ```
 
 Group example:
