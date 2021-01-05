@@ -6,9 +6,21 @@ sidebar_label: Ingestion
 
 Flagger collects every "decision" that was made (for example, whether `isEnabled` true or false for a given entity), and then sends it to populate the Airdeploy dashboard. This data is used to populate known entities, set up filters, and preview how flag assignments will be made.
 
-Flagger caches ingestions and sends them to Airdeploy automatically.
+Common rules:
 
-Shutdown Flagger gracefully at the end of the application's runtime to send cached ingestion:
+- Flagger saves ingestion data locally and sends them to Airdeploy periodically.
+
+Browser specific rules:
+
+- Flagger ingests every 250 ms to insure no data is lost due to window closing.
+
+Server specific rules:
+
+- Flagger sends empty ingestion upon init to notify Airdeploy about brand new sdk installation.
+
+- First 10 flag function usages are always ingested.
+
+- Shutdown Flagger gracefully at the end of the application's runtime to send cached ingestion:
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
