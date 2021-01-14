@@ -9,7 +9,7 @@ sidebar_label: Golang
 ### Init
 
 ```go
-func (flagger *Flagger) Init(ctx context.Context, args *InitArgs) error
+func (flagger *Flagger) Init(args *InitArgs) error
 ```
 
 `init` method gets `FlaggerConfiguration`, establishes and maintains SSE connections and initializes Ingester
@@ -26,14 +26,9 @@ import (
 )
 
 func main() {
-    // Flagger uses logrus as a logger
-    // By default Flagger will output all warn and error
-	logrus.SetLevel(logrus.DebugLevel) // set to debug to see all messages
-
-	ctx := context.Background()
-	flagger := NewFlagger()
-	err := flagger.Init(ctx, &flagger.InitArgs{
-		APIKey: "<API-KEY>", // the only required field
+	err := flagger.Init(&flagger.InitArgs{
+		APIKey: "<API-KEY>", // could be omitted if FLAGGER_API_KEY env variable is set
+		LogLevel: "DEBUG", // to see all messages
 	})
 
 	if err != nil {
@@ -44,15 +39,16 @@ func main() {
 }
 ```
 
-| name            | type   | Required | Default                                     | Description                                                 |
-| --------------- | ------ | -------- | ------------------------------------------- | ----------------------------------------------------------- |
-| APIKey          | string | true     | None                                        | API key to an environment                                   |
-| SourceURL       | string | false    | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                           |
-| BackupSourceURL | string | false    | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                    |
-| SSEURL          | string | false    | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse |
-| IngestionURL    | string | false    | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                           |
+| name            | Environment variable      | Default                                     | Description                                                                                             |
+| --------------- | ------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| APIKey          | FLAGGER_API_KEY           | None                                        | API key to an environment                                                                               |
+| SourceURL       | FLAGGER_SOURCE_URL        | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                                                                       |
+| BackupSourceURL | FLAGGER_BACKUP_SOURCE_URL | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                                                                |
+| SSEURL          | FLAGGER_SSE_URL           | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
+| IngestionURL    | FLAGGER_INGESTION_URL     | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
+| LogLevel        | FLAGGER_LOG_LEVEL         | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-- If `APIKey` is not provided `Init` returns an error "Bad init agrs" and print an error in the console: "empty APIKey"
+- If `APIKey` argument is not provided and `FLAGGER_API_KEY` is not set then `Init` returns an error "Bad init agrs" and print an error in the console: "empty APIKey"
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `Init` happens:
   - If the arguments are the same, `Init` method does nothing
@@ -85,26 +81,26 @@ flagger.Shutdown(5 * time.Second)
 ### Publish
 
 ```go
-func (flagger *Flagger) Publish(ctx context.Context, entity *core.Entity)
+func (flagger *Flagger) Publish(entity *core.Entity)
 ```
 
 Explicitly notify Airdeploy about an Entity
 
 ```go
-flagger.Publish(ctx, &core.Entity{ID: "54"})
+flagger.Publish(&core.Entity{ID: "54"})
 ```
 
 ### Track
 
 ```go
-func (flagger *Flagger) Track(ctx context.Context, event *core.Event)
+func (flagger *Flagger) Track(event *core.Event)
 ```
 
 Event tracking API.
 Entity is an optional parameter if it was set before.
 
 ```go
-flagger.Track(ctx, &core.Event{
+flagger.Track(&core.Event{
     Name: "test",
     EventProperties: core.Attributes{
         "plan":       "Bronze",
