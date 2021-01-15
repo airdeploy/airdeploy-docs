@@ -20,6 +20,7 @@ def init(api_key, source_url=None, backup_url=None, sse_url=None, ingestion_url=
 
 ```python
 # api_key could be omitted if FLAGGER_API_KEY env variable is set
+# log_lvl could be omitted, "error" by default
 flagger.init(api_key="<API-KEY>", log_lvl="debug")
 ```
 
