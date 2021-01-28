@@ -18,13 +18,9 @@ def self.init(init_args)
 > Your program **must** wait for `init` to finish before using any other `Flagger` methods
 
 ```ruby
-api_key = '<API-KEY>'
-log_level = "debug"
+api_key = '<API-KEY>' # could be omitted if FLAGGER_API_KEY env variable is set
+log_level = "debug" # could be omitted, error by default
 Flagger::init(api_key, log_level: log_level)
-
-# or if FLAGGER_API_KEY and FLAGGER_LOG_LEVEL env variables are set:
-
-Flagger::init()
 ```
 
 | name          | Environment variable      | Default                                     | Description                                                                                             |

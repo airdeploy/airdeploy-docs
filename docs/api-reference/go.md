@@ -28,7 +28,7 @@ import (
 func main() {
 	err := flagger.Init(&flagger.InitArgs{
 		APIKey: "<API-KEY>", // could be omitted if FLAGGER_API_KEY env variable is set
-		LogLevel: "DEBUG", // to see all messages
+		LogLevel: "DEBUG", // could be omitted, ERROR by default
 	})
 
 	if err != nil {
@@ -48,7 +48,7 @@ func main() {
 | IngestionURL    | FLAGGER_INGESTION_URL     | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
 | LogLevel        | FLAGGER_LOG_LEVEL         | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-- If `APIKey` argument is not provided and `FLAGGER_API_KEY` is not set then `Init` returns an error "Bad init agrs" and print an error in the console: "empty APIKey"
+- If `APIKey` argument is not provided and `FLAGGER_API_KEY` environment variable is not set then `Init` returns an error "Bad init agrs" and print an error in the console: "empty APIKey"
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `Init` happens:
   - If the arguments are the same, `Init` method does nothing

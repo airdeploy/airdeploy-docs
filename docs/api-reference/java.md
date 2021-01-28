@@ -26,7 +26,7 @@ public class Main {
         String apiKey = "<API-KEY>";
         FlaggerInitConfig flaggerInitConfig = FlaggerInitConfig.builder()
                 .apiKey(apiKey) // could be omitted if FLAGGER_API_KEY env variable is set
-                .logLevel(LogLevel.DEBUG)
+                .logLevel(LogLevel.DEBUG) // could be omitted, ERROR by default
                 .build();
         Flagger.init(flaggerInitConfig);
 

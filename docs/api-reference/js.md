@@ -24,7 +24,7 @@ import Flagger from 'flagger'
 
 await Flagger.init({
   apiKey: '<API-KEY>', // could be omitted if FLAGGER_API_KEY env variable is set
-  logLevel: 'DEBUG',
+  logLevel: 'DEBUG', // could be omitted, ERROR by default
 })
 ```
 
