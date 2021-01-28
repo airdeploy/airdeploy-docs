@@ -158,7 +158,7 @@ The `Flag` component renders its children based on whether the `case` prop match
 require 'flagger'
 ```
 
-### Implicit initialization
+### Automatic initialization
 
 Set environment variable `FLAGGER_API_KEY=<API_KEY>`
 
@@ -168,7 +168,7 @@ Flagger will initialize at the very first call to any flag gating method:
 p Flagger::is_enabled('test-flag', Flagger::Entity::new('1'))
 ```
 
-### Explicit initialization
+### Manual initialization
 
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
 
@@ -195,7 +195,7 @@ The result will be `false` printed in a console.
 import flagger
 ```
 
-### Implicit initialization
+### Automatic initialization
 
 Set environment variable `FLAGGER_API_KEY=<API_KEY>`
 
@@ -205,7 +205,7 @@ Flagger will initialize at the very first call to any flag gating method:
 print(flagger.is_enabled("test-flag", {"id": "1"}))
 ```
 
-### Explicit initialization
+### Manual initialization
 
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
 
@@ -231,7 +231,7 @@ The result will be `false` printed in a console.
 import "github.com/airdeploy/flagger-go/v3"
 ```
 
-### Implicit initialization
+### Automatic initialization
 
 Set environment variable `FLAGGER_API_KEY=<API_KEY>`
 
@@ -241,7 +241,7 @@ Flagger will initialize at the very first call to any flag gating method:
 println(flagger.IsEnabled("test-flag", &core.Entity{ID: "1"}))
 ```
 
-### Explicit initialization
+### Manual initialization
 
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
 
@@ -267,7 +267,7 @@ The result will be `false` printed in a console.
 import io.airdeploy.flagger.*;
 ```
 
-### Implicit initialization
+### Automatic initialization
 
 Set environment variable `FLAGGER_API_KEY=<API_KEY>`
 
@@ -278,7 +278,7 @@ Entity entity = Entity.builder().id("1").build();
 System.out.println(Flagger.isEnabled("test-flag", entity));
 ```
 
-### Explicit initialization
+### Manual initialization
 
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
 
