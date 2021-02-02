@@ -82,7 +82,7 @@ Flagger.shutdown(5000)
 public static void publish(Entity entity)
 ```
 
-Explicitly notify Airdeploy about an Entity
+Explicitly notifies Airdeploy about an Entity
 
 ```java
 Attributes attributes = new Attributes().put("age", 40);

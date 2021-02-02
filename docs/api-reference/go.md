@@ -84,7 +84,7 @@ flagger.Shutdown(5 * time.Second)
 func (flagger *Flagger) Publish(entity *core.Entity)
 ```
 
-Explicitly notify Airdeploy about an Entity
+Explicitly notifies Airdeploy about an Entity
 
 ```go
 flagger.Publish(&core.Entity{ID: "54"})

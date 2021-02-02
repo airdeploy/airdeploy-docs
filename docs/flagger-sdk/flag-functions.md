@@ -29,13 +29,13 @@ Flagger.getPayload(codename: String, entity?: Entity): Object
 <!--Ruby-->
 
 ```ruby
-Flagger.is_enabled(codename, *entity)
+Flagger::is_enabled(codename, *entity)
 
-Flagger.get_variation(codename, *entity)
+Flagger::get_variation(codename, *entity)
 
-Flagger.is_sampled(codename, *entity)
+Flagger::is_sampled(codename, *entity)
 
-Flagger.get_payload(codename, *entity)
+Flagger::get_payload(codename, *entity)
 ```
 
 <!--Python-->
@@ -85,6 +85,18 @@ public static func isSampled(codename: String, entity: Entity) -> Bool
 
 public static func getPayload(codename: String, entity: Entity) -> [String:Any]
 
+```
+
+<!--PHP-->
+
+```
+public static function isEnabled(string $codename, $entity = null): bool
+
+public static function getVariation(string $codename, $entity = null): string
+
+public static function isSampled(string $codename, $entity = null): bool
+
+public static function getPayload(string $codename, $entity = null)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -178,6 +190,18 @@ if isEnabled {
     // show new color button
 } else {
     // show old color button
+}
+```
+
+<!--PHP-->
+
+```
+$isEnabled = Flagger::isEnabled("color-theme', ['id' => "1"]);
+
+if($isEnabled) {
+  // show new color button
+} else {
+  // show old color button
 }
 ```
 
@@ -282,6 +306,21 @@ if variation == "halloween" {
 }
 ```
 
+<!--PHP-->
+
+```
+$entity = ['id' => "someId", 'name' => "Frank"];
+$variation = Flagger::getVariation("color-theme', $entity);
+
+if($variation == "halloween"){
+  // show orange and black button
+} else if($variation == "christmas"){
+  // show green and red button
+} else if ($variation == "coca-cola"){
+  // show red and black button
+}
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 > getVariation returns 'off' as the default variation (see [Default Variation](./default-variation.md))
@@ -333,11 +372,18 @@ boolean isSampled = Flagger.isSampled("color-theme", entity);
 
 <!--Swift-->
 
-```
+```swift
 import Flagger
 
 let entity = Entity(id: "someId", name: "Frank")
 let isSampled = Flagger.isSampled(codename: "color-theme", entity: entity)
+```
+
+<!--PHP-->
+
+```
+$entity = ['id' => "someId", 'name' => "Frank"];
+$isSampled = Flagger::isSampled("color-theme', $entity);
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -395,6 +441,19 @@ import Flagger
 let entity = Entity(id: "someId", name: "Frank")
 let payload = Flagger.getPayload(codename: "color-theme", entity: entity)
 // => {"button-color": "blue"}
+```
+
+<!--PHP-->
+
+```
+$entity = ['id' => "someId", 'name' => "Frank"];
+$payload = Flagger::getPayload("color-theme', $entity);
+/*
+array(1) {
+  ["button-color"]=>
+  string(4) "blue"
+}
+/*
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

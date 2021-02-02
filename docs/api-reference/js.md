@@ -90,7 +90,7 @@ Removes a listener
 Flagger.publish(entity: Entity): void
 ```
 
-Explicitly notify Airdeploy about an Entity
+Explicitly notifies Airdeploy about an Entity
 
 ```javascript
 Flagger.publish({id: '1'})

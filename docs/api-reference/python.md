@@ -68,7 +68,7 @@ flagger.shutdown(5000)
 def publish(entity)
 ```
 
-Explicitly notify Airdeploy about an Entity
+Explicitly notifies Airdeploy about an Entity
 
 ```python
 flagger.publish({"id": "1"})

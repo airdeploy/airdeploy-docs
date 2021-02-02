@@ -74,7 +74,7 @@ func applicationWillTerminate(_ application: UIApplication) {
 public static func publish(_ entity: Entity) -> Void
 ```
 
-Explicitly notify Airdeploy about an Entity
+Explicitly notifies Airdeploy about an Entity
 
 ```swift
 Flagger.publish(Entity("343223"))
