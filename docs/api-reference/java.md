@@ -25,8 +25,8 @@ public class Main {
     public static void main(String[] args) {
         String apiKey = "<API-KEY>";
         FlaggerInitConfig flaggerInitConfig = FlaggerInitConfig.builder()
-                .apiKey(apiKey) // the only required field
-                .logLevel(LogLevel.DEBUG)
+                .apiKey(apiKey) // could be omitted if FLAGGER_API_KEY env variable is set
+                .logLevel(LogLevel.DEBUG) // could be omitted, ERROR by default
                 .build();
         Flagger.init(flaggerInitConfig);
 
@@ -39,14 +39,14 @@ public class Main {
 }
 ```
 
-| name            | type   | Required | Default                                     | Description                                                                                             |
-| --------------- | ------ | -------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| apiKey          | string | true     | None                                        | API key to an environment                                                                               |
-| sourceUrl       | string | false    | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                                                                       |
-| backupSourceURL | string | false    | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                                                                |
-| sseUrl          | string | false    | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
-| ingestionUrl    | string | false    | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
-| logLevel        | string | false    | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
+| name            | Environment variable      | Default                                     | Description                                                                                             |
+| --------------- | ------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| apiKey          | FLAGGER_API_KEY           | None                                        | API key to an environment                                                                               |
+| sourceURL       | FLAGGER_SOURCE_URL        | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                                                                       |
+| backupSourceURL | FLAGGER_BACKUP_SOURCE_URL | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                                                                |
+| sseURL          | FLAGGER_SSE_URL           | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
+| ingestionURL    | FLAGGER_INGESTION_URL     | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
+| logLevel        | FLAGGER_LOG_LEVEL         | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `init` happens:

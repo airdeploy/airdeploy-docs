@@ -18,19 +18,19 @@ def self.init(init_args)
 > Your program **must** wait for `init` to finish before using any other `Flagger` methods
 
 ```ruby
-api_key = '<API-KEY>'
-log_level = "warn"
-Flagger::init(api_key, {log_level: log_level})
+api_key = '<API-KEY>' # could be omitted if FLAGGER_API_KEY env variable is set
+log_level = "debug" # could be omitted, error by default
+Flagger::init(api_key, log_level: log_level)
 ```
 
-| name          | type   | Required | Default                                     | Description                                                                                             |
-| ------------- | ------ | -------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| api_key       | string | true     | None                                        | API key to an environment                                                                               |
-| source_url    | string | false    | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                                                                       |
-| backup_url    | string | false    | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                                                                |
-| sse_url       | string | false    | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
-| ingestion_url | string | false    | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
-| log_lvl       | string | false    | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
+| name          | Environment variable      | Default                                     | Description                                                                                             |
+| ------------- | ------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| api_key       | FLAGGER_API_KEY           | None                                        | API key to an environment                                                                               |
+| source_url    | FLAGGER_SOURCE_URL        | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                                                                       |
+| backup_url    | FLAGGER_BACKUP_SOURCE_URL | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                                                                |
+| sse_url       | FLAGGER_SSE_URL           | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
+| ingestion_url | FLAGGER_INGESTION_URL     | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
+| log_lvl       | FLAGGER_LOG_LEVEL         | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `init` happens:

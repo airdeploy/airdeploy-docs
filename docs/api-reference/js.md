@@ -17,25 +17,28 @@ Flagger.init(options): Promise<void>
 > Note: `init` must be called only once, at the start of your application.
 > Your program **must** wait for the promise to resolve before using any other `Flagger` methods
 
+> Provide <API_KEY> either by passing it directly to init method as an argument or by setting environment variable
+
 ```javascript
 import Flagger from 'flagger'
 
 await Flagger.init({
-  apiKey: '<API-KEY>', // the only required field
-  logLevel: 'DEBUG',
+  apiKey: '<API-KEY>', // could be omitted if FLAGGER_API_KEY env variable is set
+  logLevel: 'DEBUG', // could be omitted, ERROR by default
 })
 ```
 
-| name            | type   | Required | Default                                     | Description                                                                                             |
-| --------------- | ------ | -------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| apiKey          | string | true     | None                                        | API key to an environment                                                                               |
-| sourceURL       | string | false    | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                                                                       |
-| backupSourceURL | string | false    | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                                                                |
-| sseURL          | string | false    | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
-| ingestionURL    | string | false    | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
-| logLevel        | string | false    | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
+| name            | Environment variable      | Default                                     | Description                                                                                             |
+| --------------- | ------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| apiKey          | FLAGGER_API_KEY           | None                                        | API key to an environment                                                                               |
+| sourceURL       | FLAGGER_SOURCE_URL        | https://flags.airdeploy.io/v3/config/       | URL to get `FlaggerConfiguration`                                                                       |
+| backupSourceURL | FLAGGER_BACKUP_SOURCE_URL | https://backup-api.airshiphq.com/v3/config/ | backup URL to get `FlaggerConfiguration`                                                                |
+| sseURL          | FLAGGER_SSE_URL           | https://sse.airdeploy.io/v3/sse/            | URL for real-time updates of `FlaggerConfiguration` via sse                                             |
+| ingestionURL    | FLAGGER_INGESTION_URL     | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
+| logLevel        | FLAGGER_LOG_LEVEL         | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-- If `apiKey` is not provided `init` promise is rejected
+- If `<API_KEY>` is not provided `init` promise is rejected
+- Passing argument directly to `init` function overrides corresponding environment variable
 - If not provided default arguments values are used and printed to Debug
 - If second(third …) call of `init` happens:
   - If the arguments are the same, `init` method does nothing

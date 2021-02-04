@@ -108,7 +108,10 @@ A natural way of calling `init()` is to do it only once per runtime, at the star
 > Note: for a refresher on promises, you can reference this [article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 ```javascript
-await Flagger.init({apiKey: <API_KEY>, logLevel: 'debug'})
+await Flagger.init({apiKey: '<API_KEY>', logLevel: 'debug'})
+
+// or if both FLAGGER_API_KEY and FLAGGER_LOG_LEVEL env variables are set:
+await Flagger.init()
 ```
 
 To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
@@ -155,6 +158,18 @@ The `Flag` component renders its children based on whether the `case` prop match
 require 'flagger'
 ```
 
+### Automatic initialization
+
+Set environment variable `FLAGGER_API_KEY=<API_KEY>`
+
+Flagger will initialize at the very first call to any flag gating method:
+
+```ruby
+p Flagger::is_enabled('test-flag', Flagger::Entity::new('1'))
+```
+
+### Manual initialization
+
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
 
 A natural way of calling `init()` is to do it only once per runtime, at the start of the application.
@@ -167,7 +182,6 @@ Flagger::init(api_key, log_level: "debug)
 To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `is_enabled`.
 
 ```ruby
-
 p Flagger::is_enabled('test-flag', Flagger::Entity::new('1'))
 ```
 
@@ -180,6 +194,18 @@ The result will be `false` printed in a console.
 ```python
 import flagger
 ```
+
+### Automatic initialization
+
+Set environment variable `FLAGGER_API_KEY=<API_KEY>`
+
+Flagger will initialize at the very first call to any flag gating method:
+
+```python
+print(flagger.is_enabled("test-flag", {"id": "1"}))
+```
+
+### Manual initialization
 
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
 
@@ -205,24 +231,30 @@ The result will be `false` printed in a console.
 import "github.com/airdeploy/flagger-go/v3"
 ```
 
+### Automatic initialization
+
+Set environment variable `FLAGGER_API_KEY=<API_KEY>`
+
+Flagger will initialize at the very first call to any flag gating method:
+
+```go
+println(flagger.IsEnabled("test-flag", &core.Entity{ID: "1"}))
+```
+
+### Manual initialization
+
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
 
 A natural way of calling `init()` is to do it only once per runtime, at the start of the application.
 
 ```go
-
-// Flagger uses logrus as a logger
-// By default Flagger will output all warn and error
-logrus.SetLevel(logrus.DebugLevel) // set to debug to see all messages
-
-ctx := context.Background()
-err := flagger.Init(ctx, &flagger.InitArgs{APIKey: "<API_KEY>"})
+err := flagger.Init(&flagger.InitArgs{APIKey: "<API_KEY>", LogLevel: "DEBUG"})
 ```
 
 To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
 
 ```go
-log.Println(flagger.IsEnabled("test-flag", &core.Entity{ID: "1"}))
+println(flagger.IsEnabled("test-flag", &core.Entity{ID: "1"}))
 ```
 
 The result will be `false` printed in a console.
@@ -234,6 +266,19 @@ The result will be `false` printed in a console.
 ```java
 import io.airdeploy.flagger.*;
 ```
+
+### Automatic initialization
+
+Set environment variable `FLAGGER_API_KEY=<API_KEY>`
+
+Flagger will initialize at the very first call to any flag gating method:
+
+```java
+Entity entity = Entity.builder().id("1").build();
+System.out.println(Flagger.isEnabled("test-flag", entity));
+```
+
+### Manual initialization
 
 To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
 
