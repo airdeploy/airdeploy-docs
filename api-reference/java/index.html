@@ -70,8 +70,8 @@ Your program <strong>must</strong> wait for <code>init</code> to finish before u
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
         String apiKey = <span class="hljs-string">"&lt;API-KEY&gt;"</span>;
         FlaggerInitConfig flaggerInitConfig = FlaggerInitConfig.builder()
-                .apiKey(apiKey) <span class="hljs-comment">// the only required field</span>
-                .logLevel(LogLevel.DEBUG)
+                .apiKey(apiKey) <span class="hljs-comment">// could be omitted if FLAGGER_API_KEY env variable is set</span>
+                .logLevel(LogLevel.DEBUG) <span class="hljs-comment">// could be omitted, ERROR by default</span>
                 .build();
         Flagger.init(flaggerInitConfig);
 
@@ -85,15 +85,15 @@ Your program <strong>must</strong> wait for <code>init</code> to finish before u
 </code></pre>
 <table>
 <thead>
-<tr><th>name</th><th>type</th><th>Required</th><th>Default</th><th>Description</th></tr>
+<tr><th>name</th><th>Environment variable</th><th>Default</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td>apiKey</td><td>string</td><td>true</td><td>None</td><td>API key to an environment</td></tr>
-<tr><td>sourceUrl</td><td>string</td><td>false</td><td><a href="https://flags.airdeploy.io/v3/config/">https://flags.airdeploy.io/v3/config/</a></td><td>URL to get <code>FlaggerConfiguration</code></td></tr>
-<tr><td>backupSourceURL</td><td>string</td><td>false</td><td><a href="https://backup-api.airshiphq.com/v3/config/">https://backup-api.airshiphq.com/v3/config/</a></td><td>backup URL to get <code>FlaggerConfiguration</code></td></tr>
-<tr><td>sseUrl</td><td>string</td><td>false</td><td><a href="https://sse.airdeploy.io/v3/sse/">https://sse.airdeploy.io/v3/sse/</a></td><td>URL for real-time updates of <code>FlaggerConfiguration</code> via sse</td></tr>
-<tr><td>ingestionUrl</td><td>string</td><td>false</td><td><a href="https://ingestion.airdeploy.io/v3/ingest/">https://ingestion.airdeploy.io/v3/ingest/</a></td><td>URL for ingestion</td></tr>
-<tr><td>logLevel</td><td>string</td><td>false</td><td>ERROR</td><td>set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests</td></tr>
+<tr><td>apiKey</td><td>FLAGGER_API_KEY</td><td>None</td><td>API key to an environment</td></tr>
+<tr><td>sourceURL</td><td>FLAGGER_SOURCE_URL</td><td><a href="https://flags.airdeploy.io/v3/config/">https://flags.airdeploy.io/v3/config/</a></td><td>URL to get <code>FlaggerConfiguration</code></td></tr>
+<tr><td>backupSourceURL</td><td>FLAGGER_BACKUP_SOURCE_URL</td><td><a href="https://backup-api.airshiphq.com/v3/config/">https://backup-api.airshiphq.com/v3/config/</a></td><td>backup URL to get <code>FlaggerConfiguration</code></td></tr>
+<tr><td>sseURL</td><td>FLAGGER_SSE_URL</td><td><a href="https://sse.airdeploy.io/v3/sse/">https://sse.airdeploy.io/v3/sse/</a></td><td>URL for real-time updates of <code>FlaggerConfiguration</code> via sse</td></tr>
+<tr><td>ingestionURL</td><td>FLAGGER_INGESTION_URL</td><td><a href="https://ingestion.airdeploy.io/v3/ingest/">https://ingestion.airdeploy.io/v3/ingest/</a></td><td>URL for ingestion</td></tr>
+<tr><td>logLevel</td><td>FLAGGER_LOG_LEVEL</td><td>ERROR</td><td>set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests</td></tr>
 </tbody>
 </table>
 <ul>
@@ -218,4 +218,4 @@ String variation = Flagger.getVariation(<span class="hljs-string">"show_wallet"<
 
 Map&lt;String, Object&gt; payload = Flagger.getPayload(<span class="hljs-string">"show_new_dashboard"</span>, company);
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/api-reference/react"><span class="arrow-prev">← </span><span>React</span></a><a class="docs-next button" href="/api-reference/ruby"><span>Ruby</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#flagger">Flagger</a><ul class="toc-headings"><li><a href="#init">init</a></li><li><a href="#shutdown">shutdown</a></li><li><a href="#publish">publish</a></li><li><a href="#track">track</a></li><li><a href="#setentity">setEntity</a></li><li><a href="#isenabled">isEnabled</a></li><li><a href="#issampled">isSampled</a></li><li><a href="#getvariation">getVariation</a></li><li><a href="#getpayload">getPayload</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="Airdeploy Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/overview.html">Getting Started</a><a href="/en/api-references.html">API Reference</a></div><div><h5>More</h5><a href="https://github.com/airdeploy">Airdeploy GitHub</a></div></section><section class="copyright">Copyright © 2020 Airdeploy</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/api-reference/react"><span class="arrow-prev">← </span><span>React</span></a><a class="docs-next button" href="/api-reference/ruby"><span>Ruby</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#flagger">Flagger</a><ul class="toc-headings"><li><a href="#init">init</a></li><li><a href="#shutdown">shutdown</a></li><li><a href="#publish">publish</a></li><li><a href="#track">track</a></li><li><a href="#setentity">setEntity</a></li><li><a href="#isenabled">isEnabled</a></li><li><a href="#issampled">isSampled</a></li><li><a href="#getvariation">getVariation</a></li><li><a href="#getpayload">getPayload</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="Airdeploy Documentation" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/overview.html">Getting Started</a><a href="/en/api-references.html">API Reference</a></div><div><h5>More</h5><a href="https://github.com/airdeploy">Airdeploy GitHub</a></div></section><section class="copyright">Copyright © 2021 Airdeploy</section></footer></div></body></html>
