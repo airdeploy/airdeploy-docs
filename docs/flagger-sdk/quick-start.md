@@ -22,8 +22,6 @@ Every environment in Airdeploy has a pair of keys, which are available through t
 
 ## Install a client library
 
-> Running flagger sdk on Linux requires `glibc` which is the default libc implementation on all Linux distributions except for Alpine
-
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Javascript-->
 
