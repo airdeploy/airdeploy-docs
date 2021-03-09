@@ -30,7 +30,7 @@ Currently, Flagger supports the following languages:
 
 - Javascript / Node.js
 - React
-- Java
+- Java (+ separate package Android)
 - Ruby
 - Python
 - Golang

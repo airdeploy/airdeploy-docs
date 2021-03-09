@@ -4,6 +4,43 @@ title: Java API Reference
 sidebar_label: Java
 ---
 
+## Imports
+
+Generally, this is flagger package for the server/desktop applications:
+
+```java
+import io.airdeploy.flagger.*;
+```
+
+If you're developing Android application you must use different package:
+
+```java
+import io.airdeploy.flagger_android.*;
+```
+
+Flagger Java SDK is a wrapper around native binaries. These binaries are built for the specific platform + architecture:
+
+Desktop:
+
+- windows
+  - x86
+  - x86_64
+- MacOS
+  - Universal binary for x86 and x86_64 Intel based processor
+- Linux (statically linked against GNU gcc implementation):
+
+  - x86
+  - x86_64
+
+Android:
+
+- x86_64
+- x86
+- arm64-v8a
+- armeabi-v7a
+
+Use [abiFilters](https://developer.android.com/ndk/guides/abis#gc) to restrict the set of ABIs your application supports. You might need it if you're developing mobile only app and want to reduce the size of the APK.
+
 ## Flagger
 
 ### init
@@ -18,8 +55,6 @@ public static void init(FlaggerInitConfig config)
 > Your program **must** wait for `init` to finish before using any other `Flagger` methods
 
 ```java
-import io.airdeploy.flagger.*;
-
 public class Main {
 
     public static void main(String[] args) {
