@@ -37,7 +37,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 | ingestionUrl    | string | false    | https://ingestion.airdeploy.io/v3/ingest/   | URL for ingestion                                                                                       |
 | logLevel        | string | false    | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
-- If second(third …) call of `initialize` happens:
+- If second (third …) call of `initialize` happens:
   - If the arguments are the same, `initialize` method does nothing
   - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection,
     Ingester, gets new `FlaggerConfiguration`).

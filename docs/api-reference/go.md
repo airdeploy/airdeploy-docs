@@ -50,7 +50,7 @@ func main() {
 
 - If `APIKey` argument is not provided and `FLAGGER_API_KEY` environment variable is not set then `Init` returns an error "Bad init agrs" and print an error in the console: "empty APIKey"
 - If not provided default arguments values are used and printed to Debug
-- If second(third …) call of `Init` happens:
+- If second (third …) call of `Init` happens:
   - If the arguments are the same, `Init` method does nothing
   - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection,
     Ingester, gets new `FlaggerConfiguration`).

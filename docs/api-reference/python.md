@@ -35,7 +35,7 @@ flagger.init(api_key="<API-KEY>", log_lvl="debug")
 
 - If `api_key` is not provided `init` throws an RuntimeError: "bad init arguments" and print error in console: "empty APIKey"
 - If not provided default arguments values are used and printed to Debug
-- If second(third …) call of `init` happens:
+- If second (third …) call of `init` happens:
   - If the arguments are the same, `init` method does nothing
   - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection,
     Ingester, gets new `FlaggerConfiguration`).

@@ -33,7 +33,7 @@ Flagger::init(['apiKey' => $apiKey, 'logLevel' => $logLevel]);
 | logLevel     | FLAGGER_LOG_LEVEL         | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
 - If not provided default arguments values are used and printed to Debug
-- If second(third …) call of `init` happens:
+- If second (third …) call of `init` happens:
   - If the arguments are the same, `init` method does nothing
   - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection,
     Ingester, gets new `FlaggerConfiguration`).
