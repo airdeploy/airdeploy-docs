@@ -36,3 +36,10 @@ Currently, Flagger supports the following languages:
 - Golang
 - Swift(iOS)
 - PHP
+
+## Supported Platforms
+
+- Windows
+- MacOS
+- Linux
+  > Running flagger sdk on Linux requires `glibc` which is the default libc implementation on all Linux distributions except for Alpine
