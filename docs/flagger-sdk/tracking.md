@@ -46,9 +46,15 @@ public static void track(Event event)
 public static func track(_ event: Event) -> Void
 ```
 
+<!--PHP-->
+
+```
+public static function track($eventName, $eventProperties, $entity = null)
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-Entity is an optional parameter if it was set before via `Flagger.setEntity` method
+Entity is an optional parameter if it was set before via `setEntity` method
 
 ## Examples
 
@@ -149,6 +155,24 @@ let event = Event(name: "test",
     attributes: Attributes().put(key: "isAdmin", value: true),
     entity: entity)
 Flagger.track(event)
+```
+
+<!--PHP-->
+
+```
+Flagger::track('Purchase Completed',
+  ['plan' => "Gold",
+   'referrer' => "https://www.google.com",
+   'shirt_size' => "medium"],
+  ['id' => "42"]
+);
+
+// If `entity` has been set before with Flagger::setEntity method:
+Flagger::track('Purchase Completed',
+  ['plan' => "Gold",
+   'referrer' => "https://www.google.com",
+   'shirt_size' => "medium"]
+);
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

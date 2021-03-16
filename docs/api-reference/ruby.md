@@ -33,7 +33,7 @@ Flagger::init(api_key, log_level: log_level)
 | log_lvl       | FLAGGER_LOG_LEVEL         | ERROR                                       | set up log level: ERROR, WARN, DEBUG. Debug is the most verbose level and includes all Network requests |
 
 - If not provided default arguments values are used and printed to Debug
-- If second(third …) call of `init` happens:
+- If second (third …) call of `init` happens:
   - If the arguments are the same, `init` method does nothing
   - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection,
     Ingester, gets new `FlaggerConfiguration`).
@@ -66,7 +66,7 @@ Flagger::shutdown(1000)
   def self.publish(entity)
 ```
 
-Explicitly notify Airdeploy about an Entity
+Explicitly notifies Airdeploy about an Entity
 
 ```ruby
 Flagger::publish(Flagger::Entity::new("42"))
@@ -120,13 +120,13 @@ Rule of thumb: make sure you always provide an entity to the Flagger
 Determines if flag is enabled for entity.
 
 ```ruby
-is_enabled= Flagger::is_enabled('show_wallet', Flagger::Entity::new("42"))
+is_enabled = Flagger::is_enabled('show_wallet', Flagger::Entity::new("42"))
 ```
 
 Group example:
 
 ```ruby
-is_enabled= Flagger::is_enabled('show_wallet', {id:"42", group: {id:"4242", type: 'company'}})
+is_enabled = Flagger::is_enabled('show_wallet', {id:"42", group: {id:"4242", type: 'company'}})
 ```
 
 ### is_sampled
@@ -138,13 +138,13 @@ is_enabled= Flagger::is_enabled('show_wallet', {id:"42", group: {id:"4242", type
 Determines if entity is within the targeted subpopulations
 
 ```ruby
-is_sampled= Flagger::is_sampled('show_wallet', Flagger::Entity::new("42"))
+is_sampled = Flagger::is_sampled('show_wallet', Flagger::Entity::new("42"))
 ```
 
 Group example:
 
 ```ruby
-is_sampled= Flagger::is_sampled('show_wallet', {id:"42", group: {id:"4242", type: 'company'}})
+is_sampled = Flagger::is_sampled('show_wallet', {id:"42", group: {id:"4242", type: 'company'}})
 ```
 
 ### get_variation

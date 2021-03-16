@@ -35,6 +35,7 @@ Currently, Flagger supports the following languages:
 - Python
 - Golang
 - Swift(iOS)
+- PHP
 
 ## Supported Platforms
 

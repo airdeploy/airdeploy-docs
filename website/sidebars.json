@@ -19,7 +19,8 @@
       "api-reference/ruby",
       "api-reference/python",
       "api-reference/go",
-      "api-reference/ios"
+      "api-reference/ios",
+      "api-reference/php"
     ],
     "Concepts": ["concepts/flags", "concepts/entities", "concepts/groups", "concepts/targeting"],
     "Dashboard": [

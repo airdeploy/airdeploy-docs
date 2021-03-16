@@ -20,7 +20,7 @@ await Flagger.shutdown() // shutdown is a Promise
 <!--Ruby-->
 
 ```ruby
-Flagger.shutdown(3000)
+Flagger::shutdown(3000)
 ```
 
 <!--Python-->
@@ -45,6 +45,12 @@ Flagger.shutdown(3000)
 
 ```swift
 let isTimeOut = Flagger.shutdown(timeoutMillis: 1000)
+```
+
+<!--PHP-->
+
+```
+Flagger::shutdown(3000)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->

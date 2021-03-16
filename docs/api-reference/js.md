@@ -40,7 +40,7 @@ await Flagger.init({
 - If `<API_KEY>` is not provided `init` promise is rejected
 - Passing argument directly to `init` function overrides corresponding environment variable
 - If not provided default arguments values are used and printed to Debug
-- If second(third …) call of `init` happens:
+- If second (third …) call of `init` happens:
   - If the arguments are the same, `init` method does nothing
   - If arguments differ, `Flagger` prints warnings and recreates(closes and creates new) resources(SSE connection,
     Ingester, gets new `FlaggerConfiguration`).
@@ -90,7 +90,7 @@ Removes a listener
 Flagger.publish(entity: Entity): void
 ```
 
-Explicitly notify Airdeploy about an Entity
+Explicitly notifies Airdeploy about an Entity
 
 ```javascript
 Flagger.publish({id: '1'})

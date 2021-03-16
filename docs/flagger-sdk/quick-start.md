@@ -85,6 +85,12 @@ and then install pod:
 
 [More info on how to manage your pods](https://cocoapods.org/)
 
+<!--PHP-->
+
+```commandline
+php composer.phar require airdeploy/flagger-php
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Test the installation
@@ -322,6 +328,45 @@ let entity = Entity(id: "1")
 let isEnabled = Flagger.isEnabled(codename: "test-flag", entity: entity)
 ```
 
+<!--PHP-->
+
+<br>First, import the Flagger library in your application code:
+
+```
+use Flagger;
+```
+
+### Automatic initialization
+
+Set environment variable `FLAGGER_API_KEY=<API_KEY>`
+
+Flagger will initialize at the very first call to any flag gating method:
+
+```
+$isEnabled = Flagger::isEnabled("test-flag", ["id" => "1"]);
+echo $isEnabled;
+```
+
+### Manual initialization
+
+To initialize, Flagger requires only 1 network request. This request is made by the `init()` method.
+
+A natural way of calling `init()` is to do it only once per runtime, at the start of the application.
+
+```
+$apiKey = '<API_KEY>';
+Flagger::init(['apiKey' => $apiKey, 'logLevel' => "debug"]);
+```
+
+To ensure that Flagger is successfully initialized, call any flag function. For this test, we will use `isEnabled`.
+
+```
+$isEnabled = Flagger::isEnabled("test-flag", ["id" => "1"]);
+echo $isEnabled;
+```
+
+The result will be `false` printed in a console.
+
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Shutdown Flagger
@@ -369,6 +414,12 @@ In `AppDelegate.swift`:
     func applicationWillTerminate(_ application: UIApplication) {
         _ = Flagger.shutdown(timeoutMillis: 1000)
     }
+```
+
+<!--PHP-->
+
+```
+Flagger::shutdown(5000); // shutdown takes a timeout as an argument
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
