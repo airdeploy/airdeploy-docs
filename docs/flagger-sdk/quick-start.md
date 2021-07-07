@@ -55,25 +55,31 @@ go get github.com/airdeploy/flagger-go/v3
 
 <!--Java-->
 
-Maven
+<br>Add this to your `pom.xml`:
 
 ```xml
 <dependency>
   <groupId>io.airdeploy</groupId>
   <artifactId>flagger</artifactId>
-  <version>3.0.0</version>
+  <version>3.X.X</version>
 </dependency>
 ```
 
-Gradle
+or if you prefer using Gradle:
 
 ```commandline
-compile "io.airdeploy:flagger:3.0.0"
+implementation "io.airdeploy:flagger:3.X.X"
+```
+
+Android apps must use Android specific package:
+
+```commandline
+implementation "io.airdeploy:flagger-android:3.X.X"
 ```
 
 <!--Swift (Cocoapod)-->
 
-Add Flagger to your Podfile:
+<br>Add Flagger to your Podfile:
 
 ```
   pod 'Flagger'
@@ -273,6 +279,12 @@ The result will be `false` printed in a console.
 import io.airdeploy.flagger.*;
 ```
 
+or if you're in Android environment:
+
+```java
+import io.airdeploy.flagger_android.*;
+```
+
 ### Automatic initialization
 
 Set environment variable `FLAGGER_API_KEY=<API_KEY>`
@@ -310,7 +322,7 @@ The result will be `false` printed in a console.
 
 <!--Swift-->
 
-Initialize Flagger, as soon as your app starts, for example In AppDelegate.swift:
+<br>Initialize Flagger, as soon as your app starts, for example In AppDelegate.swift:
 
 ```swift
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -408,7 +420,7 @@ Flagger.shutdown(5000) // shutdown takes a timeout as an argument
 
 <!--Swift-->
 
-In `AppDelegate.swift`:
+<br>In `AppDelegate.swift`:
 
 ```swift
     func applicationWillTerminate(_ application: UIApplication) {
